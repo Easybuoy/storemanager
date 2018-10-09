@@ -109,6 +109,7 @@ header a:hover{
     font-weight: bold;
 }
 
+
 /* Showcase */
 #showcase{
     min-width: 400px;
@@ -156,7 +157,7 @@ header a:hover{
     justify-content: space-around; */
 }
 
-.box{
+.topcardsbox{
     float: left;
     width: 30%;
     padding: 10px;
@@ -461,13 +462,73 @@ border-radius:30px;
     
 }
 
+@media(max-width: 1160px){
+    
+.topcardsbox{
+    /* float: left; */
+    width: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.c1{
+    width: 600px !important;
+}
+
+.c2{
+    width: 600px !important;
+}
+
+.c3{
+    width: 600px !important;
+}
+}
+
+@media(max-width: 1005px){
+    .c1{
+        width: 400px !important;
+    }
+    
+    .c2{
+        width: 400px !important;
+    }
+    
+    .c3{
+        width: 400px !important;
+    }
+
+    #boxes .box{
+        float: none;
+        text-align: center;
+        width: 80%;
+        
+        display: flex;
+        justify-content: center;
+    }
+
+    .card{
+        background: white;
+        height: 50%;
+        width: 400px;
+        padding: 3%;
+        /* margin: 5%; */
+        
+        -webkit-box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
+        -moz-box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
+        box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
+        box-sizing: border-box;
+    }
+}
+
 @media(max-width: 768px){
     header #branding, header nav, header nav li
     #newsletter h1, #newsletter form,
     #boxes .box{
         float: none;
         text-align: center;
-        width: 100%;
+        /* width: 100%; */
     }
 
     header{
@@ -503,9 +564,10 @@ border-radius:30px;
     .card{
         background: white;
         height: 50%;
-        width: 250px;
+        width: 70%;
         padding: 3%;
         /* margin: 5%; */
+        
         -webkit-box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
         -moz-box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
         box-shadow: -1px 1px 23px 6px rgba(0,0,0,0.75);
