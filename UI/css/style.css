@@ -60,21 +60,6 @@ ul{
     width: 250px;
 }
 
-.imgcard{
-    height: 100px;
-    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    -webkit-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
--moz-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
-    color: rgb(240, 112, 14);
-    margin: 15px; */
-    display: block;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    /* height: 180px; */
-}
 
 /* Header */
 header{
@@ -164,12 +149,37 @@ header a:hover{
     width: 250px;
 }
 
+/* TopCards */
+#topcards{
+    margin: 20px 0 20px 0;
+    /* display: flex;
+    justify-content: space-around; */
+}
 
+.box{
+    float: left;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+}
+
+.c1{
+    background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%) !important; 
+}
+
+.c2{
+    background: linear-gradient(89deg, #ff1a1a 0%, #ff751a 100%) !important;
+}
+
+.c3{
+        background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
+}
 /* Boxes */
 #boxes{
     margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    justify-content: space-around; */
 }
 
 #boxes .box{
