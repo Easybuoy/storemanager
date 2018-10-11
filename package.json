@@ -1,0 +1,32 @@
+{
+  "name": "storemanager",
+  "version": "1.0.0",
+  "description": "API backend for store manager application.",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "mocha --recursive server/ || true",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Easybuoy/storemanager.git"
+  },
+  "author": "Ekunola Ezekiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Easybuoy/storemanager/issues"
+  },
+  "homepage": "https://github.com/Easybuoy/storemanager#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  }
+}
