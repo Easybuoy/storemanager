@@ -359,11 +359,13 @@ body{
     overflow: hidden;
 }
 
+.text-center{
+    text-align: center !important;
+}
 ul{
     margin: 0;
     padding: 0;
 }
-
 
 .button_1{
     height: 38px;
@@ -372,6 +374,99 @@ ul{
     padding-left: 20px;
     padding-right: 20px;
     color: #ffffff;
+    cursor: pointer;
+}
+
+.button_2{
+   border: none;
+   color: inherit;
+   background: inherit;
+}
+
+.shoppingcart {
+    background-image: url('../img/cart.png');
+    background-size: 100%;
+    display: inline-block;
+    position: fixed;
+    top: 80vh;
+    left: 90%;
+    height:70px ;
+    width: 70px ;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+
+#shoppingcartlabel{
+    color: red;
+    font-size: 15px;
+    position: absolute;
+    left: 21px;
+    top: -10px;
+    /* color: red; */
+    font-weight: bolder;
+    /* margin-bottom: 1%; */
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+ input[type="number"]{
+    border: none;
+    /* border-bottom: 1px solid black; */
+    /* background: transparent; */
+    outline: none;
+    height: 30px;
+    color: black; 
+    text-align: center;
+    /* background: #cccccc; */
+    border: 2px solid #0099ff;
+    width: 30%;
+    font-size: 16px;  
+}
+
+.fa-shopping-cart{
+    height: 38px;
+    /* background: #cbcbcc; */
+    border: none;
+    color: #0099ff;
     cursor: pointer;
 }
 
@@ -396,13 +491,14 @@ ul{
 
 /* Header */
 header{
-    /* background: #35424a; */
-    background: linear-gradient(89deg, #1c588a 40%, rgb(11, 189, 55) 100%);
+    background: #1c588a;
     color: #fff;
     padding-top: 30px;
     min-height: 70px;
     border-bottom: #0099ff 3px solid;
-
+    /* position: fixed;
+    top: 0;
+    width: 100%; */
 }
 
 header a{
@@ -550,8 +646,7 @@ box-shadow: -1px 1px 23px 10px rgba(0,0,0,0.75); */
     padding: 20px;
     margin-top: 20px;
     color: #ffffff;
-    /* background: #0099ff; */
-    background: linear-gradient(89deg, #1c588a 40%, rgb(11, 189, 55) 100%);
+    background: #1c588a;
     text-align: center;
 }
 
@@ -657,7 +752,9 @@ table {
     width: 95%;
     margin: 0 auto;
 }
-
+th{
+    color: red;
+}
 th,
 td {
     border: 1px solid gray;
