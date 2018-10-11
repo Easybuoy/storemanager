@@ -7,8 +7,10 @@
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
         <title>Store Manager | Add Products</title>
-
+        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
         <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     </head>
 
     <body>
@@ -27,6 +29,41 @@
                 </nav>
             </div>
         </header>
+
+
+          <!-- Shopping cart and modal area -->
+          <div class="shoppingcart" id="shoppingcart">
+                <!-- <button id="myBtn"></button> -->
+
+                <label  id="shoppingcartlabel">0</label >
+
+        </div>
+
+        <!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content" id="cartmodaldiv">
+    <span class="close">&times;</span>
+    <table >
+            <thead>
+                <th>PRODUCT</th>
+                <th>AMOUNT</th>
+                <th>QUANTITY</th>
+            </thead>
+            <tbody id="carttablebody"></tbody>
+                </table>
+                <br>
+                <div class="text-center">
+                <button class="button_1">BUY</button>
+                <button class="button_1" id="clear" onclick="clearCart()">CLEAR</button>
+                </div>
+  </div>
+
+</div>
+
 
         <section id="newsletter">
             <div class="container">
@@ -50,62 +87,89 @@
         <section id="boxes">
                 <div class="container">
                     <div class="box">
-                    <div class="card">
-                        <img src="img/product.jpeg">
-                        <h3>PRODUCT 1</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                        <button class="button_1">Add To Cart</button>
+                       
+                        <div class="card">
+                            <img src="img/gpixel2.jpg">
+                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                            <p>The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.</p>
+                            <p>Quantity: 3</p>
+                            <p  id="productamount">Price: $649</p>
+                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                            <button class="button_2" onclick="addtocart('Google Pixel 2', '$649')"><i class="fas fa-shopping-cart fa-2x" data-name="Google Pixel 2"></i></button>
+                        </div>
                     </div>
-                </div>
 
                     <div class="box">
-                        <div class="card">
-                        <img src="img/product.jpeg">
-                        <h3>PRODUCT 2</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                        <button class="button_1">Add To Cart</button>    
-                    </div>
-                    
-                    </div>
-    
-                    <div class="box">
-                        <div class="card">
-                        <img src="img/product.jpeg">
-                        <h3>PRODUCT 3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                        <button class="button_1">Add To Cart</button>
-                        </div>
-                    </div>
-                    <div class="box">
+                   
                             <div class="card">
-                            <img src="img/product.jpeg">
-                            <h3>PRODUCT 3</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                            <button class="button_1">Add To Cart</button>
+                                <img src="img/gpixel3.jpg">
+                                <h3 class="productname">Google Pixel 3</h3>
+                                <p>The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices</p>
+                                <p>Quantity: 10</p>
+                                <p  id="productamount">Price: $1000</p>
+                                <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
+                                <button class="button_2 dis" onclick="addtocart('Google Pixel 3', '$1000')"><i class="fas fa-shopping-cart fa-2x"></i></button>
                             </div>
                         </div>
+
+                         <div class="box">
+                   
+                            <div class="card">
+                                <img src="img/iphone7plus.jpg">
+                                <h3 class="productname">iPhone 7 Plus</h3>
+                                <p>The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.</p>
+                                <p>Quantity: 25</p>
+                                <p  id="productamount">Price: $600</p>
+                                <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
+                                <button class="button_2" onclick="addtocart('iPhone 7 Plus', '$600')"><i class="fas fa-shopping-cart fa-2x"></i></button>
+                            </div>
+                        </div>
+
                         <div class="box">
+                   
+                            <div class="card">
+                                <img src="img/gpixel2.jpg">
+                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                <p>The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.</p>
+                                <p>Quantity: 3</p>
+                                <p  id="productamount">Price: $649</p>
+                                <input type="number" id="number" name="amount" placeholder="Amount" >
+                                <button class="button_2" onclick="addtocart('Google Pixel 2', '$649')"><i class="fas fa-shopping-cart fa-2x" data-name="Google Pixel 2"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                       
                                 <div class="card">
-                                <img src="img/product.jpeg">
-                                <h3>PRODUCT 3</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                                <button class="button_1">Add To Cart</button>
+                                    <img src="img/gpixel3.jpg">
+                                    <h3 class="productname">Google Pixel 3</h3>
+                                    <p>The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices</p>
+                                    <p>Quantity: 10</p>
+                                    <p  id="productamount">Price: $1000</p>
+                                    <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
+                                    <button class="button_2" onclick="addtocart('Google Pixel 3', '$1000')"><i class="fas fa-shopping-cart fa-2x"></i></button>
                                 </div>
                             </div>
-                            <div class="box">
-                                    <div class="card">
-                                    <img src="img/product.jpeg">
-                                    <h3>PRODUCT 3</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et neque ex. Praesent condimentum ultricies eros vehicula rutrum. Curabitur efficitur leo ac purus dictum,</p>
-                                    <button class="button_1">Add To Cart</button>
-                                    </div>
+
+                             <div class="box">
+                       
+                                <div class="card">
+                                    <img src="img/iphone7plus.jpg">
+                                    <h3 class="productname">iPhone 7 Plus</h3>
+                                    <p>The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.</p>
+                                    <p>Quantity: 25</p>
+                                    <p  id="productamount">Price: $600</p>
+                                    <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
+                                    <button class="button_2" onclick="addtocart('iPhone 7 Plus', '$600')"><i class="fas fa-shopping-cart fa-2x"></i></button>
                                 </div>
+                            </div>
                 </div>
             </section>
 
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
+        <script src="js/main.js"></script>
 
     </body>
 </html>
