@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 // res.send('Loaded')
 // });
 
-
 //using routes
 app.use('/api/v1/products',products);
 app.use('/api/v1/sales',sales);
