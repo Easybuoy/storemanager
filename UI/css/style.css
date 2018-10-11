@@ -462,6 +462,15 @@ ul{
     font-size: 16px;  
 }
 
+select{
+    width: 100%;
+    overflow: hidden !important;
+    height: 30px;
+    outline: none;
+    margin: 20px;
+}
+
+
 .fa-shopping-cart{
     height: 38px;
     /* background: #cbcbcc; */
@@ -595,16 +604,9 @@ header a:hover{
 }
 
 .c1{
-    background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%) !important; 
+    background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
 }
 
-.c2{
-    background: linear-gradient(89deg, #ff1a1a 0%, #ff751a 100%) !important;
-}
-
-.c3{
-        background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
-}
 /* Boxes */
 #boxes{
     margin-top: 20px;
@@ -631,14 +633,12 @@ header a:hover{
     height: 50%;
     width: 300px;
     padding: 5%;
-    /* margin: 5%; */
+    
     transition: 0.9s;
-    -webkit-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
--moz-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
-box-shadow: -2px 0px 12px 2px rgba(0,0,0,0.75);
-    /* -webkit-box-shadow: -1px 1px 23px 10px rgba(0,0,0,0.75);
--moz-box-shadow: -1px 1px 23px 10px rgba(0,0,0,0.75);
-box-shadow: -1px 1px 23px 10px rgba(0,0,0,0.75); */
+    -webkit-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+    box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+    
     box-sizing: border-box;
 }
 
