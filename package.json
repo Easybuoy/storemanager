@@ -1,0 +1,22 @@
+{
+  "name": "storemanager",
+  "version": "1.0.0",
+  "description": "API backend for store manager application.",
+  "main": "/client/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Easybuoy/storemanager.git"
+  },
+  "author": "Ekunola Ezekiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Easybuoy/storemanager/issues"
+  },
+  "homepage": "https://github.com/Easybuoy/storemanager#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
