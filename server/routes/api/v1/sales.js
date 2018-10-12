@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../../../models/db');
+const { validateSalesInput } = require('../../../validation/sales');
 
 const router = express.Router();
 
@@ -32,7 +33,12 @@ router.get('/:id', (req, res) => {
 // @desc    Create a sale order
 // @access   Private
 router.post('/', (req, res) => {
-  // const { id } = req.body;
+  const { errors, isValid } = validateSalesInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   let id = db.sales.length;
   id += 1;
@@ -47,7 +53,7 @@ router.post('/', (req, res) => {
   db.sales.push(data);
 
 
-  return res.json({ message: 'Sale added successfully', data });
+  return res.status(201).json({ message: 'Sale added successfully', data });
 });
 
 module.exports = router;

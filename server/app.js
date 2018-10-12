@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // app.get('/', (req, res) => {
-// res.send('Loaded')
+//     console.log('chheeii')
+// res.send('Loaded');
 // });
 
 // using routes
@@ -24,4 +25,4 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`sever listening on port ${port}`));
 
-module.exports = 'Hello';
+module.exports = app;
