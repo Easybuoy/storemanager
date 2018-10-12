@@ -4,6 +4,8 @@
   "description": "API backend for store manager application.",
   "main": "server/app.js",
   "scripts": {
+    "dev": "nodemon server/app",
+    "start": "node server/app",
     "test": "mocha --recursive server/ || true",
     "lint": "eslint ./"
   },
