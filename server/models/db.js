@@ -24,7 +24,17 @@ module.exports = {
   ],
   sales: [
     {
+      id: 1,
+      store_attendant_user_id: 2,
+      product_id: 1,
+      date_time: '2018-10-12T13:04:51.884Z',
+
+    },
+    {
       id: 2,
+      store_attendant_user_id: 1,
+      product_id: 3,
+      date_time: '2018-10-12T13:04:51.884Z',
     },
   ],
 };
