@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Easybuoy/storemanager.svg?branch=develop)](https://travis-ci.org/Easybuoy/storemanager)
+
+
 # Store Manager
 A web application that helps store owners manage sales and product inventory records..
  
