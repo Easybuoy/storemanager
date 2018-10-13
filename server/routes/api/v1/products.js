@@ -1,6 +1,9 @@
 const express = require('express');
 const db = require('../../../models/db');
 
+const { validateProductInput } = require('../../../validation/products');
+
+
 const router = express.Router();
 
 // @route   GET api/v1/products
@@ -32,7 +35,12 @@ router.get('/:id', (req, res) => {
 // @desc    Create a product
 // @access   Private
 router.post('/', (req, res) => {
-  // const { id } = req.body;
+  const { errors, isValid } = validateProductInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   let id = db.products.length;
   id += 1;
@@ -43,13 +51,18 @@ router.post('/', (req, res) => {
     description: req.body.description,
     quantity: req.body.quantity,
     price: req.body.price,
-
   };
+  // const data = {
+  //   id,
+  //   store_attendant_user_id: req.body.store_attendant_user_id,
+  //   product_id: req.body.product_id,
+  //   date_time: new Date(),
+  // };
 
   db.products.push(data);
 
 
-  return res.json({ message: 'Product added successfully', data });
+  return res.status(201).json({ message: 'Product added successfully', data });
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@
     "dev": "nodemon server/app",
     "start": "node server/app",
     "test": "mocha --recursive server/ || true",
-    "lint": "eslint ./"
+    "lint": "eslint ./server"
   },
   "repository": {
     "type": "git",
@@ -21,12 +21,14 @@
   "homepage": "https://github.com/Easybuoy/storemanager#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.4",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "validator": "^10.8.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1"
