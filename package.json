@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
-    "test": "mocha --recursive server/ || true",
+    "test": "mocha --recursive server/ --exit || true ",
     "lint": "eslint ./server",
     "clean": "rm -rf server/build",
     "clean-dev": "rm -rf server/build/dev",
