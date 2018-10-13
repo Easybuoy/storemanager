@@ -5,12 +5,12 @@
   "main": "server/app.js",
   "scripts": {
     "dev": "nodemon server/app",
-    "start": "npm run clean-dev && babel server -d build/dev && node build/dev/app",
+    "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "test": "mocha --recursive server/ || true",
     "lint": "eslint ./server",
-    "clean": "rm -rf build",
-    "clean-dev": "rm -rf build/dev",
-    "build": "npm run clean && babel server -d build && node build/app"
+    "clean": "rm -rf server/build",
+    "clean-dev": "rm -rf server/build/dev",
+    "build": "npm run clean && babel server -d server/build && node server/build/app"
   },
   "repository": {
     "type": "git",
