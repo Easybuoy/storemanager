@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Easybuoy/storemanager.svg?branch=develop)](https://travis-ci.org/Easybuoy/storemanager)
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![Coverage Status](https://coveralls.io/repos/github/Easybuoy/storemanager/badge.svg?branch=develop)](https://coveralls.io/github/Easybuoy/storemanager?branch=develop)
 
 # Store Manager
 A web application that helps store owners manage sales and product inventory records..
