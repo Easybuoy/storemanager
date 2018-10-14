@@ -3,7 +3,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/969d38484786692dd8c5/maintainability)](https://codeclimate.com/github/Easybuoy/storemanager/maintainability)
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
 
-
 # Store Manager
 A web application that helps store owners manage sales and product inventory records..
  
