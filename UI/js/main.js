@@ -1,14 +1,11 @@
 'use strict';
 
-
 const addtocart = (nameofproduct, amountofproduct) => {
 let quantity = document.getElementById('number').value;
-
-
 let product = {};
 let data = [];
-let previouscartitem = JSON.parse(localStorage.getItem('product'));
 
+let previouscartitem = JSON.parse(localStorage.getItem('product'));
 
 if(previouscartitem){
     data = previouscartitem;
@@ -18,9 +15,7 @@ if(previouscartitem){
         productname: nameofproduct,
         productquantity: quantity,
         productamount: amountofproduct
-
-    }
-    
+    }    
     data.push(product);
     
 }else{
@@ -35,7 +30,6 @@ if(previouscartitem){
     data.push(product);
 }
 
-
 localStorage.setItem('product', JSON.stringify(data));
 
 let totalcartitem = JSON.parse(localStorage.getItem('product'));
@@ -43,8 +37,6 @@ let totalcartitem = JSON.parse(localStorage.getItem('product'));
 let productquantity = document.getElementById('shoppingcartlabel').innerHTML = totalcartitem.length;
 
 showCart(totalcartitem);
-
-
 }
 
 //This function shows cart in table format
