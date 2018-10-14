@@ -1,5 +1,5 @@
-const Validator = require('validator');
-const isEmpty = require('./isEmpty');
+import Validator from 'validator';
+import isEmpty from './isEmpty';
 
 const validateProductInput = (input) => {
   const errors = {};
