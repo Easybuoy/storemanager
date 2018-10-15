@@ -22,6 +22,11 @@ module.exports = (passport) => {
     if (exist === false) {
       return done(null, false);
     }
-    return done(null, userData);
+    const userDataRes = {
+      id: userData.id,
+      name: userData.name,
+      type: userData.type,
+    };
+    return done(null, userDataRes);
   }));
 };

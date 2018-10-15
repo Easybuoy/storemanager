@@ -6,6 +6,7 @@ module.exports = {
       description: 'The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.',
       quantity: 50,
       price: '$649',
+      productImage: 'uploads\\products\\1539631805921andela-alc.png',
     },
     {
       id: 2,
@@ -13,6 +14,7 @@ module.exports = {
       description: 'The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices.',
       quantity: 75,
       price: '$1000',
+      productImage: 'uploads\\products\\1539631805921andela-alc.png',
     },
     {
       id: 3,
@@ -20,6 +22,7 @@ module.exports = {
       description: 'The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.',
       quantity: 125,
       price: '$600',
+      productImage: 'uploads\\products\\1539631805921andela-alc.png',
     },
   ],
   sales: [
