@@ -6,7 +6,7 @@ import keys from '../../../config/keys';
 
 import db from '../../../models/db';
 // Load Input validation
-import { validateRegisterInput, validateLoginInput } from '../../../validation/users';
+import usersValidation from '../../../validation/users';
 
 
 const router = express.Router();
@@ -15,7 +15,7 @@ const router = express.Router();
 // @desc    Register user
 // @access  Public
 router.post('/register', (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = usersValidation.validateRegisterInput(req.body);
 
   // Check validation
   if (!isValid) {
@@ -64,7 +64,7 @@ router.post('/register', (req, res) => {
 // @desc     Login user / Returning JWT Token
 // @access   Public
 router.post('/login', (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+  const { errors, isValid } = usersValidation.validateLoginInput(req.body);
 
   // Check validation
   if (!isValid) {

@@ -2,7 +2,6 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 
 import usersValidation from '../validation/users';
-// import { validateLoginInput } from '../validation/users';
 
 const { expect } = chai;
 
