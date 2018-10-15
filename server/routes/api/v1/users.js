@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
     }
   });
   if (exist) {
-    return res.status(400).json({ email: 'Email Already Exist' });
+    return res.status(409).json({ email: 'Email Already Exist' });
   }
 
   let id = db.user.length;
@@ -54,8 +54,7 @@ router.post('/register', (req, res) => {
       if (error) throw error;
       data.password = hash;
       db.user.push(data);
-
-      res.status(201).json(data);
+      res.status(201).json({ message: 'User Created Successfully', data });
     });
   });
 });
@@ -102,7 +101,7 @@ router.post('/login', (req, res) => {
           res.json({ success: true, token: `Bearer ${token}` });
         });
       } else {
-        return res.status(400).json({ password: 'Incorrect Password' });
+        return res.status(401).json({ password: 'Incorrect Password' });
       }
     });
 });

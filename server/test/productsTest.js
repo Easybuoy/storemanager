@@ -29,6 +29,18 @@ describe('Get A Product', () => {
         done();
       });
   });
+
+  it('return product not found error', (done) => {
+    const id = 89;
+    chai.request(app).get(`/api/v1/products/${id}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.message).to.equal(`Product with id ${id} not found.`);
+
+        done();
+      });
+  });
 });
 
 describe('Create New Product', () => {
@@ -39,7 +51,22 @@ describe('Create New Product', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(201);
+        expect(res.body).to.be.an('object');
         expect(res.body.message).to.equal('Product added successfully');
+
+        done();
+      });
+  });
+
+  it('return validation error if no data is sent', (done) => {
+    chai.request(app).post('/api/v1/products')
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.name).to.equal('Name field is required');
+        expect(res.body.description).to.equal('Description field is required');
+        expect(res.body.price).to.equal('Price field is required');
+        expect(res.body.quantity).to.equal('Quantity field is required');
 
         done();
       });

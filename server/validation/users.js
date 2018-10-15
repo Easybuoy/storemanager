@@ -7,6 +7,7 @@ const validateRegisterInput = (input) => {
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
+  data.type = !isEmpty(data.type) ? data.type : '';
 
 
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
@@ -37,6 +38,9 @@ const validateRegisterInput = (input) => {
     }
   }
 
+  if (Validator.isEmpty(data.type)) {
+    errors.type = 'Type field is required';
+  }
 
   return {
     errors,

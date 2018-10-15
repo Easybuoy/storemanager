@@ -8,7 +8,7 @@ const validateSalesInput = (input) => {
   data.product_id = !isEmpty(data.product_id) ? data.product_id : '';
 
   if (Validator.isEmpty(data.store_attendant_user_id)) {
-    errors.store_attendant_user_id = 'Store Attendant User Id is required';
+    errors.store_attendant_user_id = 'Store Attendant User Id field is required';
   }
 
   if (Validator.isEmpty(data.product_id)) {
