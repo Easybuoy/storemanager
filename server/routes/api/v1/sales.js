@@ -17,9 +17,6 @@ router.get('/', (req, res) => {
 // @access   Public
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  if (!id) {
-    return res.status(400).json({ message: 'salesId is required' });
-  }
 
   const sales = db.sales[id - 1];
   if (!sales) {

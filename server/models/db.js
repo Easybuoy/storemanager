@@ -37,4 +37,15 @@ module.exports = {
       date_time: '2018-10-12T13:04:51.884Z',
     },
   ],
+  user: [
+    {
+      id: 1,
+      email: 'example@gmail.com',
+      password: '$2a$10$/SwT..8jeE8Bo0sOUZ7mc.yR1EXFrKA/5pa9RWj8LbsctDzJsG4EO',
+      name: 'Ezekiel Example',
+      status: 1,
+      type: 1,
+      date_time: '2018-10-12T13:04:51.884Z',
+    },
+  ],
 };

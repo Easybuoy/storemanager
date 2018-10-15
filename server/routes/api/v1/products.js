@@ -19,9 +19,6 @@ router.get('/', (req, res) => {
 // @access   Public
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  if (!id) {
-    return res.status(400).json({ message: 'productId is required' });
-  }
 
   const product = db.products[id - 1];
   if (!product) {
