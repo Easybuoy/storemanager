@@ -1,7 +1,7 @@
-const express = require('express');
-const db = require('../../../models/db');
+import express from 'express';
+import db from '../../../models/db';
 
-const { validateProductInput } = require('../../../validation/products');
+import { validateProductInput } from '../../../validation/products';
 
 
 const router = express.Router();
@@ -52,12 +52,6 @@ router.post('/', (req, res) => {
     quantity: req.body.quantity,
     price: req.body.price,
   };
-  // const data = {
-  //   id,
-  //   store_attendant_user_id: req.body.store_attendant_user_id,
-  //   product_id: req.body.product_id,
-  //   date_time: new Date(),
-  // };
 
   db.products.push(data);
 

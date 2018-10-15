@@ -1,11 +1,10 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../app';
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
-
-const app = require('../app');
 
 describe('Get All Sale Records', () => {
   it('returns array of all sale records', (done) => {

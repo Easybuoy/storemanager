@@ -1,20 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import products from './routes/api/v1/products';
+import sales from './routes/api/v1/sales';
 
 const app = express();
-
-
-const products = require('./routes/api/v1/products');
-const sales = require('./routes/api/v1/sales');
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.get('/', (req, res) => {
-//     console.log('chheeii')
-// res.send('Loaded');
-// });
+app.get('/', (req, res) => {
+  res.json('Welcome To Store Manager API');
+});
 
 // using routes
 app.use('/api/v1/products', products);

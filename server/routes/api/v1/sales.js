@@ -1,6 +1,6 @@
-const express = require('express');
-const db = require('../../../models/db');
-const { validateSalesInput } = require('../../../validation/sales');
+import express from 'express';
+import db from '../../../models/db';
+import { validateSalesInput } from '../../../validation/sales';
 
 const router = express.Router();
 
