@@ -6,7 +6,9 @@
         ],
         "arrow-body-style": [
             "error", "as-needed"
-        ]
+        ],
+        "consistent-return": 0,
+        "array-callback-return": 0
     }
     
 }
