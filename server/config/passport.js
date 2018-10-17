@@ -26,6 +26,7 @@ module.exports = (passport) => {
       id: userData.id,
       name: userData.name,
       type: userData.type,
+      email: userData.email,
     };
     return done(null, userDataRes);
   }));

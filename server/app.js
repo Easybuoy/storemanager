@@ -31,8 +31,25 @@ app.use('/api/v1/products', products);
 app.use('/api/v1/sales', sales);
 app.use('/api/v1/users', users);
 
+app.use((req, res, next) => {
+  const error = new Error('Not found');
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+  next();
+});
+
 const port = process.env.PORT || 3000;
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`sever listening on port ${port}`));
 
 module.exports = app;

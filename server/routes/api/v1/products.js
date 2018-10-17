@@ -91,7 +91,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
     name: req.body.name,
     description: req.body.description,
     quantity: req.body.quantity,
-    price: req.body.price,
+    price: {
+      currency: '$',
+      amount: req.body.price,
+    },
     productImage,
   };
 
