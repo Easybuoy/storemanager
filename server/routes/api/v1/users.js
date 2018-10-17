@@ -50,6 +50,11 @@ router.post('/register', (req, res) => {
   };
 
   bcrypt.genSalt(10, (err, salt) => {
+    // Check if there is error generating salt
+    if (err) {
+      return res.status(500).json({ message: 'Error Creating User, Try again ' });
+    }
+
     bcrypt.hash(data.password, salt, (error, hash) => {
       if (error) throw error;
       data.password = hash;

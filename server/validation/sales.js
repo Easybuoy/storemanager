@@ -1,19 +1,24 @@
-import Validator from 'validator';
+// import Validator from 'validator';
 import isEmpty from './isEmpty';
 
 const validateSalesInput = (input) => {
   const errors = {};
   const data = input;
-  data.store_attendant_user_id = !isEmpty(data.store_attendant_user_id) ? data.store_attendant_user_id : '';
+  data.quantity = !isEmpty(data.quantity) ? data.quantity : '';
   data.product_id = !isEmpty(data.product_id) ? data.product_id : '';
 
-  if (Validator.isEmpty(data.store_attendant_user_id)) {
-    errors.store_attendant_user_id = 'Store Attendant User Id field is required';
+  // if (Validator.isEmpty(data.quantity)) {
+  //   errors.quantity = 'Quantity field is required';
+  // }
+
+  // if (Validator.isEmpty(data.product_id)) {
+  //   errors.product_id = 'Product Id field is required';
+  // }
+
+  if (!Array.isArray(data.order)) {
+    errors.order = 'Order must be an array of object(s)';
   }
 
-  if (Validator.isEmpty(data.product_id)) {
-    errors.product_id = 'Product Id field is required';
-  }
 
   return {
     errors,

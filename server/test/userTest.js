@@ -87,7 +87,7 @@ describe('Login Route', () => {
   it('return user not found', (done) => {
     chai.request(app).post('/api/v1/users/login')
       .send({
-        email: 'example2@gmail.com',
+        email: 'example232@gmail.com',
         password: '123456',
       })
       .end((err, res) => {
@@ -109,6 +109,55 @@ describe('Login Route', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.password).to.equal('Incorrect Password');
         done();
+      });
+  });
+});
+
+describe('Get Current user', () => {
+  it('returns details of current user', (done) => {
+    chai.request(app).post('/api/v1/users/login')
+      .send({
+        email: 'example@gmail.com', password: '123456',
+      })
+      .end((err, res) => {
+        const { token } = res.body;
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.success).to.equal(true);
+        chai.request(app).get('/api/v1/users/current')
+          .set('Authorization', token)
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('object');
+            done();
+          });
+      });
+  });
+
+  it('returns unauthorized because user is not logged in', (done) => {
+    chai.request(app).get('/api/v1/users/current')
+      .end((error, data) => {
+        expect(data).to.have.status(401);
+        done();
+      });
+  });
+
+  it('returns 404 error because post method is not allowed', (done) => {
+    chai.request(app).post('/api/v1/users/login')
+      .send({
+        email: 'example@gmail.com', password: '123456',
+      })
+      .end((err, res) => {
+        const { token } = res.body;
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.success).to.equal(true);
+        chai.request(app).post('/api/v1/users/current')
+          .set('Authorization', token)
+          .end((error, data) => {
+            expect(data).to.have.status(404);
+            done();
+          });
       });
   });
 });
