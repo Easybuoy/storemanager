@@ -18,6 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/Easybuoy/storemanager.git"
   },
+  "engines": {
+    "npm": "5.5.1",
+    "node": "8.9.1"
+ },
   "author": "Ekunola Ezekiel",
   "license": "ISC",
   "bugs": {
