@@ -11,7 +11,7 @@ const router = express.Router();
 // @access  Public
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   // check if user making the request Store Owner / Admin
-  if (req.user.type !== 1) {
+  if (Number(req.user.type) !== 1) {
     return res.status(401).json('Unauthorized');
   }
 
@@ -25,7 +25,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   // check if user making the request is the Store Owner / Admin
 
-  if (!req.user.type === 1 || !req.user.type === 3) {
+  if (!Number(req.user.type) === 1 || !Number(req.user.type) === 3) {
     return res.status(401).json('Unauthorized');
   }
 
@@ -34,7 +34,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
   const sales = db.sales[id - 1];
 
   if (sales) {
-    if (req.user.type !== 1) {
+    if (Number(req.user.type) !== 1) {
     // check if user making the request is the store attendant that made the sale
       if (req.user.id !== sales.store_attendant_user_id) {
         return res.status(401).json('Unauthorized');
@@ -99,7 +99,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   };
 
   // check if user making the request is the Store Owner / Admin
-  if (req.user.type !== 3) {
+  if (Number(req.user.type) !== 3) {
     return res.status(401).json('Unauthorized');
   }
 
