@@ -68,7 +68,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
   // store attendant type => 3
 
   // Checks if user making the request is the store owner / admin
-  if (req.user.type !== 1) {
+  if (!(Number(req.user.type) === 1)) {
     return res.status(401).json('Unauthorized');
   }
 

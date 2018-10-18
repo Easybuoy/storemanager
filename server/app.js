@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import cors from 'cors';
+import morgan from 'morgan';
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
@@ -12,6 +14,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(cors());
+
 // Make uploads folder available publicly
 app.use('/uploads', express.static('uploads'));
 
@@ -19,6 +23,9 @@ app.use('/uploads', express.static('uploads'));
 app.get('/', (req, res) => {
   res.json('Welcome To Store Manager API');
 });
+
+// Use morgan to log requests.
+app.use(morgan('dev'));
 
 // Passport middlewaare
 app.use(passport.initialize());
@@ -47,7 +54,7 @@ app.use((error, req, res, next) => {
   next();
 });
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`sever listening on port ${port}`));

@@ -21,7 +21,7 @@
   "engines": {
     "npm": "5.5.1",
     "node": "8.9.1"
- },
+  },
   "author": "Ekunola Ezekiel",
   "license": "ISC",
   "bugs": {
@@ -34,12 +34,14 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "cors": "^2.8.4",
     "coveralls": "^3.0.2",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
     "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "nodemon": "^1.18.4",
     "nyc": "^13.0.1",
