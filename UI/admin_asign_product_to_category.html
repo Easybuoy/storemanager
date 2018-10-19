@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
-        <title>Store Manager | Create Product</title>
+        <title>Store Manager |Assign Products</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
@@ -37,11 +37,11 @@
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
             <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
-            <li class="current"><a href="admin_create_product.html">Create Product</a></li>
+            <li><a href="admin_create_product.html">Create Product</a></li>
             <li><a href="admin_view_products.html">View Products</a></li>
             <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
+            <li class="current"><a href="admin_asign_product_to_category.html">Assign Products</a></li>
             <li><a href="index.html">Logout</a></li>
         </div>
 
@@ -50,17 +50,20 @@
             <section class="topmargin">
                 <div class="container">
                         <div id="create_sales_assistant">
-                                <h1>Create New Product</h1>
+                                <h1>Assign Products To Category</h1>
                         <form method="POST" action="index.html">
-                                <p>Product Name</p>
-                                <input type="text" name="productname" placeholder="Enter Name">
-                                <p>Product Summary</p>
-                                <input type="text" name="productsummary" placeholder="Enter Summary">
-                                <p>Product Amount</p>
-                                <input type="text" name="productamount" placeholder="Enter Amount">
-                                <p>Product Quantity</p>
-                                <input type="text" name="productquantity" placeholder="Enter Quantity">
-                                <input type="submit" name="" class="button_1" value="Create Product">
+                                <p>Product</p>
+                                <select>
+                                        <option value="volvo">Google Pixel 2</option>
+                                        <option value="saab">Google Pixel 3</option>
+                                        <option value="mercedes">iPhone 7 Plus</option>
+                                </select>
+                                <p>Category</p>
+                                <select>
+                                        <option value="volvo">Apple</option>
+                                        <option value="saab">Google</option>
+                                </select>                                
+                                <input type="submit" name="" class="button_1" value="Assign Product">
                                 
                             </form>   
                     </div>

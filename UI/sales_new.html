@@ -3,174 +3,200 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
         <title>Store Manager | Add Products</title>
-        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
-        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
 
     </head>
 
     <body>
-        <header>
-            <div class="container">
-                <div id="branding">
-                        <a href="index.html"><h1><span class="highlight">Store</span> Manager</h1></a>
-                    </div>
 
-                <nav>
-                    <ul>
-                        <li class="current"><a href="sales_new.html">Sell</a></li>
-                        <li><a href="sales_view.html">View Sales Record</a></li>
-                        <li><a href="store_attendant_profile.html">Profile</a></li>
+        <nav class="navbar">
+            <span class="open-slide">
+                <a href="#" id="openslidemenu" onclick="openSlideMenu()">
+                <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#ffffff"
+                        stroke-width="5"/>
+                </svg>
+            </a></span>
 
-                    </ul>
-                </nav>
-            </div>
-        </header>
+            <ul>
+                    <li id="shoppingcart"><a href="#"><label  id="shoppingcartlabel">0</label ><img id="cartimage" src="img/cart.png"></a></li>
+                    <li><a href="#"><div></div><input class="search" placeholder="Search Products" type="text"> <img id="searchimg" src="img/search.png"> </div></a></li>
+                <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
+            </ul>
+        </nav>
 
-
-          <!-- Shopping cart and modal area -->
-          <div class="shoppingcart" id="shoppingcart">
-                <!-- <button id="myBtn"></button> -->
-
-                <label  id="shoppingcartlabel">0</label >
+        
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+            <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
+            <li class="current"><a href="sales_new.html">Sell</a></li>
+            <li><a href="sales_view.html">View Sales Record</a></li>
+            <li><a href="store_attendant_profile.html">Profile</a></li> 
+            <li><a href="index.html">Logout</a></li>
 
         </div>
 
-        <!-- Trigger/Open The Modal -->
+        <div id="main">
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content" id="cartmodaldiv">
-    <span class="close">&times;</span>
-    <table >
-            <thead>
-                <th>PRODUCT</th>
-                <th>AMOUNT</th>
-                <th>QUANTITY</th>
-            </thead>
-            <tbody id="carttablebody"></tbody>
-                </table>
-                <br>
-                <div class="text-center">
-                <button class="button_1">BUY</button>
-                <button class="button_1" id="clear" onclick="clearCart()">CLEAR</button>
-                </div>
-  </div>
-
-</div>
-
-
-        <section id="newsletter">
-            <div class="container">
-                <h1>Subscribe to newsletter</h1>
-                <form>
-                    <input type="email" placeholder="Enter Email">
-                    <button type="submit" class="button_1">Subscribe</button>
-                </form>
-            </div>
-        </section>
-        
-        <section id="search">
-                <div class="container">
-                    <form>
-                        <input type="text" placeholder="Search Products">
-                        <!-- <button type="submit" class="button_1">Subscribe</button> -->
-                    </form>
-                </div>
-            </section>
-
-        <section id="boxes">
-                <div class="container">
-                    <div class="box">
-                       
-                        <div class="card">
-                            <img src="img/gpixel2.jpg">
-                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
-                            <p>The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.</p>
-                            <p>Quantity: 3</p>
-                            <p  id="productamount">Price: $649</p>
-                            <input type="number" id="number" name="amount" placeholder="Amount" >
-                            <button class="button_2" onclick="addtocart('Google Pixel 2', '$649')"><i class="fas fa-shopping-cart fa-2x" data-name="Google Pixel 2"></i></button>
+                <section id="productsection" class="topmargin">
+                        <div class="container">
+                            <div class="cardgroup">
+    
+                                    <div class="card">
+                                            <a href="view_product_details.html"><img src="img/gpixel2.jpg" class="cardimg"></a>
+            
+                                    <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                            <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $649</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                    </div>
+            
+                                    </div>
+                                    
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/gpixel3r.png" class="cardimg"></a>
+                                
+                                        <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 3</h3>
+                                            <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $649</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                        </div>
+                                
+                                    </div>
+                            
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/iphonexs.png" class="cardimg"></a>
+                                    
+                                        <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                            <p>The iPhone XS display has rounded corners that... </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $1500</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                        </div>
+                                    
+                                    </div>
+                            
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/iphonex.png" class="cardimg"></a>
+    
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">IPhone X</h3>
+                                                <p>The phone comes with a 5.80-inch touchscreen display  </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $890</p>
+                                                <input type="number" id="number" name="amount" placeholder="Amount" >
+                                                <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                            </div>
+                                        
+                                    </div>
+    
+                                    <div class="card">
+                                            <a href="view_product_details.html"><img src="img/gpixel2.jpg" class="cardimg"></a>
+            
+                                    <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                            <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $649</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                    </div>
+            
+                                    </div>
+                                    
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/gpixel3r.png" class="cardimg"></a>
+                                
+                                        <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Google Pixel 3</h3>
+                                            <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $649</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                        </div>
+                                
+                                    </div>
+                            
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/iphonexs.png" class="cardimg"></a>
+                                    
+                                        <div class="text-center cardbody" >
+                                            <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                            <p>The iPhone XS display has rounded corners that... </p>
+                                            <p>Quantity: 3</p>
+                                            <p  id="productamount">Price: $1500</p>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                        </div>
+                                    
+                                    </div>
+                            
+                                    <div class="card">
+                                        <a href="view_product_details.html"><img src="img/iphonex.png" class="cardimg"></a>
+    
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">IPhone X</h3>
+                                                <p>The phone comes with a 5.80-inch touchscreen display  </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $890</p>
+                                                <input type="number" id="number" name="amount" placeholder="Amount" >
+                                                <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                                            </div>
+                                        
+                                    </div>
                         </div>
                     </div>
+                    </section>
+        </div>
 
-                    <div class="box">
-                   
-                            <div class="card">
-                                <img src="img/gpixel3.jpg">
-                                <h3 class="productname">Google Pixel 3</h3>
-                                <p>The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices</p>
-                                <p>Quantity: 10</p>
-                                <p  id="productamount">Price: $1000</p>
-                                <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
-                                <button class="button_2 dis" onclick="addtocart('Google Pixel 3', '$1000')"><i class="fas fa-shopping-cart fa-2x"></i></button>
-                            </div>
-                        </div>
 
-                         <div class="box">
-                   
-                            <div class="card">
-                                <img src="img/iphone7plus.jpg">
-                                <h3 class="productname">iPhone 7 Plus</h3>
-                                <p>The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.</p>
-                                <p>Quantity: 25</p>
-                                <p  id="productamount">Price: $600</p>
-                                <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
-                                <button class="button_2" onclick="addtocart('iPhone 7 Plus', '$600')"><i class="fas fa-shopping-cart fa-2x"></i></button>
-                            </div>
-                        </div>
+        <div id="myModal" class="modal">
 
-                        <div class="box">
-                   
-                            <div class="card">
-                                <img src="img/gpixel2.jpg">
-                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
-                                <p>The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.</p>
-                                <p>Quantity: 3</p>
-                                <p  id="productamount">Price: $649</p>
-                                <input type="number" id="number" name="amount" placeholder="Amount" >
-                                <button class="button_2" onclick="addtocart('Google Pixel 2', '$649')"><i class="fas fa-shopping-cart fa-2x" data-name="Google Pixel 2"></i></button>
-                            </div>
-                        </div>
-
-                        <div class="box">
-                       
-                                <div class="card">
-                                    <img src="img/gpixel3.jpg">
-                                    <h3 class="productname">Google Pixel 3</h3>
-                                    <p>The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices</p>
-                                    <p>Quantity: 10</p>
-                                    <p  id="productamount">Price: $1000</p>
-                                    <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
-                                    <button class="button_2" onclick="addtocart('Google Pixel 3', '$1000')"><i class="fas fa-shopping-cart fa-2x"></i></button>
-                                </div>
-                            </div>
-
-                             <div class="box">
-                       
-                                <div class="card">
-                                    <img src="img/iphone7plus.jpg">
-                                    <h3 class="productname">iPhone 7 Plus</h3>
-                                    <p>The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.</p>
-                                    <p>Quantity: 25</p>
-                                    <p  id="productamount">Price: $600</p>
-                                    <input type="number" class="number" id="number" name="amount" placeholder="Amount" >
-                                    <button class="button_2" onclick="addtocart('iPhone 7 Plus', '$600')"><i class="fas fa-shopping-cart fa-2x"></i></button>
-                                </div>
-                            </div>
+                <!-- Modal content -->
+                <div class="modal-content" id="cartmodaldiv">
+                  <span class="close">&times;</span>
+                  <table >
+                          <thead>
+                              <th>PRODUCT</th>
+                              <th>AMOUNT</th>
+                              <th>QUANTITY</th>
+                          </thead>
+                          <tbody id="carttablebody"></tbody>
+                              </table>
+                              <br>
+                              <div class="text-center">
+                              <button class="button_1">BUY</button>
+                              <button class="button_1" id="clear" onclick="clearCart()">CLEAR</button>
+                              </div>
                 </div>
-            </section>
+              
+              </div>
 
+              
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-        <script src="js/main.js"></script>
-
+    
+    <script src="js/main.js"></script>
     </body>
+
 </html>

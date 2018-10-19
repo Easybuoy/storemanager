@@ -1,15 +1,24 @@
-'use strict';
+function openSlideMenu(){
+    document.getElementById('side-menu').style.width = '250px';
+    document.getElementById('main').style.marginLeft = '250px';
 
+}
+
+
+function closeSlideMenu(){
+    document.getElementById('side-menu').style.width = '0';
+    document.getElementById('main').style.marginLeft = '0';
+
+}
+
+'use strict';
 
 const addtocart = (nameofproduct, amountofproduct) => {
 let quantity = document.getElementById('number').value;
-
-
 let product = {};
 let data = [];
+
 let previouscartitem = JSON.parse(localStorage.getItem('product'));
-
-
 if(previouscartitem){
     data = previouscartitem;
     amountofproduct = amountofproduct.replace('Price: ', '')
@@ -18,11 +27,8 @@ if(previouscartitem){
         productname: nameofproduct,
         productquantity: quantity,
         productamount: amountofproduct
-
-    }
-    
+    }    
     data.push(product);
-    
 }else{
     amountofproduct = amountofproduct.replace('Price: ', '')
      product = {
@@ -31,20 +37,12 @@ if(previouscartitem){
         productquantity: quantity,
         productamount: amountofproduct
     }
-
     data.push(product);
 }
-
-
 localStorage.setItem('product', JSON.stringify(data));
-
 let totalcartitem = JSON.parse(localStorage.getItem('product'));
-
 let productquantity = document.getElementById('shoppingcartlabel').innerHTML = totalcartitem.length;
-
 showCart(totalcartitem);
-
-
 }
 
 //This function shows cart in table format
