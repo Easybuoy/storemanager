@@ -130,19 +130,6 @@ describe('Get A Sale Record', () => {
 });
 
 describe('Create New Sale Record', () => {
-  // it('create a new sale', (done) => {
-  //   chai.request(app).post('/api/v1/sales')
-  //     .send({
-  //       store_attendant_user_id: '1', product_id: '2',
-  //     })
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(201);
-  //       expect(res.body.message).to.equal('Sale added successfully');
-
-  //       done();
-  //     });
-  // });
-
   it('create a new sale', (done) => {
     chai.request(app).post('/api/v1/users/login')
       .send({
