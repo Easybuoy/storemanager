@@ -60,5 +60,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`sever listening on port ${port}`));
 
 module.exports = app;
-
-// laide@grandeurltd.com
