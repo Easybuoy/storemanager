@@ -19,7 +19,7 @@ A web application that helps store owners manage sales and product inventory rec
 </ul>
 
 
-<h3>Link to template: <a href="https://easybuoy.github.io/storemanager/UI/login.html">Store Manager Template</a> </h3>
+<h3>Link to template: <a href="https://easybuoy.github.io/storemanager/UI/index.html">Store Manager Template</a> </h3>
 <hr>
 
 <h1>Store Manager API Backend</h1>
