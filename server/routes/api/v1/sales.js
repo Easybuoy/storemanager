@@ -59,7 +59,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     let isNotProductAvailable = false;
     let totalSalesAmount = 0;
     order.map((ordertobeprocessed) => {
-    // console.log(order);
       const { quantity } = ordertobeprocessed;
       const productId = ordertobeprocessed.product_id;
 

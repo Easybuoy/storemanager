@@ -34,7 +34,6 @@ const upload = multer(
   },
 );
 
-// const upload = multer({ dest: 'uploads/products/' });
 const router = express.Router();
 
 // @route   GET api/v1/products
