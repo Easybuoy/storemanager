@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
-        <title>Store Manager | View Products</title>
+        <title>Store Manager | Welcome</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
@@ -30,7 +30,8 @@
 
             <ul>
                 <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../uploads/users/default-avatar.png"> </div></a></li>
-                <li><a href="#"><div></div><input class="search" placeholder="Search Products" type="text"> <img id="searchimg" src="img/search.png"> </div></a></li>
+                <li id="shoppingcart"><a href="#"><label  id="shoppingcartlabel">0</label ><img id="cartimage" src="img/cart.png"></a></li>
+                <li><a href="#"><div><input class="search" placeholder="Search Products" type="text"> <img id="searchimg" src="img/search.png"> </div></a></li>
                 <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
             </ul>
         </nav>
@@ -39,17 +40,53 @@
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
             <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
-            <li><a href="admin_create_product.html">Create Product</a></li>
-            <li class="current" ><a href="admin_view_products.html">View Products</a></li>
-            <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
-            <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
+            <li><a href="sales_new.html">Store Attendant</a></li>
+            <li><a href="attendant_admin_view.html">Store Attendant Admin</a></li>
+            <li><a href="admin_create_product.html">Admin</a></li>
             <li><a href="index.html">Logout</a></li>
         </div>
 
         <div id="main">
+            <div class="container">
+                    <section id="topcards">
+                            <div class="container">
+                            <div class="topcardsbox">
+                                <div class="showcasecard c1">
+                                    <h3 style="margin-bottom: 50px;">Total Sales Record Created</h3>
+                                <div class="" style="margin-bottom: 50px;">
+                                    <i class="fas fa-chart-pie fa-4x"></i>
+                                    <h2 style="margin-bottom: 50px;">999</h2>
+                                </div>
+                
+                
+                                </div>
+                            </div>
+                
+                            <div class="topcardsbox">
+                                <div class="showcasecard c1" >
+                                    <h3 style="margin-bottom: 50px;">Total Products Sold </h3>
+                                        <div class="" style="margin-bottom: 50px;">
+                                            <i class="fas fa-chart-line fa-4x"></i>
+                                            <h2 style="margin-bottom: 50px;">850</h2>
+                                        </div>
+                            </div>
+                            </div>
+                            <div class="topcardsbox">
+                                <div class="showcasecard c1">
+                                        <h3 style="margin-bottom: 50px;">Total Goods Sold Worth</h3>
+                                        <div class="" style="margin-bottom: 50px;">
+                                            <i class="fas fa-chart-bar fa-4x"></i>
+                                            <h2 style="margin-bottom: 50px;">$30,322.53</h2>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </section>
+            
+            </div>
 
-            <section id="productsection" class="topmargin">
+            <section id="productsection">
                     <div class="container">
                         <div class="cardgroup">
 
@@ -61,8 +98,8 @@
                                         <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $649</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                 </div>
         
                                 </div>
@@ -75,8 +112,8 @@
                                         <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $649</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                     </div>
                             
                                 </div>
@@ -89,8 +126,8 @@
                                         <p>The iPhone XS display has rounded corners that... </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $1500</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                     </div>
                                 
                                 </div>
@@ -103,8 +140,8 @@
                                             <p>The phone comes with a 5.80-inch touchscreen display  </p>
                                             <p>Quantity: 3</p>
                                             <p  id="productamount">Price: $890</p>
-                                            <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                            <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                         </div>
                                     
                                 </div>
@@ -117,8 +154,8 @@
                                         <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $649</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                 </div>
         
                                 </div>
@@ -131,8 +168,8 @@
                                         <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $649</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                     </div>
                             
                                 </div>
@@ -145,8 +182,8 @@
                                         <p>The iPhone XS display has rounded corners that... </p>
                                         <p>Quantity: 3</p>
                                         <p  id="productamount">Price: $1500</p>
-                                        <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                        <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                        <input type="number" id="number" name="amount" placeholder="Amount" >
+                                        <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                     </div>
                                 
                                 </div>
@@ -159,8 +196,8 @@
                                             <p>The phone comes with a 5.80-inch touchscreen display  </p>
                                             <p>Quantity: 3</p>
                                             <p  id="productamount">Price: $890</p>
-                                            <button class="button_1"><a href="admin_create_product.html">EDIT</a></button>
-                                            <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
+                                            <input type="number" id="number" name="amount" placeholder="Amount" >
+                                            <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                         </div>
                                     
                                 </div>
@@ -169,6 +206,27 @@
                 </section>
         </div>
 
+        <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content" id="cartmodaldiv">
+                  <span class="close">&times;</span>
+                  <table >
+                          <thead>
+                              <th>PRODUCT</th>
+                              <th>AMOUNT</th>
+                              <th>QUANTITY</th>
+                          </thead>
+                          <tbody id="carttablebody"></tbody>
+                              </table>
+                              <br>
+                              <div class="text-center">
+                              <button class="button_1">BUY</button>
+                              <button class="button_1" id="clear" onclick="clearCart()">CLEAR</button>
+                              </div>
+                </div>
+              
+              </div>
 
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>

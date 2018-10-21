@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
-        <title>Store Manager | View Sales</title>
+        <title>Store Manager | Add Products</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
@@ -39,51 +39,33 @@
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
             <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
-            <li><a href="sales_new.html">Sell</a></li>
-            <li class="current"><a href="sales_view.html">View Sales Record</a></li>
-            <li><a href="store_attendant_profile.html">Profile</a></li> 
             <li><a href="index.html">Logout</a></li>
 
         </div>
 
         <div id="main">
 
-            <section class="topmargin">
-                <div class="container text-center">
-                        <table class="table">
-                                <caption>Sales</caption>
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td data-label="Date">04/10/2018</td>
-                                    <td data-label="Product">iPhone Xs</td>
-                                    <td data-label="Amount">$1,190</td>
-                                    <td data-label="Status">Completed</td>
-                                  </tr>
-                                  <tr>
-                                        <td data-label="Date">04/10/2018</td>
-                                        <td data-label="Product">Google Pixel 2</td>
-                                        <td data-label="Amount">$790</td>
-                                        <td data-label="Status">Completed</td>
-                                      </tr>
-                                      <tr>
-                                            <td data-label="Date">07/10/2018</td>
-                                            <td data-label="Product">iPhone 7</td>
-                                            <td data-label="Amount">$500</td>
-                                            <td data-label="Status">Completed</td>
-                                          </tr>
-                                </tbody>
-                              </table>
+            <section id="productviewsection" class="topmargin">
+                    <div class="container">
+                        <div class="cardgroup">
+
+                        <div class="card" id="productdetailsimg">
+                            <img src="img/gpixel2.jpg" class="productviewcardimg">
+
+                        </div>
+
+                        <div id="productdetails">
+                        <ul class="list-group">
+                                <li class="list-group-item text-center"><strong>Product Name:</strong> Google Pixel 2</li>
+                                <li class="list-group-item text-center"><strong>Description:</strong> The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.</li>
+                                <li class="list-group-item text-center"><strong>Price:</strong> $649</li>
+                                <li class="list-group-item text-center"><strong>Quantity:</strong> 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>    
-            
+                </section>
         </div>
 
         <div id="myModal" class="modal">
