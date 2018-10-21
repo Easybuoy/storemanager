@@ -413,14 +413,13 @@ nav a:hover{
 #userimg{
   width: 40px;
   height: 40px;
-  margin: 0;
+  margin-top: 0;
   padding: 0px;
   display: block;
   float: right;
   color: #fff;
-  background: inherit;
   border-radius: 50%;
-  border: none;
+  border: #0099ff 3px solid;
 }
 
 #cartimage{
