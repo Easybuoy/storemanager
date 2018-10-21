@@ -21,7 +21,7 @@ app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', (req, res) => {
-  res.json('Welcome To Store Manager API');
+  res.json({ message: 'Welcome To Store Manager API' });
 });
 
 // Use morgan to log requests.
