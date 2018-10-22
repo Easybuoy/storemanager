@@ -107,4 +107,29 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
   return res.status(201).json({ message: 'Product added successfully', data });
 });
 
+// @route   DELETE api/v1/products/<productId>
+// @desc    Delete a single product record
+// @access   Public
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Checks if user making the request is the store owner / admin
+  if (!(Number(req.user.type) === 1)) {
+    return res.status(401).json('Unauthorized');
+  }
+  
+  const { id } = req.params;
+
+  const dbidtoberemoved = id - 1;
+
+  const product = db.products[dbidtoberemoved];
+  if (!product) {
+    return res.status(400).json({ message: `Product with id ${id} not found.` });
+  }
+
+  if (db.products.splice(dbidtoberemoved, 1)) {
+    return res.json({ message: `Product with id ${id} deleted successfully.` });
+  }
+
+  return res.json({ message: 'Unable to delete product.' });
+});
+
 module.exports = router;

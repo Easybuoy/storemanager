@@ -139,6 +139,29 @@ describe('Create New Product', () => {
       });
   });
 
+  describe('Delete A Product', () => {
+    it('delete a product', (done) => {
+      chai.request(app).post('/api/v1/users/login')
+        .send({
+          email: 'example@gmail.com', password: '123456',
+        })
+        .end((err, res) => {
+          const { token } = res.body;
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal(true);
+          chai.request(app).del('/api/v1/products/3')
+            .set('Authorization', token)
+            .end((error, data) => {
+              expect(data).to.have.status(200);
+              expect(data.body).to.be.an('object');
+              expect(data.body.message).to.equal('Product with id 3 deleted successfully.');
+              done();
+            });
+        });
+    });
+  });
+
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
