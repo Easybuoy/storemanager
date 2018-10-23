@@ -115,7 +115,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
   if (!(Number(req.user.type) === 1)) {
     return res.status(401).json('Unauthorized');
   }
-  
+
   const { id } = req.params;
 
   const dbidtoberemoved = id - 1;
