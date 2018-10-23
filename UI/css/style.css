@@ -546,35 +546,34 @@ float: left;
 
 #main{
     transition: margin-left 0.5s;
-    /* padding: 20px; */
     overflow: hidden;
     width: 100%;
 }
 
 /* TopCards */
-#topcards{
-  margin: 20px 0 20px 0;
-  margin-top: 100px;
-  /* display: flex;
-  justify-content: space-around; */
+.topcardsgroup {
+  display: flex ;
+  justify-content: space-between;
+  justify-items: flex-start;
+  
 }
+
+#topcards{
+  /* margin: 20px 0 20px 0; */
+  margin-top: 100px;
+}
+
 
 .topcardsbox{
-  float: left;
+  background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
   width: 31%;
-  padding: 5px;
   text-align: center;
-  margin: 5px;
+  margin: 0 auto;
+  height: 100%;
 }
 
-.c1{
-  background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
-}
 
 .showcasecard{
-  background: white;
-  height: 50%;
-  width: 100%;
   padding: 5%;
   transition: 0.9s;
   -webkit-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
@@ -592,7 +591,8 @@ float: left;
 
 .cardgroup{
   width: 100%;
-  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 
 
@@ -1014,21 +1014,6 @@ select{
 }
 
 
-@media (max-width: 875px) {
-  #topcards{
-    margin: 15px 0 15px 0;
-    margin-top: 100px;
-  }
-  
-  .topcardsbox{
-    float: left;
-    width: 28%;
-    padding: 5px;
-    text-align: center;
-    margin: 5px;
-  }
-}
-
 @media screen and (max-width: 600px) {
   table {
     border: 0;
@@ -1083,8 +1068,14 @@ select{
     display: block !important;
   }
 
+  .topcardsgroup {
+    display: block;
+  }
   .topcardsbox{
-    float: left;
+    display: block;
+    text-align: center;
+    /* float: ; */
+    display: block !important;
     width: 100%;
     padding: 5px;
     text-align: center;
