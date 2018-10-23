@@ -796,7 +796,7 @@ width: 50%;
 /* Styling For Login Page */
 .loginbox{
   width: 320px;
-  height: 420px;
+  height: auto;
   background: #000;
   color: #fff;
   top: 50%;
@@ -844,6 +844,9 @@ width: 50%;
   font-size: 16px;  
 }
 
+#loginpassword {
+  color: #fff !important;
+}
 .loginbox input[type="submit"]{
   border: none;
   outline: none;
