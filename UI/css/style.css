@@ -524,7 +524,8 @@ float: left;
 }
 
 .side-nav a:hover{
-    color: #0099ff;
+    color: #fff;
+    background: #0099ff;
 
 }
 
@@ -532,8 +533,9 @@ float: left;
     position: absolute;
     top: 0;
     right: 22px;
-    font-size: 36px;
+    font-size: 25px;
     margin-left: 50px;
+    background: inherit !important;
 }
 
 .side-nav li{
