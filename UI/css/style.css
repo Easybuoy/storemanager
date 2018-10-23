@@ -646,6 +646,16 @@ float: left;
   cursor: pointer;
 }
 
+.button_3{
+  height: 38px;
+  background: green;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .button_1 a{
   text-decoration: none;
   color: inherit;
@@ -935,11 +945,11 @@ width: 50%;
 
 /* Styling For Admin Create Sales Attendant Page */
 select{
-  width: 100%;
+  width: 50%;
   overflow: hidden !important;
   height: 30px;
   outline: none;
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 #create_sales_assistant{
