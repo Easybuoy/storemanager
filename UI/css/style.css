@@ -559,6 +559,11 @@ float: left;
   justify-content: space-around; */
 }
 
+/* #topcards .container {
+  display: block;
+  text-align: center;
+} */
+
 .topcardsbox{
   float: left;
   width: 31%;
@@ -592,7 +597,8 @@ float: left;
 
 .cardgroup{
   width: 100%;
-  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 
 
