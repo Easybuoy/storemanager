@@ -914,6 +914,20 @@ width: 50%;
 
 /* End Of Shopping Cart Modal Styling */
 
+#prof {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#profiledetails {
+  /* width: 60%; */
+  /* margin: 50px; */
+  text-align: center;
+  display: inline;
+  float: none;
+  justify-content: center;
+}
+
 /* Styling For Admin Create Sales Attendant Page */
 select{
   width: 100%;
