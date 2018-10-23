@@ -944,9 +944,8 @@ select{
 
 #create_sales_assistant{
   width: 50%;
-  text-align: center;
+  /* text-align: center; */
   margin: 0 auto;
-  /* margin-top: 5%; */
   padding: 5%;
 }
 
