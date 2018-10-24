@@ -7,23 +7,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 describe('Signup Route', () => {
-  // it('create a user and return user details', (done) => {
-  //   chai.request(app).post('/api/v1/users/signup')
-  //     .send({
-  //       email: 'a@gmail.com',
-  //       name: 'John Example',
-  //       password: '123456',
-  //       type: '1',
-  //     })
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(201);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body.message).to.equal('User Created Successfully');
-  //       done();
-  //     });
-  // });
-
-  it('create a user and return user details', (done) => { 
+  it('create a user and return user details', (done) => {
     chai.request(app).post('/api/v1/users/login')
       .send({
         email: 'example@gmail.com',
