@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
-import passport from 'passport';
 
+import authenticate from '../../../middleware/authenticate';
 import db from '../../../models/db';
 
 import productsValidation from '../../../validation/products';
@@ -39,7 +39,7 @@ const router = express.Router();
 // @route   GET api/v1/products
 // @desc    Get/Fetch all products
 // @access  Public
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/', authenticate, (req, res) => {
   res.json(db.products);
 });
 
@@ -47,7 +47,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @route   GET api/v1/products/<productId>
 // @desc    Get/Fetch a single product record
 // @access   Public
-router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const { id } = req.params;
 
   const product = db.products[id - 1];
@@ -61,14 +61,14 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
 // @route   POST api/v1/products/
 // @desc    Create a product
 // @access   Private
-router.post('/', passport.authenticate('jwt', { session: false }), upload.single('productImage'), (req, res) => {
+router.post('/', authenticate, upload.single('productImage'), (req, res) => {
   // store owner / admin type  => 1
   // store attendant admin type => 2
   // store attendant type => 3
 
   // Checks if user making the request is the store owner / admin
   if (!(Number(req.user.type) === 1)) {
-    return res.status(401).json('Unauthorized');
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   const { errors, isValid } = productsValidation.validateProductInput(req.body);
@@ -110,10 +110,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
 // @route   DELETE api/v1/products/<productId>
 // @desc    Delete a single product record
 // @access   Public
-router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
   // Checks if user making the request is the store owner / admin
   if (!(Number(req.user.type) === 1)) {
-    return res.status(401).json('Unauthorized');
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   const { id } = req.params;

@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import passport from 'passport';
 import cors from 'cors';
 import morgan from 'morgan';
 
@@ -26,12 +25,6 @@ app.get('/', (req, res) => {
 
 // Use morgan to log requests.
 app.use(morgan('dev'));
-
-// Passport middlewaare
-app.use(passport.initialize());
-
-// Passport Config
-require('./config/passport')(passport);
 
 // using routes
 app.use('/api/v1/products', products);
