@@ -7,7 +7,6 @@
     "dev": "nodemon server/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "test": "mocha server/test --compilers js:babel-core/register --exit || true",
-    "test2": "npm run clean && babel server -d server/build && mocha --recursive server/build --exit || true ",
     "test-dev": "npm run clean-dev && npm run clean && babel server -d server/build/dev && mocha --recursive server/build/dev --exit || true",
     "lint": "eslint ./server",
     "clean": "rm -rf server/build",
