@@ -7,15 +7,6 @@ class productController {
   // @desc    This function implements the logic for creating new product.
   // @access  Private
   static createProduct(req, res) {
-    // store owner / admin type  => 1
-    // store attendant admin type => 2
-    // store attendant type => 3
-
-    // Checks if user making the request is the store owner / admin
-    if (!(Number(req.user.type) === 1)) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
     const { errors, isValid } = productsValidation.validateProductInput(req.body);
     // Check validation
     if (!isValid) {
