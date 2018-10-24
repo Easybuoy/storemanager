@@ -30,7 +30,6 @@ A web application that helps store owners manage sales and product inventory rec
 <li><a href="https://expressjs.com/">Expressjs</a></li>
 <li><a href="https://www.npmjs.com/package/body-parser">Body Parser</a></li>
 <li><a href="https://www.npmjs.com/package/jsonwebtoken">Json Web Token</a></li>
-<li><a href="http://passportjs.org">Passportjs</a></li>
 <li><a href="https://www.npmjs.com/package/multer">Multer</a></li>
 <li><a href="https://www.npmjs.com/package/cors">Cors</a></li>
 <li><a href="https://www.npmjs.com/package/morgan">Morgan</a></li>

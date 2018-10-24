@@ -1,6 +1,6 @@
 import express from 'express';
-import passport from 'passport';
 
+import authenticate from '../../../middleware/authenticate';
 import db from '../../../models/db';
 import salesValidation from '../../../validation/sales';
 
@@ -9,10 +9,10 @@ const router = express.Router();
 // @route   GET api/v1/sales
 // @desc    Get/Fetch all sale records
 // @access  Public
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/', authenticate, (req, res) => {
   // check if user making the request Store Owner / Admin
   if (Number(req.user.type) !== 1) {
-    return res.status(401).json('Unauthorized');
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   res.json(db.sales);
@@ -22,11 +22,11 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @route   GET api/v1/sales/<saleId>
 // @desc    Get/Fetch a single sale record
 // @access   Public
-router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   // check if user making the request is the Store Owner / Admin
 
   if (!Number(req.user.type) === 1 || !Number(req.user.type) === 3) {
-    return res.status(401).json('Unauthorized');
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   const { id } = req.params;
@@ -37,7 +37,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
     if (Number(req.user.type) !== 1) {
     // check if user making the request is the store attendant that made the sale
       if (req.user.id !== sales.store_attendant_user_id) {
-        return res.status(401).json('Unauthorized');
+        return res.status(401).json({ message: 'Unauthorized' });
       }
     }
   }
@@ -53,7 +53,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
 // @route   POST api/v1/sales
 // @desc    Create a sale order
 // @access   Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', authenticate, (req, res) => {
   const processSale = (order) => {
     let isMoreThanStock = false;
     let isNotProductAvailable = false;
@@ -99,7 +99,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
   // check if user making the request is the Store Owner / Admin
   if (Number(req.user.type) !== 3) {
-    return res.status(401).json('Unauthorized');
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 
   const { errors, isValid } = salesValidation.validateSalesInput(req.body);
