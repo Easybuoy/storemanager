@@ -30,9 +30,9 @@ describe('Login Validation', () => {
 });
 
 
-describe('Register Validation', () => {
+describe('Signup Validation', () => {
   it('returns empty object because all validation is passed', (done) => {
-    const result = usersValidation.validateRegisterInput(
+    const result = usersValidation.validateSignupInput(
       {
         email: 'example@gmail.com', password: '123456', name: 'Example', type: '2',
       },
@@ -43,7 +43,7 @@ describe('Register Validation', () => {
   });
 
   it('returns object of validation required', (done) => {
-    const result = usersValidation.validateRegisterInput({});
+    const result = usersValidation.validateSignupInput({});
     expect(result.isValid).to.equal(false);
     expect(Object.keys(result.errors).length).to.be.greaterThan(0);
     expect(result.errors.email).to.equal('Email field is required');

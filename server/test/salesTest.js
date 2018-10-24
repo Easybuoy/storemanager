@@ -187,7 +187,7 @@ describe('Create New Sale Record', () => {
         chai.request(app).post('/api/v1/sales')
           .set('Authorization', token)
           .send({
-            order: [{ quantity: 200, product_id: 2 }, { quantity: 8, product_id: 3 }],
+            order: [{ quantity: 200, product_id: 2 }, { quantity: 8, product_id: 1 }],
           })
           .end((error, data) => {
             expect(data).to.have.status(400);

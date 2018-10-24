@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
-    "test": "npm run clean && babel server -d server/build && mocha --recursive server/build --exit || true ",
+    "test": "mocha server/test --compilers js:babel-core/register --exit || true",
     "test-dev": "npm run clean-dev && npm run clean && babel server -d server/build/dev && mocha --recursive server/build/dev --exit || true",
     "lint": "eslint ./server",
     "clean": "rm -rf server/build",
@@ -21,6 +21,12 @@
   "engines": {
     "npm": "5.5.1",
     "node": "8.9.1"
+  },
+  "nyc": {
+    "exclude": [
+      "server/app.js",
+      "server/config/keys.js"
+    ]
   },
   "author": "Ekunola Ezekiel",
   "license": "ISC",
