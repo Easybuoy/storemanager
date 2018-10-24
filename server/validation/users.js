@@ -1,7 +1,7 @@
 import Validator from 'validator';
 import isEmpty from './isEmpty';
 
-const validateRegisterInput = (input) => {
+const validateSignupInput = (input) => {
   const errors = {};
   const data = input;
   data.name = !isEmpty(data.name) ? data.name : '';
@@ -73,6 +73,6 @@ const validateLoginInput = (input) => {
 };
 
 module.exports = {
-  validateRegisterInput,
+  validateSignupInput,
   validateLoginInput,
 };
