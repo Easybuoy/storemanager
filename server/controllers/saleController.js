@@ -49,11 +49,6 @@ class salesControler {
       return response;
     };
 
-      // check if user making the request is the Store Owner / Admin
-    if (Number(req.user.type) !== 3) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
     const { errors, isValid } = salesValidation.validateSalesInput(req.body);
 
     // Check validation
@@ -86,11 +81,6 @@ class salesControler {
   // @desc    This function implements the logic for getting all sale records.
   // @access  Private
   static getSales(req, res) {
-    // check if user making the request Store Owner / Admin
-    if (Number(req.user.type) !== 1) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
     res.json(db.sales);
   }
 

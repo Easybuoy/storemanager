@@ -4,23 +4,24 @@ import authenticate from '../../../middleware/authenticate';
 // import db from '../../../models/db';
 import saleController from '../../../controllers/saleController';
 
+const { isLoggedIn, isAdmin, isStoreAttendant } = authenticate;
 const { createSale, getSales, getSaleById } = saleController;
 const router = express.Router();
 
 // @route   GET api/v1/sales
 // @desc    Get/Fetch all sale records
 // @access  Private
-router.get('/', authenticate, getSales);
+router.get('/', isLoggedIn, isAdmin, getSales);
 
 
 // @route   GET api/v1/sales/<saleId>
 // @desc    Get/Fetch a single sale record
 // @access   Private
-router.get('/:id', authenticate, getSaleById);
+router.get('/:id', isLoggedIn, getSaleById);
 
 // @route   POST api/v1/sales
 // @desc    Create a sale order
 // @access   Private
-router.post('/', authenticate, createSale);
+router.post('/', isLoggedIn, isStoreAttendant, createSale);
 
 module.exports = router;

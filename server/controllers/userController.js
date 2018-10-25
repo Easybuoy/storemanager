@@ -12,10 +12,6 @@ class usersController {
   // @desc    This function implements the logic for registering a new user.
   // @access  Private
   static signup(req, res) {
-    if (!(Number(req.user.type) === 1)) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
     const { errors, isValid } = usersValidation.validateSignupInput(req.body);
 
     // Check validation

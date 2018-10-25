@@ -4,6 +4,7 @@ import express from 'express';
 import authenticate from '../../../middleware/authenticate';
 import productController from '../../../controllers/productController';
 
+const { isLoggedIn, isAdmin } = authenticate;
 const {
   createProduct, getProducts, getProductById, deleteProductById,
 } = productController;
@@ -41,24 +42,24 @@ const router = express.Router();
 // @route   GET api/v1/products
 // @desc    Get/Fetch all products
 // @access  Private
-router.get('/', authenticate, getProducts);
+router.get('/', isLoggedIn, getProducts);
 
 
 // @route   GET api/v1/products/<productId>
 // @desc    Get/Fetch a single product record
 // @access   Private
-router.get('/:id', authenticate, getProductById);
+router.get('/:id', isLoggedIn, getProductById);
 
 // @route   POST api/v1/products/
 // @desc    Create a product
 // @access   Private
 // router.post('/', authenticate, upload.single('productImage'), createProduct);
-router.post('/', authenticate, createProduct);
+router.post('/', isLoggedIn, isAdmin, createProduct);
 
 
 // @route   DELETE api/v1/products/<productId>
 // @desc    Delete a single product record
 // @access   Private
-router.delete('/:id', authenticate, deleteProductById);
+router.delete('/:id', isLoggedIn, isAdmin, deleteProductById);
 
 module.exports = router;
