@@ -1,12 +1,14 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+/* eslint-disable import/first */
+import dotenv from 'dotenv';
 
-import keys from '../config/keys';
-import db from '../models/db';
+dotenv.config();
+import db from '../models/mockdb';
 // Load Input validation
 import usersValidation from '../validation/users';
 
-
+const { SECRET_OR_KEY } = process.env;
 class usersController {
   // @route   POST api/users/register
   // @desc    This function implements the logic for registering a new user.
@@ -98,7 +100,7 @@ class usersController {
             type: userData.type,
           };
           // Sign Token
-          jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
             res.json({ success: true, token: `Bearer ${token}` });
           });
         } else {

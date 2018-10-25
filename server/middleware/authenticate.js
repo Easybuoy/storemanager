@@ -1,13 +1,17 @@
 import jwt from 'jsonwebtoken';
+/* eslint-disable import/first */
+import dotenv from 'dotenv';
 
-import keys from '../config/keys';
+dotenv.config();
 
+const { SECRET_OR_KEY } = process.env;
 
 class Authenticate {
+  
   static isLoggedIn(req, res, next) {
     try {
       const token = req.headers.authorization.split(' ')[1];
-      const decoded = jwt.verify(token, keys.secretOrKey);
+      const decoded = jwt.verify(token, SECRET_OR_KEY);
       req.user = decoded;
       next();
     } catch (e) {
