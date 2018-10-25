@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "linebreak-style":[
+            "error", "windows"
+        ],
+        "arrow-body-style": [
+            "error", "as-needed"
+        ],
+        "consistent-return": 0,
+        "array-callback-return": 0
+    }
+    
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
+        <meta name="keywords" content="Store Manager">
+        <title>Store Manager | Create Sales Attendant</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <span class="open-slide">
+                <a href="#" id="openslidemenu" onclick="openSlideMenu()">
+                <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#ffffff"
+                        stroke-width="5"/>
+                </svg>
+            </a></span>
+
+            <ul>
+                <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../uploads/users/default-avatar.png"> </div></a></li>
+                <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
+            </ul>
+        </nav>
+
+        
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+            <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
+            <li><a href="admin_create_product.html">Create Product</a></li>
+            <li><a href="admin_view_products.html">View Products</a></li>
+            <li class="current"><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
+            <li><a href="admin_view_sales.html">View Sales</a></li>
+            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </div>
+
+        <div id="main">
+            <div class="container">
+            <section class="topmargin">
+                <div class="container">
+                        <div id="create_sales_assistant">
+                                <h1 class="text-center">Create Sales Attendant</h1>
+                        <form method="POST" action="index.html">
+                                <h2>Name</h2>
+                                <input type="text" name="name" placeholder="Enter Name">
+                                <h2>Email</h2>
+                                <input type="email" name="email" placeholder="Enter Email">
+                                <h2>Password</h2>
+                                <input type="password" name="password" placeholder="Enter Password"> <br>
+                                <input type="submit" name="" class="button_1" value="Create Sales Assistant">
+                                
+                            </form>   
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <footer id="footer">
+            <p>Store Manager Copyright &copy; 2018</p>
+        </footer>
+    
+    <script src="js/main.js"></script>
+    </body>
+
+</html>
