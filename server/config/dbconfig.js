@@ -89,7 +89,7 @@ const createProductsTable = () => {
             description VARCHAR(128) NOT NULL,
             quantity VARCHAR(128) NOT NULL,
             price INT NOT NULL,
-            productIimage VARCHAR(128) NOT NULL,
+            product_image VARCHAR(128) NOT NULL,
             created_at TIMESTAMP,
             updated_at TIMESTAMP
           )`;
