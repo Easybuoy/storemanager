@@ -5,9 +5,15 @@ import db from '../models/db';
 import productsValidation from '../validation/products';
 
 class productController {
-  // @route   POST api/v1/products
-  // @desc    This function implements the logic for creating new product.
-  // @access  Private
+  /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route POST api/v1/products
+   * @description This function implements the logic for creating new product.
+   * @access Private
+   */
   static createProduct(req, res) {
     const { errors, isValid } = productsValidation.validateProductInput(req.body);
     // Check validation
@@ -52,69 +58,88 @@ class productController {
   }
 
 
-  // @route   GET api/v1/products
-  // @desc    This function implements the logic for getting all products.
-  // @access  Private
+  /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/products
+   * @description This function implements the logic for getting all products.
+   * @access Private
+   */
   static getProducts(req, res) {
-    // res.json(db.products);
-
-
     const productsexist = 'SELECT * FROM products ';
     db.query(productsexist).then((dbresponse) => {
-      console.log(dbresponse.rows)
       if (!dbresponse.rows[0]) {
         return res.status(404).json({ message: 'No Product Found' });
       }
       return res.status(200).json(dbresponse.rows);
-
     }).catch(() => {
       return res.status(500).json({ message: 'Error Fetching Products, Please try again' });
     });
   }
 
-  // @route   GET api/v1/products/<productId>
-  // @desc    This function implements the logic for getting a product detail by Id.
-  // @access  Private
+
+  /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/products/<productId>
+   * @description This function implements the logic for getting a product detail by Id.
+   * @access Private
+   */
   static getProductById(req, res) {
     const { id } = req.params;
 
-    const product = db.products[id - 1];
-    if (!product) {
-      return res.status(400).json({ message: `Product with id ${id} not found.` });
-    }
-
-    return res.json(product);
+    const text = 'SELECT * FROM products WHERE id = $1';
+    const productqueryvalue = [
+      id,
+    ];
+    db.query(text, productqueryvalue).then((dbresponse) => {
+      if (!dbresponse.rows[0]) {
+        return res.status(400).json({ message: `Product with id ${id} not found.` });
+      }
+      return res.json(dbresponse.rows[0]);
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error Fetching Products Details, Please try again' });
+    });
   }
 
-  // @route   DELETE api/v1/products/<productId>
-  // @desc    This function implements the logic for deleting a product by Id.
-  // @access  Private
+  /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route DELETE api/v1/products/<productId>
+   * @description This function implements the logic for deleting a product by Id.
+   * @access Private
+   */
   static deleteProductById(req, res) {
-    // Checks if user making the request is the store owner / admin
-    if (!(Number(req.user.type) === 1)) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
     const { id } = req.params;
-
-    const dbidtoberemoved = id - 1;
-
-    const product = db.products[dbidtoberemoved];
-
-    if (!product) {
-      return res.status(400).json({ message: `Product with id ${id} not found.` });
-    }
-
-    if (product.id !== Number(id)) {
-      return res.status(400).json({ message: `Product with id ${id} not found.` });
-    }
-
-    if (db.products.splice(dbidtoberemoved, 1)) {
-      return res.json({ message: `Product with id ${id} deleted successfully.` });
-    }
-
-    return res.json({ message: 'Unable to delete product.' });
+    const text = 'SELECT * FROM products WHERE id = $1';
+    const productqueryvalue = [
+      id,
+    ];
+    db.query(text, productqueryvalue).then((dbresponse) => {
+      if (!dbresponse.rows[0]) {
+        return res.status(400).json({ message: `Product with id ${id} not found.` });
+      }
+      const productdeletetext = 'DELETE FROM products WHERE id = $1';
+      const productdeletequeryvalue = [
+        id,
+      ];
+      db.query(productdeletetext, productdeletequeryvalue).then((dbres) => {
+        if (dbres.rows.length === 0) {
+          return res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
+        }
+        return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
+      }).catch(() => {
+        return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
+    });
   }
 }
-
 export default productController;
