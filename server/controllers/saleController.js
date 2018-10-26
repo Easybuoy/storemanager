@@ -1,10 +1,19 @@
-import db from '../models/mockdb';
+import uuidv4 from 'uuid/v4';
+
+// import db from '../models/mockdb';
+import db from '../models/db';
 import salesValidation from '../validation/sales';
 
 class salesControler {
-  // @route   POST api/v1/sales
-  // @desc    This function implements the logic for creating a new sale.
-  // @access  Private
+  /**
+   * Signup Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route POST api/v1/sales
+   * @description This function implements the logic for creating a new sale.
+   * @access Private
+   */
   static createSale(req, res) {
     const processSale = (order) => {
       let isMoreThanStock = false;
@@ -77,16 +86,37 @@ class salesControler {
     return res.status(201).json({ message: 'Sale added successfully', data });
   }
 
-  // @route   GET api/v1/sales
-  // @desc    This function implements the logic for getting all sale records.
-  // @access  Private
+  /**
+   * Signup Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/sales
+   * @description This function implements the logic for getting all sale records.
+   * @access Private
+   */
   static getSales(req, res) {
-    res.json(db.sales);
+    // res.json(db.sales);
+    const salesexist = 'SELECT * FROM sales ';
+    db.query(salesexist).then((dbresponse) => {
+      if (!dbresponse.rows[0]) {
+        return res.status(404).json({ message: 'No Sale Found' });
+      }
+      return res.status(200).json(dbresponse.rows);
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error Fetching Sales, Please try again' });
+    });
   }
 
-  // @route   GET api/v1/sales/<saleId>
-  // @desc    This function implements the logic for getting a sale details by Id.
-  // @access  Private
+  /**
+   * Signup Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/sales/<saleId>
+   * @description This function implements the logic for getting a sale details by Id.
+   * @access Private
+   */
   static getSaleById(req, res) {
     // check if user making the request is the Store Owner / Admin
 
@@ -96,22 +126,43 @@ class salesControler {
 
     const { id } = req.params;
 
-    const sales = db.sales[id - 1];
+    // const sales = db.sales[id - 1];
 
-    if (sales) {
+    // if (sales) {
+    //   if (Number(req.user.type) !== 1) {
+    //   // check if user making the request is the store attendant that made the sale
+    //     if (req.user.id !== sales.store_attendant_user_id) {
+    //       return res.status(401).json({ message: 'Unauthorized' });
+    //     }
+    //   }
+    // }
+
+    // if (!sales) {
+    //   return res.status(400).json({ message: `Sales with id ${id} not found.` });
+    // }
+
+    // return res.json(sales);
+
+    const text = 'SELECT * FROM sales WHERE id = $1';
+    const salequeryvalue = [
+      id,
+    ];
+    db.query(text, salequeryvalue).then((dbresponse) => {
+      const sale = dbresponse.rows[0];
+      if (!sale) {
+        return res.status(400).json({ message: `Sale with id ${id} not found.` });
+      }
+
       if (Number(req.user.type) !== 1) {
       // check if user making the request is the store attendant that made the sale
-        if (req.user.id !== sales.store_attendant_user_id) {
+        if (req.user.id !== sale.store_attendant_user_id) {
           return res.status(401).json({ message: 'Unauthorized' });
         }
       }
-    }
-
-    if (!sales) {
-      return res.status(400).json({ message: `Sales with id ${id} not found.` });
-    }
-
-    return res.json(sales);
+      return res.json(sale);
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error Fetching Sale Details, Please try again' });
+    });
   }
 }
 
