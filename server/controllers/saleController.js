@@ -2,7 +2,6 @@ import uuidv4 from 'uuid/v4';
 
 // import db from '../models/mockdb';
 import db from '../models/db';
-import salesValidation from '../validation/sales';
 
 class salesControler {
   /**
@@ -14,76 +13,101 @@ class salesControler {
    * @description This function implements the logic for creating a new sale.
    * @access Private
    */
+  // static create1Sale(req, res) {
+  //   const processSale = (order) => {
+  //     let isMoreThanStock = false;
+  //     let isNotProductAvailable = false;
+  //     let totalSalesAmount = 0;
+  //     order.map((ordertobeprocessed) => {
+  //       const { quantity } = ordertobeprocessed;
+  //       const productId = ordertobeprocessed.product_id;
+
+  //       const product = db.products[productId - 1];
+        
+  //       if (!product) {
+  //         isNotProductAvailable = true;
+  //         return false;
+  //       }
+
+  //       const productPrice = Number(product.price.amount);
+  //       const productQuantity = Number(product.quantity);
+  //       // Check if quantity in stock for product is more than quantity requested
+  //       if (quantity > product.quantity) {
+  //         isMoreThanStock = true;
+  //         return false;
+  //       }
+
+  //       const totalamount = quantity * productPrice;
+
+  //       // Update 'product table' by reducing quantity left in store from what user just bought
+  //       product.quantity = productQuantity - quantity;
+  //       totalSalesAmount += totalamount;
+  //       return { status: 200, totalamount };
+  //     });
+
+  //     if (isNotProductAvailable) {
+  //       return { status: 400, message: 'One Of Product Requested Is Not Available' };
+  //     }
+
+  //     if (isMoreThanStock) {
+  //       return { status: 400, message: 'One Of Product Requested Is More Than In Stock' };
+  //     }
+
+  //     const response = { amount: totalSalesAmount, currency: '$' };
+  //     return response;
+  //   };
+
+  //   const { errors, isValid } = salesValidation.validateSalesInput(req.body);
+
+  //   // Check validation
+  //   if (!isValid) {
+  //     return res.status(400).json(errors);
+  //   }
+
+  //   const processedSale = processSale(req.body.order);
+  //   // Check if there is error processing sale
+  //   if (processedSale.status === 400) {
+  //     return res.status(400).json({ message: processedSale.message });
+  //   }
+
+  //   let id = db.sales.length;
+  //   id += 1;
+
+  //   const data = {
+  //     id,
+  //     store_attendant_user_id: req.user.id,
+  //     order: req.body.order,
+  //     totalSaleAmount: processedSale,
+  //     date_time: new Date(),
+  //   };
+  //   db.sales.push(data);
+
+  //   return res.status(201).json({ message: 'Sale added successfully', data });
+  // }
+
   static createSale(req, res) {
-    const processSale = (order) => {
-      let isMoreThanStock = false;
-      let isNotProductAvailable = false;
-      let totalSalesAmount = 0;
-      order.map((ordertobeprocessed) => {
-        const { quantity } = ordertobeprocessed;
-        const productId = ordertobeprocessed.product_id;
+    // console.log(req.totalSaleAmount);
+    // console.log(req.body.order)
+    // console.log('entered')
+    // return;
+    const text = `INSERT INTO
+    sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
+    VALUES($1, $2, $3, $4, $5)
+    returning *`;
+    const values = [
+      uuidv4(),
+      req.user.id,
+      JSON.stringify(req.body.order),
+      req.totalSaleAmount,
+      new Date(),
+    ];
 
-        const product = db.products[productId - 1];
-
-        if (!product) {
-          isNotProductAvailable = true;
-          return false;
-        }
-
-        const productPrice = Number(product.price.amount);
-        const productQuantity = Number(product.quantity);
-        // Check if quantity in stock for product is more than quantity requested
-        if (quantity > product.quantity) {
-          isMoreThanStock = true;
-          return false;
-        }
-
-        const totalamount = quantity * productPrice;
-
-        // Update 'product table' by reducing quantity left in store from what user just bought
-        product.quantity = productQuantity - quantity;
-        totalSalesAmount += totalamount;
-        return { status: 200, totalamount };
-      });
-
-      if (isNotProductAvailable) {
-        return { status: 400, message: 'One Of Product Requested Is Not Available' };
-      }
-
-      if (isMoreThanStock) {
-        return { status: 400, message: 'One Of Product Requested Is More Than In Stock' };
-      }
-
-      const response = { amount: totalSalesAmount, currency: '$' };
-      return response;
-    };
-
-    const { errors, isValid } = salesValidation.validateSalesInput(req.body);
-
-    // Check validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
-    const processedSale = processSale(req.body.order);
-    // Check if there is error processing sale
-    if (processedSale.status === 400) {
-      return res.status(400).json({ message: processedSale.message });
-    }
-
-    let id = db.sales.length;
-    id += 1;
-
-    const data = {
-      id,
-      store_attendant_user_id: req.user.id,
-      order: req.body.order,
-      totalSaleAmount: processedSale,
-      date_time: new Date(),
-    };
-    db.sales.push(data);
-
-    return res.status(201).json({ message: 'Sale added successfully', data });
+    db.query(text, values).then((dbres) => {
+      const response = dbres.rows[0];
+      return res.status(201).json({ message: 'Sale added successfully', data: response });
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error creating user, Please try again' });
+    });
   }
 
   /**

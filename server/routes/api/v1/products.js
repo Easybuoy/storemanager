@@ -6,7 +6,7 @@ import productController from '../../../controllers/productController';
 
 const { isLoggedIn, isAdmin } = authenticate;
 const {
-  createProduct, getProducts, getProductById, deleteProductById,
+  createProduct, getProducts, getProductById, deleteProductById, updateProductById,
 } = productController;
 
 // const fileFilter = (req, file, cb) => {
@@ -62,4 +62,8 @@ router.post('/', isLoggedIn, isAdmin, createProduct);
 // @access   Private
 router.delete('/:id', isLoggedIn, isAdmin, deleteProductById);
 
+// @route   PUT api/v1/products/<productId>
+// @desc    Update a single product record
+// @access   Private
+router.put('/:id', isLoggedIn, isAdmin, updateProductById);
 module.exports = router;

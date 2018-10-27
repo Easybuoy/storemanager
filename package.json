@@ -5,6 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "dev": "nodemon server/app",
+    "start-dev": "npm run migrations && npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "test": "mocha server/test --compilers js:babel-core/register --exit || true",
     "test-dev": "npm run clean-dev && npm run clean && babel server -d server/build/dev && mocha --recursive server/build/dev --exit || true",
@@ -12,7 +13,8 @@
     "clean": "rm -rf server/build",
     "clean-dev": "rm -rf server/build/dev",
     "build": "npm run clean && babel server -d server/build && node server/build/app",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "migrations": "babel-node server/config/dbconfig createUserTable"
   },
   "repository": {
     "type": "git",
@@ -35,6 +37,7 @@
   },
   "homepage": "https://github.com/Easybuoy/storemanager#readme",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "babel-preset-stage-2": "^6.24.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

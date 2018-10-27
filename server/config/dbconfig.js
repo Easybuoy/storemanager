@@ -112,8 +112,9 @@ const createSalesTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
           sales(
             id UUID PRIMARY KEY,
-            store_attendant_user_id INT NOT NULL,
-            orders VARCHAR(128) NOT NULL,
+            store_attendant_user_id VARCHAR(128) NOT NULL,
+            orders json NOT NULL,
+            total_sale_amount INT NOT NULL,
             created_at TIMESTAMP,
             updated_at TIMESTAMP
           )`;
@@ -138,3 +139,4 @@ module.exports = {
 
 /* eslint-disable-next-line */
 require('make-runnable');
+//drop migrations, create migrations,create seeders

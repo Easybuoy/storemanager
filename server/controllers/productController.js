@@ -125,15 +125,14 @@ class productController {
       if (!dbresponse.rows[0]) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
-      const productdeletetext = 'DELETE FROM products WHERE id = $1';
+      const productdeletetext = 'DELETE FROM products WHERE id = $1 returning *';
       const productdeletequeryvalue = [
         id,
       ];
       db.query(productdeletetext, productdeletequeryvalue).then((dbres) => {
-        if (dbres.rows.length === 0) {
+        if (dbres.rows) {
           return res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
         }
-        return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
       }).catch(() => {
         return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
       });
@@ -141,5 +140,45 @@ class productController {
       return res.status(500).json({ message: 'Error Deleting Products, Please try again' });
     });
   }
+
+  /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route PUT api/v1/products/<productId>
+   * @description This function implements the logic for updating a product detail by Id.
+   * @access Private
+   */
+  static updateProductById(req, res) {
+    const { id } = req.params;
+
+    let productImage = 'uploads\\products\\default.png';
+    if (req.file) {
+      productImage = req.file.path;
+    }
+    const {
+      name, description, quantity, price,
+    } = req.body;
+
+    const text = 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), product_image=($6), updated_at=($7) WHERE id=($1) returning *';
+    const values = [
+      id,
+      name,
+      description,
+      quantity,
+      price,
+      productImage,
+      new Date(),
+    ];
+
+    db.query(text, values).then((dbres) => {
+      return res.status(200).json(dbres.rows);
+    }).catch(() => {
+      return res.status(500).json({ message: 'Error Updating Products, Please try again' });
+    });
+  }
 }
+
+
 export default productController;
