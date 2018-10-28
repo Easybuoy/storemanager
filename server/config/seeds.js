@@ -2,31 +2,8 @@ import uuidv4 from 'uuid/v4';
 import bcrypt from 'bcryptjs';
 
 import db from '../models/db';
+// let storeattendantuserid = 0;
 
-const addUser = (name, email, password, userImage, type, status) => {
-  const hashedpassword = bcrypt.hashSync(password, 10);
-
-  const text = `INSERT INTO
-        users(id, name, email, password, type, status, userImage, created_at)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-        returning *`;
-  const values = [
-    uuidv4(),
-    name,
-    email,
-    hashedpassword,
-    type,
-    status,
-    userImage,
-    new Date(),
-  ];
-
-  db.query(text, values).then(() => {
-    return 'success';
-  }).catch(() => {
-    return 'failed.';
-  });
-};
 
 const addProduct = (name, description, quantity, price, productImage) => {
   const text = `INSERT INTO
@@ -45,7 +22,70 @@ const addProduct = (name, description, quantity, price, productImage) => {
 
   db.query(text, values).then(() => {
     return 'success';
-  }).catch((e) => { console.log(e)
+  }).catch(() => {
+    return 'failed.';
+  });
+};
+
+
+const addSale = (storeAttendantUserId, orders, totalSaleAmount) => {
+  const text = `INSERT INTO
+            sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
+            VALUES($1, $2, $3, $4, $5)
+            returning *`;
+  const values = [
+    uuidv4(),
+    storeAttendantUserId,
+    orders,
+    totalSaleAmount,
+    new Date(),
+  ];
+
+  db.query(text, values).then(() => {
+    return 'success';
+  }).catch(() => {
+    return 'failed.';
+  });
+};
+
+const addUser = (name, email, password, userImage, type, status) => {
+  const hashedpassword = bcrypt.hashSync(password, 10);
+
+  const text = `INSERT INTO
+          users(id, name, email, password, type, status, userImage, created_at)
+          VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+          returning *`;
+  const values = [
+    uuidv4(),
+    name,
+    email,
+    hashedpassword,
+    type,
+    status,
+    userImage,
+    new Date(),
+  ];
+
+  db.query(text, values).then((res) => {
+    if (type === 3) {
+      const storeattendantuserid = res.rows[0].id;
+      const order = JSON.stringify([
+        {
+          product_id: 'dc936c5e-d2a8-42b4-a365-57a95a30e4b6',
+          quantity: '10',
+          totalProductAmount: 8000,
+        },
+        {
+          product_id: 'dc936c5e-d2a8-42b4-a365-57a95a30e4b6',
+          quantity: '12',
+          totalProductAmount: 9600,
+        },
+      ]);
+      addSale(storeattendantuserid, order, 17600);
+      addSale(storeattendantuserid, order, 17600);
+    }
+    return 'success';
+  }).catch(() => {
     return 'failed.';
   });
 };
