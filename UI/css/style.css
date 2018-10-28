@@ -9,6 +9,9 @@
  html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   /* Sections
@@ -343,6 +346,7 @@
 
 }
 
+
 body{
     font-family: 'k2d_semiboldregular', sans-serif;
     font-size: 15px;
@@ -351,6 +355,9 @@ body{
     margin: 0;
     background-color: #f4f4f4;
     overflow-x: hidden; 
+    height: 100%;
+    /* min-height: 100%; */
+    /* position: relative; */
 }
 
 /* body {
@@ -376,6 +383,9 @@ body{
 .dashboard{
   display: none !important;
 }
+
+
+
 /* Navigation */
 nav .highlight, nav .current a{
   color: #0099ff;
@@ -440,7 +450,7 @@ nav a:hover{
     top: 0;
     z-index: 1;
     width: 100%;
-    margin-bottom: 500px;
+    /* margin-bottom: 500px; */
     border-bottom: #0099ff 3px solid;
 
 }
@@ -514,7 +524,8 @@ float: left;
 }
 
 .side-nav a:hover{
-    color: #0099ff;
+    color: #fff;
+    background: #0099ff;
 
 }
 
@@ -522,8 +533,9 @@ float: left;
     position: absolute;
     top: 0;
     right: 22px;
-    font-size: 36px;
+    font-size: 25px;
     margin-left: 50px;
+    background: inherit !important;
 }
 
 .side-nav li{
@@ -536,36 +548,34 @@ float: left;
 
 #main{
     transition: margin-left 0.5s;
-    /* padding: 20px; */
     overflow: hidden;
     width: 100%;
-    /* margin-left: 250px; */
 }
 
 /* TopCards */
-#topcards{
-  margin: 20px 0 20px 0;
-  margin-top: 100px;
-  /* display: flex;
-  justify-content: space-around; */
+.topcardsgroup {
+  display: flex ;
+  justify-content: space-between;
+  justify-items: flex-start;
+  
 }
+
+#topcards{
+  /* margin: 20px 0 20px 0; */
+  margin-top: 100px;
+}
+
 
 .topcardsbox{
-  float: left;
+  background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
   width: 31%;
-  padding: 5px;
   text-align: center;
-  margin: 5px;
+  margin: 0 auto;
+  height: 100%;
 }
 
-.c1{
-  background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
-}
 
 .showcasecard{
-  background: white;
-  height: 50%;
-  width: 100%;
   padding: 5%;
   transition: 0.9s;
   -webkit-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
@@ -582,8 +592,9 @@ float: left;
 
 
 .cardgroup{
-  /* padding: 5px;   */
-  /* display: block; */
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 
 
@@ -628,6 +639,16 @@ float: left;
 .button_2{
   height: 38px;
   background: red;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.button_3{
+  height: 38px;
+  background: green;
   border: none;
   padding-left: 20px;
   padding-right: 20px;
@@ -705,13 +726,28 @@ table th {
 
 
 /* End Of Table Styling */
+.footerstickbottom{
+  position: absolute !important;
+  bottom:0;
+  left: 0;
+}
 
 #footer{
   padding: 20px;
   margin-top: 20px;
+  /* height: 100px; */
   color: #ffffff;
   background: #1c588a;
   text-align: center;
+  position: relative;
+  width:100%;
+  }
+
+.wrapper {
+  min-height: 100%;
+  /* margin-bottom: -20px; */
+  /* position: absolute; */
+  /* margin: 0  auto; */
 }
 
 #productviewsection{
@@ -772,7 +808,7 @@ width: 50%;
 /* Styling For Login Page */
 .loginbox{
   width: 320px;
-  height: 420px;
+  height: auto;
   background: #000;
   color: #fff;
   top: 50%;
@@ -820,6 +856,9 @@ width: 50%;
   font-size: 16px;  
 }
 
+#loginpassword {
+  color: #fff !important;
+}
 .loginbox input[type="submit"]{
   border: none;
   outline: none;
@@ -890,20 +929,33 @@ width: 50%;
 
 /* End Of Shopping Cart Modal Styling */
 
+#prof {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#profiledetails {
+  /* width: 60%; */
+  /* margin: 50px; */
+  text-align: center;
+  display: inline;
+  float: none;
+  justify-content: center;
+}
+
 /* Styling For Admin Create Sales Attendant Page */
 select{
-  width: 100%;
+  width: 50%;
   overflow: hidden !important;
   height: 30px;
   outline: none;
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 #create_sales_assistant{
-  width: 80%;
-  text-align: center;
+  width: 50%;
+  /* text-align: center; */
   margin: 0 auto;
-  /* margin-top: 5%; */
   padding: 5%;
 }
 
@@ -990,21 +1042,6 @@ select{
 }
 
 
-@media (max-width: 875px) {
-  #topcards{
-    margin: 15px 0 15px 0;
-    margin-top: 100px;
-  }
-  
-  .topcardsbox{
-    float: left;
-    width: 28%;
-    padding: 5px;
-    text-align: center;
-    margin: 5px;
-  }
-}
-
 @media screen and (max-width: 600px) {
   table {
     border: 0;
@@ -1059,8 +1096,14 @@ select{
     display: block !important;
   }
 
+  .topcardsgroup {
+    display: block;
+  }
   .topcardsbox{
-    float: left;
+    display: block;
+    text-align: center;
+    /* float: ; */
+    display: block !important;
     width: 100%;
     padding: 5px;
     text-align: center;

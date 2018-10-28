@@ -29,7 +29,8 @@
             </a></span>
 
             <ul>
-                    <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../uploads/users/default-avatar.png"> </div></a></li>
+                <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../uploads/users/default-avatar.png"> </div></a></li>
+                <li><a href="#"><div><input class="search" placeholder="Search Products" type="text"> <img id="searchimg" src="img/search.png"> </div></a></li>
                 <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
             </ul>
         </nav>
@@ -48,28 +49,157 @@
 
         <div id="main">
             <div class="container">
-            <section class="topmargin">
-                <div class="container">
-                        <div id="create_sales_assistant">
-                                <h1>Assign Products To Category</h1>
-                        <form method="POST" action="index.html">
-                                <p>Product</p>
-                                <select>
-                                        <option value="volvo">Google Pixel 2</option>
-                                        <option value="saab">Google Pixel 3</option>
-                                        <option value="mercedes">iPhone 7 Plus</option>
-                                </select>
-                                <p>Category</p>
-                                <select>
-                                        <option value="volvo">Apple</option>
-                                        <option value="saab">Google</option>
-                                </select>                                
-                                <input type="submit" name="" class="button_1" value="Assign Product">
+                    <section id="productsection" class="topmargin">
+                            <div class="container">
+                                <div class="cardgroup">
+        
+                                        <div class="card">
+                                                <a href="view_product_details.html"><img src="img/gpixel2.jpg" class="cardimg"></a>
+                
+                                        <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                                <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $649</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                        </div>
+                
+                                        </div>
+                                        
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/gpixel3r.png" class="cardimg"></a>
+                                    
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 3</h3>
+                                                <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $649</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                                    
+                                        </div>
                                 
-                            </form>   
-                    </div>
-                </div>
-            </section>
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/iphonexs.png" class="cardimg"></a>
+                                        
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                                <p>The iPhone XS display has rounded corners that... </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $1500</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                                        
+                                        </div>
+                                
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/iphonex.png" class="cardimg"></a>
+        
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">IPhone X</h3>
+                                                    <p>The phone comes with a 5.80-inch touchscreen display  </p>
+                                                    <p>Quantity: 3</p>
+                                                    <p  id="productamount">Price: $890</p>
+                                                    <select>
+                                                            <option value="volvo">Google Pixel 2</option>
+                                                            <option value="saab">Google Pixel 3</option>
+                                                            <option value="mercedes">iPhone 7 Plus</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                </div>
+                                            
+                                        </div>
+        
+                                        <div class="card">
+                                                <a href="view_product_details.html"><img src="img/gpixel2.jpg" class="cardimg"></a>
+                
+                                        <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                                <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $649</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                        </div>
+                
+                                        </div>
+                                        
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/gpixel3r.png" class="cardimg"></a>
+                                    
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Google Pixel 3</h3>
+                                                <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $649</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                                    
+                                        </div>
+                                
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/iphonexs.png" class="cardimg"></a>
+                                        
+                                            <div class="text-center cardbody" >
+                                                <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                                <p>The iPhone XS display has rounded corners that... </p>
+                                                <p>Quantity: 3</p>
+                                                <p  id="productamount">Price: $1500</p>
+                                                <select>
+                                                        <option value="volvo">Google Pixel 2</option>
+                                                        <option value="saab">Google Pixel 3</option>
+                                                        <option value="mercedes">iPhone 7 Plus</option>
+                                                </select>
+                                                <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                                        
+                                        </div>
+                                
+                                        <div class="card">
+                                            <a href="view_product_details.html"><img src="img/iphonex.png" class="cardimg"></a>
+        
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">IPhone X</h3>
+                                                    <p>The phone comes with a 5.80-inch touchscreen display  </p>
+                                                    <p>Quantity: 3</p>
+                                                    <p  id="productamount">Price: $890</p>
+                                                    <select>
+                                                            <option value="volvo">Google Pixel 2</option>
+                                                            <option value="saab">Google Pixel 3</option>
+                                                            <option value="mercedes">iPhone 7 Plus</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</butston>
+                                                </div>
+                                            
+                                        </div>
+                            </div>
+                        </div>
+                        </section>
+           
         </div>
 
 
