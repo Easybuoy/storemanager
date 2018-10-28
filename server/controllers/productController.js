@@ -101,7 +101,7 @@ class productController {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
       return res.json(dbresponse.rows[0]);
-    }).catch(() => {
+    }).catch((e) => { console.log(e)
       return res.status(500).json({ message: 'Error Fetching Products Details, Please try again' });
     });
   }
