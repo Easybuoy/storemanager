@@ -46,7 +46,7 @@ const productsQueryText = `CREATE TABLE IF NOT EXISTS
           products(
             id UUID PRIMARY KEY,
             name VARCHAR(128) NOT NULL,
-            description VARCHAR(128) NOT NULL,
+            description TEXT NOT NULL,
             quantity VARCHAR(128) NOT NULL,
             price INT NOT NULL,
             product_image VARCHAR(128) NOT NULL,

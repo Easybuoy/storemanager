@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 // Use morgan to log requests.
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // using routes
 app.use('/api/v1/products', products);
