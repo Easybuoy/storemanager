@@ -4,12 +4,12 @@ import salesValidation from '../../validation/sales';
 
 class saleControlerHelper {
   /**
-   * Signup Route
+   * Sale Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
    * @route POST api/v1/sales
-   * @description This function implements the logic for creating a new sale.
+   * @description This function processes the sale and validates user input and product.
    * @access Private
    */
   static async processSale(req, res, next) {
@@ -20,8 +20,6 @@ class saleControlerHelper {
       return res.status(400).json(errors);
     }
     let totalSalesAmount = 0;
-    let totalSingleProductAmount = 0;
-    let productToBeUpdated = [];
     const { order } = req.body;
     const orderLength = order.length;
     const promises = order.map(async (singleorder) => {
@@ -61,35 +59,38 @@ class saleControlerHelper {
     });
   }
 
+  /**
+   * Sale Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route POST api/v1/sales
+   * @description This function is called after process sale function and it updates the products
+   * with new quantity value.
+   * @access Private
+   */
   static updateProduct(req, res, next) {
     const { order } = req.body;
     const orderLength = order.length;
     let arrayOrderLength = 0;
 
     order.map((singleorder) => {
-      // console.log(arrayOrderLength)
       arrayOrderLength += 1;
-      const { quantity } = singleorder;
+      // const { quantity } = singleorder;
       const productId = singleorder.product_id;
-    const text = 'UPDATE products SET quantity=($2), updated_at=($3) WHERE id=($1) returning *';
-    const values = [
-      productId,
-      Number(singleorder.latestquantitytobeupdatedindb),
-      new Date(),
-    ];
-    console.log(req.latestquantitytobeupdatedindb)
-    db.query(text, values).then((dbres) => {
-      // return res.status(200).json(dbres.rows);
-    }).catch((e) => {
-      console.log(e)
-      // return res.status(500).json({ message: 'Error Updating Products, Please try again' });
-    });
-    delete singleorder.latestquantitytobeupdatedindb;
-    console.log(arrayOrderLength)
-    if(orderLength === arrayOrderLength) {
-      console.log('entered')
-      next();
-    }
+      const text = 'UPDATE products SET quantity=($2), updated_at=($3) WHERE id=($1) returning *';
+      const values = [
+        productId,
+        Number(singleorder.latestquantitytobeupdatedindb),
+        new Date(),
+      ];
+      db.query(text, values).then(() => {
+      }).catch(() => {
+      });
+      delete singleorder.latestquantitytobeupdatedindb;
+      if (orderLength === arrayOrderLength) {
+        next();
+      }
     });
   }
 }
