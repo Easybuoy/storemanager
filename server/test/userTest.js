@@ -6,7 +6,7 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
-describe('Signup Route', () => {
+describe('User Routes', () => {
   let storeownertoken = '';
   let storeattendanttoken = '';
   before((done) => {

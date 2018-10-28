@@ -28,6 +28,7 @@ describe('Product Route', () => {
           });
       });
   });
+
   it('returns array of all products', (done) => {
     chai.request(app).get('/api/v1/products')
       .set('Authorization', storeownertoken)
