@@ -55,7 +55,7 @@ class usersController {
       bcrypt.genSalt(10, (err, salt) => {
       // Check if there is error generating salt
         if (err) {
-          return res.status(500).json({ message: 'Error Creating User, Try again ' });
+          return res.status(400).json({ message: 'Error Creating User, Try again ' });
         }
 
         bcrypt.hash(data.password, salt, (error, hash) => {
@@ -79,12 +79,12 @@ class usersController {
           db.query(text, values).then((dbres) => {
             return res.status(201).json({ message: 'User Created Successfully', data: dbres.rows[0] });
           }).catch(() => {
-            return res.status(500).json({ message: 'Error creating user, Please try again' });
+            return res.status(400).json({ message: 'Error creating user, Please try again' });
           });
         });
       });
     }).catch(() => {
-      return res.status(500).json({ message: 'Error creating user, Please try again' });
+      return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
 
@@ -135,7 +135,7 @@ class usersController {
           }
         });
     }).catch(() => {
-      return res.status(500).json({ message: 'Error Logging in user, Please try again' });
+      return res.status(400).json({ message: 'Error Logging in user, Please try again' });
     });
   }
 
