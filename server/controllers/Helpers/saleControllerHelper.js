@@ -29,7 +29,6 @@ class saleControlerHelper {
       const productqueryvalue = [
         productId,
       ];
-
       const response = await db.query(text, productqueryvalue);
       return response;
     });
@@ -41,11 +40,11 @@ class saleControlerHelper {
         const singleresponse = response[i];
         // Check if product exist in store.
         if (singleresponse.rowCount === 0) {
-          return res.status(400).json({ message: 'One of product requested not found' });
+          return res.status(400).json({ message: 'One Of Product Requested Is Not Available' });
         }
         // Check if quantity requested is greater than quantity in stock
         if (Number(order[i].quantity) > Number(singleresponse.rows[0].quantity)) {
-          return res.status(400).json({ message: 'One of product requested is more than in stock' });
+          return res.status(400).json({ message: 'One Of Product Requested Is More Than In Stock' });
         }
         const totalamount = Number(order[i].quantity) * Number(singleresponse.rows[0].price);
         req.body.order[i].totalProductAmount = totalamount;

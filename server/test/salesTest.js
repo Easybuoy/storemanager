@@ -122,27 +122,28 @@ describe('Get All Sale Records', () => {
       });
   });
 
-  // it('create a new sale', (done) => {
-  //   chai.request(app).get('/api/v1/sales/')
-  //     .set('Authorization', storeownertoken)
-  //     .end((err, res) => {
-  //       const { id } = res.body[0];
-  //       const id2 = res.body[1].id;
-  //       expect(res).to.have.status(200);
-  //       expect(res.body).to.be.an('array');
-  //       chai.request(app).post('/api/v1/sales')
-  //         .send({
-  //           order: [{ quantity: 2, product_id: id }, { quantity: 8, product_id: id2 }],
-  //         })
-  //         .set('Authorization', storeattendanttoken)
-  //         .end((error, data) => { console.log(data.body)
-  //           expect(data).to.have.status(201);
-  //           expect(data.body).to.be.an('object');
-  //           expect(data.body.message).to.equal('Sale added successfully');
-  //           done();
-  //         });
-  //     });
-  // });
+  it('create a new sale', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        const { id } = res.body[0];
+        const id2 = res.body[1].id;
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        chai.request(app).post('/api/v1/sales')
+          .send({
+            order: [{ quantity: 2, product_id: id }, { quantity: 8, product_id: id2 }],
+          })
+          .set('Authorization', storeattendanttoken)
+          .end((error, data) => {
+            expect(data).to.have.status(201);
+            expect(data.body).to.be.an('object');
+            expect(data.body.data.orders).to.be.an('array');
+            expect(data.body.message).to.equal('Sale added successfully');
+            done();
+          });
+      });
+  });
 
   it('return validation error if no data is sent', (done) => {
     chai.request(app).post('/api/v1/sales')
@@ -154,53 +155,50 @@ describe('Get All Sale Records', () => {
       });
   });
 
-  // it('return error because quantity of product requested is more than quantity in store', (done) => {
-  //   chai.request(app).post('/api/v1/users/login')
-  //     .send({
-  //       email: 'example2@gmail.com', password: '123456',
-  //     })
-  //     .end((err, res) => {
-  //       const { token } = res.body;
-  //       expect(res).to.have.status(200);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body.success).to.equal(true);
-  //       chai.request(app).post('/api/v1/sales')
-  //         .set('Authorization', token)
-  //         .send({
-  //           order: [{ quantity: 200, product_id: 2 }, { quantity: 8, product_id: 1 }],
-  //         })
-  //         .end((error, data) => {
-  //           expect(data).to.have.status(400);
-  //           expect(data.body).to.be.an('object');
-  //           expect(data.body.message).to.equal('One Of Product Requested Is More Than In Stock');
-  //           done();
-  //         });
-  //     });
-  // });
+  it('return error because quantity of product requested is more than quantity in store', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        const { id } = res.body[0];
+        const id2 = res.body[1].id;
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        chai.request(app).post('/api/v1/sales')
+          .set('Authorization', storeattendanttoken)
+          .send({
+            order: [{ quantity: 2000000, product_id: id }, { quantity: 8, product_id: id2 }],
+          })
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('One Of Product Requested Is More Than In Stock');
+            done();
+          });
+      });
+  });
 
-  // it('return error because one of product requested is not available in store', (done) => {
-  //   chai.request(app).post('/api/v1/users/login')
-  //     .send({
-  //       email: 'example2@gmail.com', password: '123456',
-  //     })
-  //     .end((err, res) => {
-  //       const { token } = res.body;
-  //       expect(res).to.have.status(200);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body.success).to.equal(true);
-  //       chai.request(app).post('/api/v1/sales')
-  //         .set('Authorization', token)
-  //         .send({
-  //           order: [{ quantity: 200, product_id: 299 }, { quantity: 8, product_id: 3 }],
-  //         })
-  //         .end((error, data) => {
-  //           expect(data).to.have.status(400);
-  //           expect(data.body).to.be.an('object');
-  //           expect(data.body.message).to.equal('One Of Product Requested Is Not Available');
-  //           done();
-  //         });
-  //     });
-  // });
+  it('return error because one of product requested is not available in store', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        let { id } = res.body[0];
+        id = id.substring(2);
+        id = `93${id}`;
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        chai.request(app).post('/api/v1/sales')
+          .set('Authorization', storeattendanttoken)
+          .send({
+            order: [{ quantity: 200, product_id: id }],
+          })
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('One Of Product Requested Is Not Available');
+            done();
+          });
+      });
+  });
 
   it('return unauthorized because only store attendant can create a sale record', (done) => {
     chai.request(app).post('/api/v1/sales')
