@@ -173,7 +173,7 @@ class productController {
     ];
 
     db.query(text, values).then((dbres) => {
-      return res.status(200).json(dbres.rows);
+      return res.status(200).json(dbres.rows[0]);
     }).catch(() => {
       return res.status(400).json({ message: 'Error Updating Products, Please try again' });
     });

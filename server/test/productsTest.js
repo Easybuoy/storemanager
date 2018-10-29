@@ -39,6 +39,16 @@ describe('Product Route', () => {
       });
   });
 
+  // it('returns error fetching products', (done) => {
+  //   chai.request(app).get('/api/v1/products')
+  //     .set('Authorization', storeownertoken)
+  //     .end((error, data) => {
+  //       expect(data).to.have.status(400);
+  //       expect(data.body).to.be.an('object');
+  //       done();
+  //     });
+  // });
+
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).get('/api/v1/products')
       .end((error, res) => {
@@ -85,6 +95,26 @@ describe('Product Route', () => {
       });
   });
 
+  it('return error fetching product error', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        let { id } = res.body[0];
+        id = `93${id}`;
+        chai.request(app).get(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('Error Fetching Products Details, Please try again');
+            done();
+          });
+      });
+  });
+
+
   it('returns unauthorized because user is not logged in', (done) => {
     const id = 2;
     chai.request(app).get(`/api/v1/products/${id}`)
@@ -123,7 +153,7 @@ describe('Product Route', () => {
   it('create a new product', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
-        name: 'Tecno', description: 'Tecno Phone', quantity: '2', price: '200',
+        name: 'Tecno', description: 'Tecno Phone', quantity: '2000', price: '200',
       })
       .set('Authorization', storeownertoken)
       .end((error, data) => {
@@ -206,6 +236,45 @@ describe('Product Route', () => {
             expect(data).to.have.status(400);
             expect(data.body).to.be.an('object');
             expect(data.body.message).to.equal('Error Deleting Products, Please try again');
+            done();
+          });
+      });
+  });
+
+  it('should return update a product detail', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        const { id } = res.body[0];
+        chai.request(app).put(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .send({
+            name: 'Curve 4', description: 'Old Phone', quantity: 100, price: 300,
+          })
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('object');
+            done();
+          });
+      });
+  });
+
+  it('should return error updating product', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        let { id } = res.body[0];
+        id = `93${id}`;
+        chai.request(app).put(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('Error Updating Products, Please try again');
             done();
           });
       });
