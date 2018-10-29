@@ -30,6 +30,7 @@ class salesControler {
       const response = dbres.rows[0];
       return res.status(201).json({ message: 'Sale added successfully', data: response });
     }).catch(() => {
+      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -52,6 +53,7 @@ class salesControler {
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
+      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
     });
   }
@@ -92,6 +94,7 @@ class salesControler {
       }
       return res.json(sale);
     }).catch(() => {
+      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
     });
   }

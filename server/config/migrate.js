@@ -22,8 +22,8 @@ const createTable = (queryText) => {
       // return pool.end();
     })
     .catch((err) => {
-        console.log(err);
-        return pool.end();
+      console.log(err);
+      // return pool.end();
     });
 };
 

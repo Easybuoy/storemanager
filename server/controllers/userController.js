@@ -79,11 +79,13 @@ class usersController {
           db.query(text, values).then((dbres) => {
             return res.status(201).json({ message: 'User Created Successfully', data: dbres.rows[0] });
           }).catch(() => {
+            /* istanbul ignore next */
             return res.status(400).json({ message: 'Error creating user, Please try again' });
           });
         });
       });
     }).catch(() => {
+      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -135,6 +137,7 @@ class usersController {
           }
         });
     }).catch(() => {
+      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Logging in user, Please try again' });
     });
   }
