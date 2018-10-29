@@ -94,6 +94,7 @@ const addUser = (name, email, password, userImage, type, status) => {
 addUser('Example', 'example@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 1, 1);
 addUser('Example', 'example2@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 3, 1);
 addUser('Example Example', 'example3@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
+addUser('Type not exist', 'example31@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 4, 1);
 
 // Add test data for products
 addProduct('Google Pixel 2', 'The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.', 50, 649, 'uploads\\products\\default.png');

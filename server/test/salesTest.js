@@ -9,6 +9,7 @@ chai.use(chaiHttp);
 describe('Get All Sale Records', () => {
   let storeownertoken = '';
   let storeattendanttoken = '';
+  let undefinedtypetoken = '';
   before((done) => {
     chai.request(app).post('/api/v1/users/login')
       .send({
@@ -24,7 +25,14 @@ describe('Get All Sale Records', () => {
           })
           .end((err2, res2) => {
             storeattendanttoken = res2.body.token;
-            done();
+            chai.request(app).post('/api/v1/users/login')
+              .send({
+                email: 'example31@gmail.com', password: '123456',
+              })
+              .end((err3, res3) => {
+                undefinedtypetoken = res3.body.token;
+                done();
+              });
           });
       });
   });
@@ -73,25 +81,21 @@ describe('Get All Sale Records', () => {
       });
   });
 
-  // it('returns unauthorized because he/she did not create the sale || is not store owner / admin', (done) => {
-  //   chai.request(app).post('/api/v1/users/login')
-  //     .send({
-  //       email: 'example3@gmail.com', password: '123456',
-  //     })
-  //     .end((err, res) => {
-  //       const { token } = res.body;
-  //       expect(res).to.have.status(200);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body.success).to.equal(true);
-  //       const id = 2;
-  //       chai.request(app).get(`/api/v1/sales/${id}`)
-  //         .set('Authorization', token)
-  //         .end((error, data) => {
-  //           expect(data).to.have.status(401);
-  //           done();
-  //         });
-  //     });
-  // });
+  it('returns unauthorized because he/she did not create the sale || is not store owner / admin', (done) => {
+    chai.request(app).get('/api/v1/sales/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        const { id } = res.body[0];
+        chai.request(app).get(`/api/v1/sales/${id}`)
+          .set('Authorization', undefinedtypetoken)
+          .end((error, data) => {
+            expect(data).to.have.status(401);
+            done();
+          });
+      });
+  });
 
   it('return sale not found error', (done) => {
     chai.request(app).get('/api/v1/sales/')
