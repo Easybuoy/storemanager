@@ -4,11 +4,11 @@
         "linebreak-style":[
             "error", "windows"
         ],
-        "arrow-body-style": [
-            "error", "as-needed"
-        ],
+        "arrow-body-style": 0,
         "consistent-return": 0,
-        "array-callback-return": 0
+        "array-callback-return": 0,
+        "no-console": 0
+
     }
     
 }

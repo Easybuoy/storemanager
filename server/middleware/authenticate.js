@@ -7,7 +7,6 @@ dotenv.config();
 const { SECRET_OR_KEY } = process.env;
 
 class Authenticate {
-  
   static isLoggedIn(req, res, next) {
     try {
       const token = req.headers.authorization.split(' ')[1];
