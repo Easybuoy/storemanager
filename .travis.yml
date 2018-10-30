@@ -9,5 +9,15 @@ install:
 test:
   - npm test
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database storemanager;' -U postgres
+  - psql -c "CREATE USER ezekiel WITH PASSWORD '123456';" -U postgres
+
+env: 
+  DB_URL = 'postgres://ezekiel:123456@127.0.0.1:5432/storemanager'
+
 after_success:
   - npm run coveralls

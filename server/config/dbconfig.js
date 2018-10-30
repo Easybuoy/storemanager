@@ -1,10 +1,7 @@
-// import { Pool } from 'pg';
-/* eslint-disable import/first */
-// import dotenv from 'dotenv';
-const dotenv = require('dotenv');
-/* eslint-disable-next-line */
-const Pool = require('pg').Pool;
-// const uuidv4 = require('uuid/v4');
+import pg from 'pg';
+import dotenv from 'dotenv';
+
+const { Pool } = pg;
 dotenv.config();
 
 const pool = new Pool({
@@ -139,4 +136,3 @@ module.exports = {
 
 /* eslint-disable-next-line */
 require('make-runnable');
-//drop migrations, create migrations,create seeders

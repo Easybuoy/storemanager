@@ -7,14 +7,17 @@
     "dev": "nodemon server/app",
     "start-dev": "npm run migrations && npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
-    "test": "mocha server/test --compilers js:babel-core/register --exit || true",
+    "test": "npm run migrations && mocha server/test --compilers js:babel-core/register --exit || true",
     "test-dev": "npm run clean-dev && npm run clean && babel server -d server/build/dev && mocha --recursive server/build/dev --exit || true",
     "lint": "eslint ./server",
     "clean": "rm -rf server/build",
     "clean-dev": "rm -rf server/build/dev",
     "build": "npm run clean && babel server -d server/build && node server/build/app",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "migrations": "babel-node server/config/dbconfig createUserTable"
+    "migrations": "npm run unmigrate && npm run migrate && npm run seed",
+    "migrate": "babel-node server/config/migrate",
+    "unmigrate": "babel-node server/config/unmigrate",
+    "seed": "babel-node server/config/seeds"
   },
   "repository": {
     "type": "git",
