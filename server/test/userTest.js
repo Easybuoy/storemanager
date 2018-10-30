@@ -8,7 +8,6 @@ chai.use(chaiHttp);
 
 describe('User Routes', () => {
   let storeownertoken = '';
-  let storeattendanttoken = '';
   before((done) => {
     chai.request(app).post('/api/v1/users/login')
       .send({
@@ -17,15 +16,7 @@ describe('User Routes', () => {
       .end((err, res) => {
         const { token } = res.body;
         storeownertoken = token;
-
-        chai.request(app).post('/api/v1/users/login')
-          .send({
-            email: 'example2@gmail.com', password: '123456',
-          })
-          .end((err2, res2) => {
-            storeattendanttoken = res2.body.token;
-            done();
-          });
+        done();
       });
   });
 

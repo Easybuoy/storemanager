@@ -136,4 +136,3 @@ module.exports = {
 
 /* eslint-disable-next-line */
 require('make-runnable');
-//drop migrations, create migrations,create seeders

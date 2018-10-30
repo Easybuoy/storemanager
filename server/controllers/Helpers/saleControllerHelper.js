@@ -36,7 +36,7 @@ class saleControlerHelper {
     // wait until all promises resolve
     await Promise.all(promises).then((response) => {
       let i;
-      for (i = 0; i < orderLength; i++) {
+      for (i = 0; i < orderLength; i += 1) {
         const singleresponse = response[i];
         // Check if product exist in store.
         if (singleresponse.rowCount === 0) {
@@ -48,6 +48,7 @@ class saleControlerHelper {
         }
         const totalamount = Number(order[i].quantity) * Number(singleresponse.rows[0].price);
         req.body.order[i].totalProductAmount = totalamount;
+        // eslint-disable-next-line
         req.body.order[i].latestquantitytobeupdatedindb = Number(singleresponse.rows[0].quantity) - Number(order[i].quantity);
         totalSalesAmount += totalamount;
       }
@@ -73,7 +74,8 @@ class saleControlerHelper {
     const orderLength = order.length;
     let arrayOrderLength = 0;
 
-    order.map((singleorder) => {
+    order.map((singleord) => {
+      const singleorder = singleord;
       arrayOrderLength += 1;
       // const { quantity } = singleorder;
       const productId = singleorder.product_id;
