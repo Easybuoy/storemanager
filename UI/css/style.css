@@ -770,6 +770,7 @@ table td {
   background: #1c588a;
   text-align: center;
   position: relative;
+  font-family: 'Poiret One';
   width:100%;
   }
 
@@ -869,6 +870,9 @@ width: 50%;
   font-size: 22px;
 } */
 
+.loginfooter {
+  position: absolute !important;
+}
 .loginbox p{
   margin: 0;
   padding: 0;
