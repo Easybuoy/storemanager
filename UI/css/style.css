@@ -597,6 +597,27 @@ float: left;
 }
 
 
+/* Category Filter */
+#categoryfiltersection {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.categoryfiltercontent {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.categoryfiltercontent select{
+  height: 38px;
+  margin-right: 2%;
+  
+  font-family: 'Poiret One';
+  font-weight: 900;
+}
+/* End of Category Filter */
 
 
 
