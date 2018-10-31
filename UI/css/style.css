@@ -973,18 +973,29 @@ width: 50%;
 
 #prof {
   margin: 0 auto;
-  width: 50%;
+  width: 90%;
 }
 
 #profiledetails {
   /* width: 60%; */
-  /* margin: 50px; */
+  /* margin-top: 50px; */
+  display: flex;
   text-align: center;
-  display: inline;
-  float: none;
+  /* display: inline;
+  float: none; */
   justify-content: center;
 }
 
+#profileimg {
+width: 30%;
+height: 300px;
+margin: 5% 2% 0 0;
+}
+
+#profilecontent {
+  width: 60% !important;
+  margin: 5%;
+}
 /* Styling For Admin Create Sales Attendant Page */
 select{
   width: 50%;
@@ -1159,6 +1170,7 @@ select{
   .dashboard{
     display: block !important;
   }
+
 
   .topcardsgroup {
     display: block;
