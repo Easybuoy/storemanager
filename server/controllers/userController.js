@@ -49,7 +49,7 @@ class usersController {
         name,
         status: 1,
         type,
-        userImage: 'uploads\\users\\default-avatar.png',
+        userImage: '/assets/uploads/users/default-avatar.png',
       };
 
       bcrypt.genSalt(10, (err, salt) => {

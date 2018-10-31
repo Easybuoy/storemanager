@@ -21,7 +21,7 @@ class productController {
       return res.status(400).json(errors);
     }
 
-    let productImage = 'uploads\\products\\default.png';
+    let productImage = '/assets/uploads/products/default.png';
     if (req.file) {
       productImage = req.file.path;
     }
@@ -52,7 +52,7 @@ class productController {
       };
 
       return res.status(201).json({ message: 'Product added successfully', data: response });
-    }).catch((e) => { console.log(e)
+    }).catch(() => {
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }

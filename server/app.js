@@ -13,8 +13,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Make uploads folder available publicly
-app.use('/uploads', express.static('uploads'));
+// Make assets folder available publicly
+app.use('/assets', express.static('assets'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome To Store Manager API' });
