@@ -1046,7 +1046,6 @@ select{
 @media (max-width: 1020px) {
   .loginbox{
     width: 75%;
-
   }
   .card {
     width: 450px;
@@ -1072,7 +1071,14 @@ select{
   .cardimg{
     width: 300px; 
   }
+
 }
+
+@media (max-width: 830px) {
+.loginbox{
+  margin-bottom: 15%;  
+    }
+  }
 
 @media (max-width: 687px) {
   .card {
