@@ -7,6 +7,7 @@ import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
 import users from './routes/api/v1/users';
 
+
 const app = express();
 
 // Body Parser Middleware
@@ -17,7 +18,6 @@ app.use(cors());
 
 // Make uploads folder available publicly
 app.use('/uploads', express.static('uploads'));
-
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome To Store Manager API' });
