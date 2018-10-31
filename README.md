@@ -83,11 +83,15 @@ You need Nodejs Installed to be able to run this project on your machine.
 <h2>API Routes</h2> <br>
 <pre>
 <code>
-| DESCRIPTION | HTTP METHOD | ROUTE |
+<!-- | DESCRIPTION | HTTP METHOD | ROUTE |
 | :---:        |     :---:      |     :---: |
 | Register User   | POST     | /api/v1/users/signin    |
-| git diff     | git diff       | git diff      |
+| git diff     | git diff       | git diff      | -->
 
+| DESCRIPTION  | HTTP METHOD | ROUTE    |
+| ------------- | ------------- |--------- |
+| Register User  | HTTP METHOD  | ROUTE       |
+| Content Cell  | Content Cell  |          |
 </code>
 <!-- 
 Register User => <code>POST || /api/v1/users/register</code> <br><br>
