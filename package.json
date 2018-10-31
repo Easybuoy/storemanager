@@ -4,7 +4,7 @@
   "description": "API backend for store manager application.",
   "main": "server/app.js",
   "scripts": {
-    "dev": "nodemon server/app",
+    "dev": "babel-node server/app",
     "start-dev": "npm run migrations && npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "test": "npm run migrations && mocha server/test --compilers js:babel-core/register --exit || true",
@@ -46,7 +46,6 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
-    "cors": "^2.8.4",
     "coveralls": "^3.0.2",
     "dotenv": "^6.1.0",
     "eslint-config-airbnb-base": "^13.1.0",

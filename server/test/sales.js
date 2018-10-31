@@ -43,6 +43,7 @@ describe('Get All Sale Records', () => {
       .end((error, data) => {
         expect(data).to.have.status(200);
         expect(data.body).to.be.an('array');
+        expect(data.body[0]).to.be.an('object');
         done();
       });
   });
@@ -76,6 +77,7 @@ describe('Get All Sale Records', () => {
           .end((error, data) => {
             expect(data).to.have.status(200);
             expect(id).to.equal(data.body.id);
+            expect(data.body).to.be.an('object');
             done();
           });
       });

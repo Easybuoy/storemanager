@@ -79,13 +79,11 @@ class usersController {
           db.query(text, values).then((dbres) => {
             return res.status(201).json({ message: 'User Created Successfully', data: dbres.rows[0] });
           }).catch(() => {
-            /* istanbul ignore next */
             return res.status(400).json({ message: 'Error creating user, Please try again' });
           });
         });
       });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -113,7 +111,7 @@ class usersController {
       email,
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ email: 'User Not Found' });
       }
 
@@ -137,7 +135,6 @@ class usersController {
           }
         });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Logging in user, Please try again' });
     });
   }

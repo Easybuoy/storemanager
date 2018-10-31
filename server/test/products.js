@@ -35,6 +35,7 @@ describe('Product Route', () => {
       .end((error, data) => {
         expect(data).to.have.status(200);
         expect(data.body).to.be.an('array');
+        expect(data.body[0]).to.be.an('object');
         done();
       });
   });
@@ -53,6 +54,7 @@ describe('Product Route', () => {
     chai.request(app).get('/api/v1/products')
       .end((error, res) => {
         expect(res).to.have.status(401);
+        expect(res.body).to.be.an('object');
         done();
       });
   });
@@ -70,6 +72,8 @@ describe('Product Route', () => {
           .end((error, data) => {
             expect(data).to.have.status(200);
             expect(id).to.equal(data.body.id);
+            expect(data.body).to.be.an('object');
+            expect(data.body.description).to.be.a('string');
             done();
           });
       });
@@ -153,7 +157,7 @@ describe('Product Route', () => {
   it('create a new product', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
-        name: 'Tecno', description: 'Tecno Phone', quantity: '2000', price: '200',
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2000, price: 200,
       })
       .set('Authorization', storeownertoken)
       .end((error, data) => {
@@ -167,7 +171,7 @@ describe('Product Route', () => {
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
-        name: 'Tecno', description: 'Tecno Phone', quantity: '2', price: '$200',
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2, price: 200,
       })
       .end((error, res) => {
         expect(res).to.have.status(401);

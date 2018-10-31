@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import morgan from 'morgan';
 
 import products from './routes/api/v1/products';
@@ -13,8 +12,6 @@ const app = express();
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-app.use(cors());
 
 // Make uploads folder available publicly
 app.use('/uploads', express.static('uploads'));

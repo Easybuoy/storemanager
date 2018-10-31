@@ -17,13 +17,26 @@ const validateProductInput = (input) => {
     errors.description = 'Description field is required';
   }
 
-  if (Validator.isEmpty(data.price)) {
+  if (data.price) {
+    if (typeof data.price !== 'number') {
+      errors.price = 'Price field must be a number';
+    }
+  }
+
+  if (!data.price) {
     errors.price = 'Price field is required';
   }
 
-  if (Validator.isEmpty(data.quantity)) {
+  if (data.quantity) {
+    if (typeof data.quantity !== 'number') {
+      errors.quantity = 'Quantty field must be a number';
+    }
+  }
+
+  if (!data.quantity) {
     errors.quantity = 'Quantity field is required';
   }
+
 
   return {
     errors,

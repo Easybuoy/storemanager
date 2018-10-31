@@ -60,7 +60,7 @@ describe('Product Validation', () => {
   it('returns empty object because all validation is passed', (done) => {
     const result = productsValidation.validateProductInput(
       {
-        name: 'Samsung Galaxy', description: 'Good Phone', price: '300', quantity: '29',
+        name: 'Samsung Galaxy', description: 'Good Phone', price: 300, quantity: 29,
       },
     );
     expect(result.isValid).to.equal(true);

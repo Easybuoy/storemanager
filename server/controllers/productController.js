@@ -23,7 +23,6 @@ class productController {
 
     let productImage = 'uploads\\products\\default.png';
     if (req.file) {
-      /* istanbul ignore next */
       productImage = req.file.path;
     }
     const {
@@ -53,8 +52,7 @@ class productController {
       };
 
       return res.status(201).json({ message: 'Product added successfully', data: response });
-    }).catch(() => {
-      /* istanbul ignore next */
+    }).catch((e) => { console.log(e)
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -70,14 +68,13 @@ class productController {
    * @access Private
    */
   static getProducts(req, res) {
-    const productsexist = 'SELECT * FROM products ';
-    db.query(productsexist).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+    const productsExist = 'SELECT * FROM products ';
+    db.query(productsExist).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Product Found' });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Products, Please try again' });
     });
   }
@@ -100,12 +97,11 @@ class productController {
       id,
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
       return res.json(dbresponse.rows[0]);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Products Details, Please try again' });
     });
   }
@@ -126,7 +122,7 @@ class productController {
       id,
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
       const productdeletetext = 'DELETE FROM products WHERE id = $1 returning *';
@@ -138,11 +134,9 @@ class productController {
           return res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
         }
       }).catch(() => {
-        /* istanbul ignore next */
         return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
       });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
     });
   }
@@ -161,7 +155,6 @@ class productController {
 
     let productImage = 'uploads\\products\\default.png';
     if (req.file) {
-      /* istanbul ignore next */
       productImage = req.file.path;
     }
     const {
@@ -182,7 +175,6 @@ class productController {
     db.query(text, values).then((dbres) => {
       return res.status(200).json(dbres.rows[0]);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Updating Products, Please try again' });
     });
   }

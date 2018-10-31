@@ -43,13 +43,14 @@ class saleControlerHelper {
           return res.status(400).json({ message: 'One Of Product Requested Is Not Available' });
         }
         // Check if quantity requested is greater than quantity in stock
-        if (Number(order[i].quantity) > Number(singleresponse.rows[0].quantity)) {
+
+        if (Number(order[i].quantity) > singleresponse.rows[0].quantity) {
           return res.status(400).json({ message: 'One Of Product Requested Is More Than In Stock' });
         }
-        const totalamount = Number(order[i].quantity) * Number(singleresponse.rows[0].price);
+        const totalamount = Number(order[i].quantity) * singleresponse.rows[0].price;
         req.body.order[i].totalProductAmount = totalamount;
         // eslint-disable-next-line
-        req.body.order[i].latestquantitytobeupdatedindb = Number(singleresponse.rows[0].quantity) - Number(order[i].quantity);
+        req.body.order[i].newquantity = singleresponse.rows[0].quantity - Number(order[i].quantity);
         totalSalesAmount += totalamount;
       }
       req.totalSaleAmount = totalSalesAmount;
@@ -82,13 +83,13 @@ class saleControlerHelper {
       const text = 'UPDATE products SET quantity=($2), updated_at=($3) WHERE id=($1) returning *';
       const values = [
         productId,
-        Number(singleorder.latestquantitytobeupdatedindb),
+        singleorder.newquantity,
         new Date(),
       ];
       db.query(text, values).then(() => {
       }).catch(() => {
       });
-      delete singleorder.latestquantitytobeupdatedindb;
+      delete singleorder.newquantity;
       if (orderLength === arrayOrderLength) {
         next();
       }

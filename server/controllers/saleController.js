@@ -5,7 +5,7 @@ import db from '../models/db';
 
 class salesControler {
   /**
-   * Signup Route
+   * Sale Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
@@ -30,7 +30,6 @@ class salesControler {
       const response = dbres.rows[0];
       return res.status(201).json({ message: 'Sale added successfully', data: response });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -48,12 +47,11 @@ class salesControler {
     // res.json(db.sales);
     const salesexist = 'SELECT * FROM sales ';
     db.query(salesexist).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Sale Found' });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
     });
   }
@@ -94,7 +92,6 @@ class salesControler {
       }
       return res.json(sale);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
     });
   }
