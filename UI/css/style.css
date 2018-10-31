@@ -339,13 +339,25 @@
 
 @font-face {
     font-family: 'k2d_semiboldregular';
-    src: url('k2d-webfont.woff2') format('woff2'),
-         url('k2d-webfont.woff') format('woff');
+    src: url('../fonts/k2d/k2d-webfont.woff2') format('woff2'),
+         url('../fonts/k2d/k2d-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 
+@font-face {
+  font-family: 'Poiret One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Poiret One'), local('PoiretOne-Regular'),
+       url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poiretOne/poiret-one-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poiretOne/poiret-one-v6-latin-regular.svg#PoiretOne') format('svg'); /* Legacy iOS */
+}
 
 body{
     font-family: 'k2d_semiboldregular', sans-serif;
@@ -410,14 +422,15 @@ nav a:hover{
 }
 
 #searchimg{
-  width: 40px;
-  height: 40px;
-  margin: 0;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: 1.5%;
   padding: 0px;
   display: block;
   float: right;
   color: #fff;
   background: inherit;
+  font-size: 28px;
 }
 
 #userimg{
@@ -585,6 +598,27 @@ float: left;
 }
 
 
+/* Category Filter */
+#categoryfiltersection {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.categoryfiltercontent {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.categoryfiltercontent select{
+  height: 38px;
+  margin-right: 2%;
+  
+  font-family: 'Poiret One';
+  font-weight: 900;
+}
+/* End of Category Filter */
 
 
 
@@ -680,13 +714,6 @@ input[type="number"]{
 
 /* Table Styling */
 
-.table{
-  /* margin-left: 50px; */
-  /* margin-right: 50px;
-  padding: 50px; */
-  /* width: 80%; */
-
-}
 table {
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -717,9 +744,13 @@ table th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
+  font-size: 18px;
 }
 
-
+table td {
+  font-family: 'Poiret One';
+  font-weight: 900;
+}
 
 
 
@@ -740,6 +771,7 @@ table th {
   background: #1c588a;
   text-align: center;
   position: relative;
+  font-family: 'Poiret One';
   width:100%;
   }
 
@@ -798,25 +830,29 @@ width: 50%;
 #loginbody{
   margin: 0;
   padding: 0;
-  background: url(../img/background.jpg) no-repeat;
+  /* background: url(../img/background.jpg) no-repeat; */
   background-size: cover;
   background-position: center;
-  font-family: sans-serif;
+  font-family: 'Poiret One';
   height: 100%;
 }
 
 /* Styling For Login Page */
 .loginbox{
-  width: 320px;
+  width: 50%;
   height: auto;
-  background: #000;
+  background: #1c588a;
   color: #fff;
   top: 50%;
   left: 50%;
-  position: absolute;
+  position: relative;
   transform: translate(-50%,-50%);
   box-sizing: border-box;
   padding: 70px 30px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: #fff;
+  opacity: 0.9;
+  margin-bottom: 10%;
 }
 
 .avatar{
@@ -835,15 +871,20 @@ width: 50%;
   font-size: 22px;
 } */
 
+.loginfooter {
+  position: absolute !important;
+}
 .loginbox p{
   margin: 0;
   padding: 0;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .loginbox input{
   width: 100%;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 .loginbox input[type="text"], input[type="password"]{
@@ -853,11 +894,13 @@ width: 50%;
   outline: none;
   height: 40px;
   color: #fff; 
-  font-size: 16px;  
+  font-size: 14px;  
 }
 
 #loginpassword {
   color: #fff !important;
+  font-size: 14px !important;
+  border-bottom-color: white;
 }
 .loginbox input[type="submit"]{
   border: none;
@@ -879,7 +922,7 @@ width: 50%;
   text-decoration: none;
   font-size: 12px;
   line-height: 20px;
-  color: darkgray;
+  color: #fff;
 }
 
 .loginbox a:hover{
@@ -931,18 +974,25 @@ width: 50%;
 
 #prof {
   margin: 0 auto;
-  width: 50%;
+  width: 90%;
 }
 
 #profiledetails {
-  /* width: 60%; */
-  /* margin: 50px; */
+  display: flex;
   text-align: center;
-  display: inline;
-  float: none;
   justify-content: center;
 }
 
+#profileimg {
+width: 30%;
+height: 300px;
+margin: 5% 2% 0 0;
+}
+
+#profilecontent {
+  width: 60% !important;
+  margin: 5% 2% 0 0;
+}
 /* Styling For Admin Create Sales Attendant Page */
 select{
   width: 50%;
@@ -1006,6 +1056,9 @@ select{
 
 
 @media (max-width: 1020px) {
+  .loginbox{
+    width: 75%;
+  }
   .card {
     width: 450px;
   }
@@ -1030,7 +1083,14 @@ select{
   .cardimg{
     width: 300px; 
   }
+
 }
+
+@media (max-width: 830px) {
+.loginbox{
+  margin-bottom: 15%;  
+    }
+  }
 
 @media (max-width: 687px) {
   .card {
@@ -1039,10 +1099,17 @@ select{
   .cardimg{
     width: 100%; 
   }
+  .loginbox{
+    width: 90%;
+
+  }
 }
 
 
 @media screen and (max-width: 600px) {
+  .footerstickbottom {
+    position: relative !important;
+  }
   table {
     border: 0;
   }
@@ -1073,8 +1140,13 @@ select{
     display: block;
     font-size: .8em;
     text-align: right;
+    /* font-family: 'Poiret One'; */
+    /* font-weight: 900; */
   }
   
+  table th {
+    font-weight: 900;
+  }
   table td::before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -1094,6 +1166,20 @@ select{
 @media (max-width: 568px) {
   .dashboard{
     display: block !important;
+  }
+
+  #profiledetails {
+    display: block;
+    text-align: center;
+  }
+  
+  #profileimg {
+  width: 100%;
+  height: 300px;
+  }
+  
+  #profilecontent {
+    width: 100% !important;
   }
 
   .topcardsgroup {

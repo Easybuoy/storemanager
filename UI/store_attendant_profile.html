@@ -38,8 +38,7 @@
         
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-            <li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
-            <li><a href="sales_new.html">Sell</a></li>
+            <li><a href="attendant_dashboard.html">Dashboard</a></li>
             <li><a href="sales_view.html">View Sales Record</a></li>
             <li class="current"><a href="store_attendant_profile.html">Profile</a></li> 
             <li><a href="index.html">Logout</a></li>
@@ -52,10 +51,10 @@
                                 <div class="container topcardsgroup ">
                                 <div class="topcardsbox ">
                                     <div class="showcasecard c1">
-                                        <h3 style="margin-bottom: 50px;">Total Sales Record Created</h3>
+                                        <h3 style="margin-bottom: 50px;">Attendance Report</h3>
                                     <div class="" style="margin-bottom: 50px;">
                                         <i class="fas fa-chart-pie fa-4x"></i>
-                                        <h2 style="margin-bottom: 50px;">999</h2>
+                                        <h2 style="margin-bottom: 50px;">2%</h2>
                                     </div>
                     
                     
@@ -90,15 +89,16 @@
 
         <section id="prof" class="topmargin">
                 <div class="container">
-                    <!-- <div class="cardgroup"> -->
-
                     <div id="profiledetails">
-                    <ul class="list-group">
+                        
+                        <img src="img/avartar.png" id="profileimg"/>
+
+                    <ul class="list-group" id="profilecontent">
                             <li class="list-group-item text-center"><strong>Name:</strong> Store Attendant 1</li>
                             <li class="list-group-item text-center"><strong>Email:</strong> attendant1@gmail.com</li>
+                            <li class="list-group-item text-center"><strong>Role:</strong> Store Attendant</li>
                             </ul>
                         </div>
-                    <!-- </div> -->
                 </div>
             </div>
         </section>
@@ -126,7 +126,7 @@
               </div>
 
               
-        <footer id="footer" class="footerstickbottom">
+        <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
     
