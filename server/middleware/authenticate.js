@@ -29,7 +29,7 @@ class Authenticate {
 
   // Checks if user making the request is the store attendant
   static isStoreAttendant(req, res, next) {
-    if (req.user.type !== 3) {
+    if (req.user.type !== 2) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
     next();

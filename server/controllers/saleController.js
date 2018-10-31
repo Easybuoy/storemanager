@@ -14,6 +14,8 @@ class salesControler {
    * @access Private
    */
   static createSale(req, res) {
+    console.log(req.body.order)
+    const { order } = req.body;
     const text = `INSERT INTO
     sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
     VALUES($1, $2, $3, $4, $5)
@@ -21,14 +23,36 @@ class salesControler {
     const values = [
       uuidv4(),
       req.user.id,
-      JSON.stringify(req.body.order),
+      JSON.stringify(order),
       req.totalSaleAmount,
       new Date(),
     ];
 
     db.query(text, values).then((dbres) => {
       const response = dbres.rows[0];
-      return res.status(201).json({ message: 'Sale added successfully', data: response });
+      let arrayOrderLength = 0;
+
+      order.map((singleOrder) => {
+        arrayOrderLength += 1;
+
+        const insertText = `INSERT INTO
+        orders(id, sale_id, product_id, created_at)
+        VALUES($1, $2, $3, $4)
+        returning *`;
+        const insertValues = [
+          uuidv4(),
+          response.id,
+          singleOrder.product_id,
+          new Date(),
+        ];
+        db.query(insertText, insertValues).then(() => {
+        }).catch(() => {
+        });
+
+        if (order.length === arrayOrderLength) {
+          return res.status(201).json({ message: 'Sale added successfully', data: response });
+        }
+      });
     }).catch(() => {
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
@@ -45,13 +69,14 @@ class salesControler {
    */
   static getSales(req, res) {
     // res.json(db.sales);
-    const salesexist = 'SELECT * FROM sales ';
-    db.query(salesexist).then((dbresponse) => {
+    // const salesExist = 'SELECT * FROM sales ';
+    const salesExist = 'SELECT * FROM orders as o JOIN sales as s ON o.sale_id = s.id';
+    db.query(salesExist).then((dbresponse) => { console.log(dbresponse)
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Sale Found' });
       }
       return res.status(200).json(dbresponse.rows);
-    }).catch(() => {
+    }).catch((e) => { console.log(e)
       return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
     });
   }

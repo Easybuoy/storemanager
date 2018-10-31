@@ -139,7 +139,7 @@ class usersController {
   }
 
   /**
-   * Signup Route
+   * GetCurrentUser Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
@@ -153,6 +153,54 @@ class usersController {
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
+    });
+  }
+
+  /**
+   * MakeaAdmin Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route POST api/users/makeadmin
+   * @description This function implements the logic for getting the current user
+   * details with token parsed.
+   * @access Private
+   */
+  static makeAdmin(req, res) {
+    const { email } = req.body;
+
+    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexistqueryvalue = [
+      email,
+    ];
+    db.query(userexist, userexistqueryvalue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(404).json({ email: 'User Not Found' });
+      }
+      const user = dbresponse.rows[0];
+      if (user.type === 1) {
+        return res.status(400).json({ message: 'User already an admin' });
+      }
+
+      const updatetext = 'UPDATE users SET type=($2) WHERE id=($1) returning *';
+      const updatevalue = [
+        user.id,
+        1,
+      ];
+      db.query(updatetext, updatevalue).then((updatedbresponse) => {
+        const data = updatedbresponse.rows[0];
+        const response = {
+          name: data.name,
+          email: data.email,
+          userimage: data.userimage,
+          type: data.type,
+        };
+        return res.json({ message: 'Attendant switched to Admin successfully', data: response });
+      }).catch(() => {
+        return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
     });
   }
 }

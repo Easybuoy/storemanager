@@ -92,7 +92,7 @@ const addUser = (name, email, password, userImage, type, status) => {
 
 // Add test data for user
 addUser('Example', 'example@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 1, 1);
-addUser('Example', 'example2@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 3, 1);
+addUser('Example', 'example2@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
 addUser('Example Example', 'example3@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
 addUser('Type not exist', 'example31@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 4, 1);
 

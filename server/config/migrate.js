@@ -55,6 +55,17 @@ const productsQueryText = `CREATE TABLE IF NOT EXISTS
           )`;
 createTable(productsQueryText);
 
+// const salesQueryText = `CREATE TABLE IF NOT EXISTS
+//           sales(
+//             id UUID PRIMARY KEY,
+//             store_attendant_user_id VARCHAR(128) NOT NULL,
+//             orders json NOT NULL,
+//             total_sale_amount INT NOT NULL,
+//             created_at TIMESTAMP,
+//             updated_at TIMESTAMP
+//           )`;
+// createTable(salesQueryText);
+
 const salesQueryText = `CREATE TABLE IF NOT EXISTS
           sales(
             id UUID PRIMARY KEY,
@@ -65,3 +76,13 @@ const salesQueryText = `CREATE TABLE IF NOT EXISTS
             updated_at TIMESTAMP
           )`;
 createTable(salesQueryText);
+
+const ordersQueryText = `CREATE TABLE IF NOT EXISTS
+          orders(
+            id UUID PRIMARY KEY,
+            sale_id UUID NOT NULL,
+            product_id UUID NOT NULL,
+            created_at TIMESTAMP,
+            updated_at TIMESTAMP
+          )`;
+createTable(ordersQueryText);

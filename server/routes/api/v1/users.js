@@ -3,7 +3,9 @@ import express from 'express';
 import authenticate from '../../../middleware/authenticate';
 import usersController from '../../../controllers/userController';
 
-const { login, signup, getCurrentUser } = usersController;
+const {
+  login, signup, getCurrentUser, makeAdmin,
+} = usersController;
 
 const { isLoggedIn, isAdmin } = authenticate;
 const router = express.Router();
@@ -24,6 +26,12 @@ router.post('/login', login);
 // @desc     Return current user
 // @access   Private
 router.get('/current', isLoggedIn, getCurrentUser);
+
+
+// @route    POST api/v1/users/makeadmin
+// @desc     Make store attendant an admin
+// @access   Private
+router.post('/makeadmin', isLoggedIn, isAdmin, makeAdmin);
 
 
 module.exports = router;
