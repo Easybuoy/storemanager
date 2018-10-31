@@ -994,7 +994,7 @@ margin: 5% 2% 0 0;
 
 #profilecontent {
   width: 60% !important;
-  margin: 5%;
+  margin: 5% 2% 0 0;
 }
 /* Styling For Admin Create Sales Attendant Page */
 select{
@@ -1171,6 +1171,19 @@ select{
     display: block !important;
   }
 
+  #profiledetails {
+    display: block;
+    text-align: center;
+  }
+  
+  #profileimg {
+  width: 100%;
+  height: 300px;
+  }
+  
+  #profilecontent {
+    width: 100% !important;
+  }
 
   .topcardsgroup {
     display: block;
