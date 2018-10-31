@@ -6,7 +6,6 @@ import uuidv4 from 'uuid/v4';
 import dotenv from 'dotenv';
 
 dotenv.config();
-// import db from '../models/mockdb';
 import db from '../models/db';
 
 // Load Input validation
@@ -49,7 +48,7 @@ class usersController {
         name,
         status: 1,
         type,
-        userImage: '/assets/uploads/users/default-avatar.png',
+        userImage: process.env.USER_DEFAULT_IMAGE,
       };
 
       bcrypt.genSalt(10, (err, salt) => {

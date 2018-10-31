@@ -1,6 +1,8 @@
 import uuidv4 from 'uuid/v4';
+/* eslint-disable import/first */
+import dotenv from 'dotenv';
 
-// import db from '../models/mockdb';
+dotenv.config();
 import db from '../models/db';
 import productsValidation from '../validation/products';
 
@@ -21,7 +23,7 @@ class productController {
       return res.status(400).json(errors);
     }
 
-    let productImage = '/assets/uploads/products/default.png';
+    let productImage = process.env.PRODUCT_DEFAULT_IMAGE;
     if (req.file) {
       productImage = req.file.path;
     }
