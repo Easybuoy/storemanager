@@ -1,14 +1,20 @@
+// return me;
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
 import users from './routes/api/v1/users';
-
+import swaggerDocument from './doc/swagger';
 
 const app = express();
+
+app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -4,7 +4,7 @@
   "description": "API backend for store manager application.",
   "main": "server/app.js",
   "scripts": {
-    "dev": "nodemon server/app",
+    "dev": "babel-node server/app",
     "start-dev": "npm run migrations && npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "start": "npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
     "test": "npm run migrations && mocha server/test --compilers js:babel-core/register --exit || true",
@@ -59,6 +59,7 @@
     "nodemon": "^1.18.4",
     "nyc": "^13.0.1",
     "pg": "^7.5.0",
+    "swagger-ui-express": "^4.0.1",
     "uuid": "^3.3.2",
     "validator": "^10.8.0"
   },
