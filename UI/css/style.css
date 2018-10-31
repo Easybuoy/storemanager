@@ -422,14 +422,15 @@ nav a:hover{
 }
 
 #searchimg{
-  width: 40px;
-  height: 40px;
-  margin: 0;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: 1.5%;
   padding: 0px;
   display: block;
   float: right;
   color: #fff;
   background: inherit;
+  font-size: 28px;
 }
 
 #userimg{
@@ -977,12 +978,8 @@ width: 50%;
 }
 
 #profiledetails {
-  /* width: 60%; */
-  /* margin-top: 50px; */
   display: flex;
   text-align: center;
-  /* display: inline;
-  float: none; */
   justify-content: center;
 }
 
