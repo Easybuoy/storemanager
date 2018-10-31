@@ -82,6 +82,14 @@ You need Nodejs Installed to be able to run this project on your machine.
 
 <h2>API Routes</h2> <br>
 <pre>
+<code>
+| DESCRIPTION | HTTP METHOD | ROUTE |
+| :---:        |     :---:      |     :---: |
+| Register User   | POST     | /api/v1/users/signin    |
+| git diff     | git diff       | git diff      |
+
+</code>
+<!-- 
 Register User => <code>POST || /api/v1/users/register</code> <br><br>
 Login User => <code>POST || /api/v1/users/login</code> <br><br>
 Get Current User Details => <code>GET || /api/v1/users/current</code> <br><br>
@@ -90,7 +98,8 @@ Get Products Details => <code>GET || /api/v1/products</code> <br><br>
 Get Single Product Detail => <code>GET || /api/v1/products/{productId}</code> <br><br>
 Create New Sale Record => <code>POST || /api/v1/sales</code> <br><br>
 Get Sale Records => <code>GET || /api/v1/sales</code> <br><br>
-Get Single Sale Record => <code>GET || /api/v1/sales/{salesId}</code></pre> <br><br>
+Get Single Sale Record => <code>GET || /api/v1/sales/{salesId}</code> -->
+</pre> <br><br>
 
 
 
