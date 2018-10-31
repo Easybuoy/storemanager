@@ -81,8 +81,8 @@ You need Nodejs Installed to be able to run this project on your machine.
 <br>
 
 <h2>API Routes</h2> <br>
-<pre>
-<code>
+<!-- <pre>
+<code> -->
 <!-- | DESCRIPTION | HTTP METHOD | ROUTE |
 | :---:        |     :---:      |     :---: |
 | Register User   | POST     | /api/v1/users/signin    |
@@ -92,7 +92,7 @@ You need Nodejs Installed to be able to run this project on your machine.
 | -------------  | ------------- |---------    |
 | Register User  | HTTP METHOD   | ROUTE       |
 | Content Cell   | Content Cell  |             |
-</code>
+<!-- </code> -->
 <!-- 
 Register User => <code>POST || /api/v1/users/register</code> <br><br>
 Login User => <code>POST || /api/v1/users/login</code> <br><br>
@@ -103,7 +103,8 @@ Get Single Product Detail => <code>GET || /api/v1/products/{productId}</code> <b
 Create New Sale Record => <code>POST || /api/v1/sales</code> <br><br>
 Get Sale Records => <code>GET || /api/v1/sales</code> <br><br>
 Get Single Sale Record => <code>GET || /api/v1/sales/{salesId}</code> -->
-</pre> <br><br>
+<!-- </pre> -->
+ <br><br>
 
 
 
