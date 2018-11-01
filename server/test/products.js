@@ -346,16 +346,16 @@ describe('Product Route', () => {
           .set('Authorization', storeownertoken)
           .end((error, data) => {
             categoryId = data.body[0].id;
-            categoryId = id.substring(2);
-            categoryId = `93${id}`;
+            categoryId = categoryId.substring(2);
+            categoryId = `93${categoryId}`;
             expect(data).to.have.status(200);
             expect(data.body).to.be.an('array');
             chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
               .set('Authorization', storeownertoken)
               .end((error2, data2) => {
-                expect(data2).to.have.status(200);
+                expect(data2).to.have.status(400);
                 expect(data2.body).to.be.an('object');
-                expect(data2.body.message).to.equal( `Category with id ${categoryId} not found.`);
+                expect(data2.body.message).to.equal(`Category with id ${categoryId} not found.`);
                 done();
               });
           });
