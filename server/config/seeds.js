@@ -91,13 +91,13 @@ const addUser = (name, email, password, userImage, type, status) => {
 };
 
 // Add test data for user
-addUser('Example', 'example@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 1, 1);
-addUser('Example', 'example2@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
-addUser('Example Example', 'example3@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
-addUser('Example Example', 'example32@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 2, 1);
-addUser('Type not exist', 'example31@gmail.com', '123456', 'uploads\\users\\default-avatar.png', 4, 1);
+addUser('Example', 'example@gmail.com', '123456', 'assets/uploads/users/default-avatar.png', 1, 1);
+addUser('Example', 'example2@gmail.com', '123456', 'assets/uploads/users/default-avatar.png', 2, 1);
+addUser('Example Example', 'example3@gmail.com', '123456', 'asstes/uploads/users/default-avatar.png', 2, 1);
+addUser('Example Example', 'example32@gmail.com', '123456', 'assets/uploads/users/default-avatar.png', 2, 1);
+addUser('Type not exist', 'example31@gmail.com', '123456', 'assets/uploads/users/default-avatar.png', 4, 1);
 
 // Add test data for products
-addProduct('Google Pixel 2', 'The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.', 50, 649, 'uploads\\products\\default.png');
-addProduct('Google Pixel 3', 'The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices.', 75, 800, 'uploads\\products\\default.png');
-addProduct('iPhone 7 Plus', 'The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.', 125, 800, 'uploads\\products\\default.png');
+addProduct('Google Pixel 2', 'The Google Pixel 2 is powered by 1.9GHz octa-core processor and it comes with 4GB of RAM. The phone packs 64GB of internal storage that cannot be expanded.', 50, 649, 'assets/uploads/products/default.png');
+addProduct('Google Pixel 3', 'The Pixel 3 is the latest causality. Wireless charging is a new feature for the Pixel phones, and a welcome change now that Google is launching the Pixel Stand wireless charger alongside its new devices.', 75, 800, 'assets/uploads/products/default.png');
+addProduct('iPhone 7 Plus', 'The phone comes with a 5.50-inch touchscreen display with a resolution of 1080 pixels by 1920 pixels at a PPI of 401 pixels per inch.', 125, 800, 'assets/uploads/products/default.png');

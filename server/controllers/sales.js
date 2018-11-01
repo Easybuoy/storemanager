@@ -14,7 +14,7 @@ class salesControler {
    * @access Private
    */
   static createSale(req, res) {
-    console.log(req.body.order)
+
     const { order } = req.body;
     const text = `INSERT INTO
     sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
@@ -36,13 +36,14 @@ class salesControler {
         arrayOrderLength += 1;
 
         const insertText = `INSERT INTO
-        orders(id, sale_id, product_id, created_at)
-        VALUES($1, $2, $3, $4)
+        orders(id, sale_id, product_id, quantity, created_at)
+        VALUES($1, $2, $3, $4, $5)
         returning *`;
         const insertValues = [
           uuidv4(),
           response.id,
           singleOrder.product_id,
+          Number(singleOrder.quantity),
           new Date(),
         ];
         db.query(insertText, insertValues).then(() => {
@@ -68,15 +69,13 @@ class salesControler {
    * @access Private
    */
   static getSales(req, res) {
-    // res.json(db.sales);
-    // const salesExist = 'SELECT * FROM sales ';
-    const salesExist = 'SELECT * FROM orders as o JOIN sales as s ON o.sale_id = s.id';
-    db.query(salesExist).then((dbresponse) => { console.log(dbresponse)
+    const salesExist = 'SELECT o.sale_id, o.quantity, o.created_at, p.name, p.description, p.price FROM orders as o JOIN products as p ON o.product_id = p.id;';
+    db.query(salesExist).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Sale Found' });
       }
       return res.status(200).json(dbresponse.rows);
-    }).catch((e) => { console.log(e)
+    }).catch(() => {
       return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
     });
   }
@@ -91,35 +90,34 @@ class salesControler {
    * @access Private
    */
   static getSaleById(req, res) {
-    // check if user making the request is the Store Owner / Admin
+    const { id } = req.params;
+    let queryText = '';
+    let queryValue = '';
 
-    if (!Number(req.user.type) === 1 || !Number(req.user.type) === 3) {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (req.user.type === 2) {
+      queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
+      s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.store_attendant_user_id = $2 AND s.id = $1;`;
+      queryValue = [id, req.user.id];
+    } else { console.log('aaaa')
+      queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
+      s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.id = $1;`;
+      queryValue = [id];
     }
 
-    const { id } = req.params;
 
-    const text = 'SELECT * FROM sales WHERE id = $1';
-    const salequeryvalue = [
-      id,
-    ];
-    db.query(text, salequeryvalue).then((dbresponse) => {
-      const sale = dbresponse.rows[0];
-      if (!sale) {
-        return res.status(400).json({ message: `Sale with id ${id} not found.` });
+    db.query(queryText, queryValue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ message: `Sale with id ${id} not found. Or Unauthorized Access` });
       }
 
-      if (Number(req.user.type) !== 1) {
-      // check if user making the request is the store attendant that made the sale
-        if (req.user.id !== sale.store_attendant_user_id) {
-          return res.status(401).json({ message: 'Unauthorized' });
-        }
-      }
+      const sale = dbresponse.rows;
       return res.json(sale);
-    }).catch(() => {
+    }).catch((e) => { console.log(e)
       return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
     });
-  }
+
+}
+
 }
 
 export default salesControler;

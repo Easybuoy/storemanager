@@ -83,6 +83,7 @@ const ordersQueryText = `CREATE TABLE IF NOT EXISTS
             id UUID PRIMARY KEY,
             sale_id UUID NOT NULL,
             product_id UUID NOT NULL,
+            quantity INT NOT NULL,
             created_at TIMESTAMP,
             updated_at TIMESTAMP
           )`;
