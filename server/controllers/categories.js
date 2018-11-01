@@ -139,6 +139,7 @@ class productController {
         return res.status(400).json({ message: `Category with id ${id} not found.` });
       }
 
+      
       const text = queries.categoryUpdateWithId;
       const values = [
         id,
