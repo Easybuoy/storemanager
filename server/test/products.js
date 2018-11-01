@@ -40,54 +40,54 @@ describe('Product Route', () => {
       });
   });
 
-//   it('returns unauthorized because user is not logged in', (done) => {
-//     chai.request(app).get('/api/v1/products')
-//       .end((error, res) => {
-//         expect(res).to.have.status(401);
-//         expect(res.body).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('returns unauthorized because user is not logged in', (done) => {
+    chai.request(app).get('/api/v1/products')
+      .end((error, res) => {
+        expect(res).to.have.status(401);
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
 
 
-//   it('returns details of a product', (done) => {
-//     chai.request(app).get('/api/v1/products/')
-//       .set('Authorization', storeownertoken)
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an('array');
-//         const { id } = res.body[0];
-//         chai.request(app).get(`/api/v1/products/${id}`)
-//           .set('Authorization', storeownertoken)
-//           .end((error, data) => {
-//             expect(data).to.have.status(200);
-//             expect(id).to.equal(data.body.id);
-//             expect(data.body).to.be.an('object');
-//             expect(data.body.description).to.be.a('string');
-//             done();
-//           });
-//       });
-//   });
+  it('returns details of a product', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
+        chai.request(app).get(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            expect(id).to.equal(data.body.data.id);
+            expect(data.body.data).to.be.an('object');
+            expect(data.body.data.description).to.be.a('string');
+            done();
+          });
+      });
+  });
 
-//   it('return product not found error', (done) => {
-//     chai.request(app).get('/api/v1/products/')
-//       .set('Authorization', storeownertoken)
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an('array');
-//         let { id } = res.body[0];
-//         id = id.substring(2);
-//         id = `93${id}`;
-//         chai.request(app).get(`/api/v1/products/${id}`)
-//           .set('Authorization', storeownertoken)
-//           .end((error, data) => {
-//             expect(data).to.have.status(400);
-//             expect(data.body).to.be.an('object');
-//             expect(data.body.message).to.equal(`Product with id ${id} not found.`);
-//             done();
-//           });
-//       });
-//   });
+  it('return product not found error', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        let { id } = res.body.data[0];
+        id = id.substring(2);
+        id = `93${id}`;
+        chai.request(app).get(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal(`Product with id ${id} not found.`);
+            done();
+          });
+      });
+  });
 
 //   it('return error fetching product error', (done) => {
 //     chai.request(app).get('/api/v1/products/')
