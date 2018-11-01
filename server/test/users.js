@@ -27,7 +27,7 @@ describe('User Routes', () => {
         email: 'a@gmail.com',
         name: 'John Example',
         password: '123456',
-        type: '1',
+        type: 1,
       })
       .end((err, res) => {
         expect(res).to.have.status(201);
@@ -43,10 +43,10 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('Email field is required');
-        expect(res.body.password).to.equal('Password field is required');
-        expect(res.body.name).to.equal('Name field is required');
-        expect(res.body.type).to.equal('Type field is required');
+        expect(res.body.data.email).to.equal('Email field is required');
+        expect(res.body.data.password).to.equal('Password field is required');
+        expect(res.body.data.name).to.equal('Name field is required');
+        expect(res.body.data.type).to.equal('Type field is required');
         done();
       });
   });
