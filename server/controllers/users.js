@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 import db from '../models/db';
+import queries from '../models/queries';
 
 // Load Input validation
 import usersValidation from '../validation/users';
@@ -33,7 +34,7 @@ class usersController {
     const {
       email, password, name, type,
     } = req.body;
-    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexist = queries.userExist;
     const userexistqueryvalue = [
       email,
     ];
@@ -60,10 +61,7 @@ class usersController {
         bcrypt.hash(data.password, salt, (error, hash) => {
           if (error) throw error;
           data.password = hash;
-          const text = `INSERT INTO
-        users(id, name, email, password, type, status, userImage, created_at)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-        returning *`;
+          const text = queries.userInsert;
           const values = [
             uuidv4(),
             data.name,
@@ -105,7 +103,7 @@ class usersController {
     }
     const { email, password } = req.body;
 
-    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexist = queries.userExist;
     const userexistqueryvalue = [
       email,
     ];
@@ -176,7 +174,7 @@ class usersController {
 
     const { email } = req.body;
 
-    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexist = queries.userExist;
     const userexistqueryvalue = [
       email,
     ];
@@ -189,7 +187,7 @@ class usersController {
         return res.status(400).json({ message: 'User already an admin' });
       }
 
-      const updatetext = 'UPDATE users SET type=($2) WHERE id=($1) returning *';
+      const updatetext = queries.userUpdate;
       const updatevalue = [
         user.id,
         1,
@@ -221,7 +219,7 @@ class usersController {
    * @access Private
    */
   static getAttendants(req, res) {
-    const userQuery = 'SELECT name, email, status, userimage FROM users WHERE type = 1';
+    const userQuery = queries.userAttendants;
     db.query(userQuery).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Attendant Found' });

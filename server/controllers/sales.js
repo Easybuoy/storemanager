@@ -14,7 +14,6 @@ class salesControler {
    * @access Private
    */
   static createSale(req, res) {
-
     const { order } = req.body;
     const text = `INSERT INTO
     sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
@@ -98,7 +97,7 @@ class salesControler {
       queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
       s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.store_attendant_user_id = $2 AND s.id = $1;`;
       queryValue = [id, req.user.id];
-    } else { console.log('aaaa')
+    } else {
       queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
       s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.id = $1;`;
       queryValue = [id];
@@ -112,12 +111,10 @@ class salesControler {
 
       const sale = dbresponse.rows;
       return res.json(sale);
-    }).catch((e) => { console.log(e)
+    }).catch(() => {
       return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
     });
-
-}
-
+  }
 }
 
 export default salesControler;
