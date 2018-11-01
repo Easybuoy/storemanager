@@ -50,6 +50,7 @@ const productsQueryText = `CREATE TABLE IF NOT EXISTS
             quantity INT NOT NULL,
             price INT NOT NULL,
             product_image VARCHAR(128) NOT NULL,
+            category_id UUID, 
             created_at TIMESTAMP,
             updated_at TIMESTAMP
           )`;

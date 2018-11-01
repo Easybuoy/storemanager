@@ -180,6 +180,53 @@ class productController {
       return res.status(400).json({ message: 'Error Updating Products, Please try again' });
     });
   }
+
+  /**
+   * AssignProduct To Category Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route PUT api/v1/products/<productId>/<categoryId>
+   * @description This function implements the logic for assigning a product to category.
+   * @access Private
+   */
+  static assignProductToCategory(req, res) {
+    const { id, categoryId } = req.params;
+
+    const productExist = 'SELECT * FROM products WHERE id = $1';
+    const productExistQueryValue = [
+      id,
+    ];
+    db.query(productExist, productExistQueryValue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ message: `Product with id ${id} not found.` });
+      }
+      const categoryExist = 'SELECT * FROM categories WHERE id = $1';
+      const categoryExistQueryValue = [
+        categoryId,
+      ];
+      db.query(categoryExist, categoryExistQueryValue).then((dbcategoryresponse) => {
+        if (dbcategoryresponse.rowCount === 0) {
+          return res.status(400).json({ message: `Category with id ${categoryId} not found.` });
+        }
+        const productUpdateText = 'UPDATE products SET category_id=($2), updated_at=($3) WHERE id=($1) returning *';
+        const productUpdateValues = [
+          id,
+          categoryId,
+          new Date(),
+        ];
+        db.query(productUpdateText, productUpdateValues).then(() => {
+          return res.status(200).json({ message: 'Product assigned to category successfully' });
+        }).catch(() => {
+          return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+        });
+      }).catch(() => {
+        return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+    });
+  }
 }
 
 
