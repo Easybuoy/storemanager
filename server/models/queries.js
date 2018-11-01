@@ -35,7 +35,7 @@ const queries = {
   salesByIdAdmin: `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
   s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.id = $1;`,
   salesByIdAttendant: `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
-  s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.store_attendant_user_id = $2 AND s.id = $1;`
-  };
+  s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.store_attendant_user_id = $2 AND s.id = $1;`,
+};
 
 export default queries;
