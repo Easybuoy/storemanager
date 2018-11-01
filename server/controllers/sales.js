@@ -44,11 +44,11 @@ class salesControler {
         });
 
         if (order.length === arrayOrderLength) {
-          return res.status(201).json({ message: 'Sale added successfully', data: response });
+          return res.status(201).json({ status: 'success', message: 'Sale added successfully', data: response });
         }
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error creating user, Please try again' });
+      return res.status(400).json({ status: 'success', message: 'Error creating user, Please try again' });
     });
   }
 
