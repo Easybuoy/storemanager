@@ -21,7 +21,7 @@ class productController {
     const { errors, isValid } = productsValidation.validateProductInput(req.body);
     // Check validation
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({ status: 'error', data: errors });
     }
 
     let productImage = process.env.PRODUCT_DEFAULT_IMAGE;
@@ -53,7 +53,7 @@ class productController {
 
       return res.status(201).json({ status: 'success', message: 'Product added successfully', data: response });
     }).catch(() => {
-      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again', data: {} });
+      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again' });
     });
   }
 
@@ -74,9 +74,9 @@ class productController {
         const response = { message: 'No Product Found' };
         return res.status(404).json({ status: 'error', data: response });
       }
-      return res.status(200).json(dbresponse.rows);
+      return res.status(200).json({ status: 'success', data: dbresponse.rows });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Products, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Products, Please try again' });
     });
   }
 
@@ -99,11 +99,11 @@ class productController {
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Product with id ${id} not found.` });
+        return res.status(400).json({ status: 'error', message: `Product with id ${id} not found.` });
       }
-      return res.json(dbresponse.rows[0]);
+      return res.json({ status: 'success', data: dbresponse.rows[0] });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Products Details, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Products Details, Please try again' });
     });
   }
 
@@ -124,7 +124,7 @@ class productController {
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Product with id ${id} not found.` });
+        return res.status(400).json({ status: 'error', message: `Product with id ${id} not found.` });
       }
       const productdeletetext = queries.productDeleteWithId;
       const productdeletequeryvalue = [
@@ -132,13 +132,13 @@ class productController {
       ];
       db.query(productdeletetext, productdeletequeryvalue).then((dbres) => {
         if (dbres.rows) {
-          return res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
+          return res.status(200).json({ status: 'success', message: `Product with id ${id} deleted successfully.` });
         }
       }).catch(() => {
-        return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error Deleting Products, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Deleting Products, Please try again' });
     });
   }
 
@@ -176,7 +176,7 @@ class productController {
     db.query(text, values).then((dbres) => {
       return res.status(200).json({ status: 'success', data: dbres.rows[0] });
     }).catch(() => {
-      return res.status(400).json({ status: 'error', message: 'Error Updating Products, Please try again', data: {} });
+      return res.status(400).json({ status: 'error', message: 'Error Updating Products, Please try again' });
     });
   }
 
@@ -198,7 +198,7 @@ class productController {
     ];
     db.query(productExist, productExistQueryValue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Product with id ${id} not found.` });
+        return res.status(400).json({ status: 'error', message: `Product with id ${id} not found.` });
       }
       const categoryExist = queries.categoryExistWithId;
       const categoryExistQueryValue = [
@@ -206,7 +206,7 @@ class productController {
       ];
       db.query(categoryExist, categoryExistQueryValue).then((dbcategoryresponse) => {
         if (dbcategoryresponse.rowCount === 0) {
-          return res.status(400).json({ message: `Category with id ${categoryId} not found.` });
+          return res.status(400).json({ status: 'error', message: `Category with id ${categoryId} not found.` });
         }
         const productUpdateText = queries.productUpdateCategoryWithId;
         const productUpdateValues = [
@@ -215,15 +215,15 @@ class productController {
           new Date(),
         ];
         db.query(productUpdateText, productUpdateValues).then(() => {
-          return res.status(200).json({ message: 'Product assigned to category successfully' });
+          return res.status(200).json({ status: 'success', message: 'Product assigned to category successfully' });
         }).catch(() => {
-          return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+          return res.status(400).json({ status: 'error', message: 'Error Assigning Product To Category, Please try again' });
         });
       }).catch(() => {
-        return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error Assigning Product To Category, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Assigning Product To Category, Please try again' });
     });
   }
 }
