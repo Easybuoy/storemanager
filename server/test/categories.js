@@ -20,11 +20,22 @@ describe('Categories Rutes', () => {
       });
   });
 
+  it('return no category found', (done) => {
+    chai.request(app).get('/api/v1/categories/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body.message).to.equal('No Category Found');
+        done();
+      });
+  });
+
   it('create a new category', (done) => {
     chai.request(app).post('/api/v1/categories/')
       .set('Authorization', storeownertoken)
       .send({
-        name: 'Fashion',
+        name: 'Fashions',
       })
       .end((err, res) => {
         expect(res).to.have.status(201);
@@ -46,155 +57,110 @@ describe('Categories Rutes', () => {
       });
   });
 
-  it('return email already exist', (done) => {
-    chai.request(app).post('/api/v1/users/signup')
+  it('returns category already exist', (done) => {
+    const name = 'Fashions';
+    chai.request(app).post('/api/v1/categories/')
       .set('Authorization', storeownertoken)
       .send({
-        name: 'John Example',
+        name,
       })
       .end((err, res) => {
-        expect(res).to.have.status(409);
+        expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('Email Already Exist');
+        expect(res.body.message).to.equal(`Category with name ${name} already exists`);
         done();
       });
   });
 
-//   it('return token', (done) => {
-//     chai.request(app).post('/api/v1/users/login')
-//       .send({
-//         email: 'example@gmail.com',
-//         password: '123456',
-//       })
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an('object');
-//         expect(res.body.success).to.equal(true);
-//         expect(res.body.token).to.include('Bearer');
-//         done();
-//       });
-//   });
+  it('return unauthorized because token is not present', (done) => {
+    chai.request(app).post('/api/v1/categories')
+      .end((err, res) => {
+        expect(res).to.have.status(401);
+        done();
+      });
+  });
 
-//   it('return validation error if no data is sent', (done) => {
-//     chai.request(app).post('/api/v1/users/login')
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body).to.be.an('object');
-//         expect(res.body.email).to.equal('Email field is required');
-//         expect(res.body.password).to.equal('Password field is required');
-//         done();
-//       });
-//   });
+  it('returns all categories', (done) => {
+    chai.request(app).get('/api/v1/categories/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        done();
+      });
+  });
 
-//   it('return user not found', (done) => {
-//     chai.request(app).post('/api/v1/users/login')
-//       .send({
-//         email: 'example232@gmail.com',
-//         password: '123456',
-//       })
-//       .end((err, res) => {
-//         expect(res).to.have.status(404);
-//         expect(res.body).to.be.an('object');
-//         expect(res.body.email).to.equal('User Not Found');
-//         done();
-//       });
-//   });
+  it('updates a category', (done) => {
+    chai.request(app).get('/api/v1/categories')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        const categoryId = res.body[0].id;
+        chai.request(app).put(`/api/v1/categories/${categoryId}`)
+          .send({
+            name: 'Fashion',
+          })
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(200);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal('Category Updated Successfully');
+            done();
+          });
+      });
+  });
 
-//   it('return incorrect password', (done) => {
-//     chai.request(app).post('/api/v1/users/login')
-//       .send({
-//         email: 'example@gmail.com',
-//         password: '1234',
-//       })
-//       .end((err, res) => {
-//         expect(res).to.have.status(401);
-//         expect(res.body).to.be.an('object');
-//         expect(res.body.password).to.equal('Incorrect Password');
-//         done();
-//       });
-//   });
+  it('does not update category because category was not found', (done) => {
+    chai.request(app).get('/api/v1/categories')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        let categoryId = res.body[0].id;
+        categoryId = categoryId.substring(2);
+        categoryId = `93${categoryId}`;
+        chai.request(app).put(`/api/v1/categories/${categoryId}`)
+          .send({
+            name: 'Fashion',
+          })
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(400);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal(`Category with id ${categoryId} not found.`);
+            done();
+          });
+      });
+  });
 
-//   it('returns details of current user', (done) => {
-//     chai.request(app).get('/api/v1/users/current')
-//       .set('Authorization', storeownertoken)
-//       .end((error, data) => {
-//         expect(data).to.have.status(200);
-//         expect(data.body).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('does not delete category because category was not found', (done) => {
+    chai.request(app).get('/api/v1/categories')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        let categoryId = res.body[0].id;
+        categoryId = categoryId.substring(2);
+        categoryId = `93${categoryId}`;
+        chai.request(app).del(`/api/v1/categories/${categoryId}`)
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(400);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal(`Category with id ${categoryId} not found.`);
+            done();
+          });
+      });
+  });
 
-//   it('returns unauthorized because user is not logged in', (done) => {
-//     chai.request(app).get('/api/v1/users/current')
-//       .end((error, data) => {
-//         expect(data).to.have.status(401);
-//         done();
-//       });
-//   });
-
-//   it('returns 404 error because post method is not allowed', (done) => {
-//     chai.request(app).post('/api/v1/users/current')
-//       .set('Authorization', storeownertoken)
-//       .end((error, data) => {
-//         expect(data).to.have.status(404);
-//         done();
-//       });
-//   });
-
-//   it('make a store attendant an admin', (done) => {
-//     chai.request(app).post('/api/v1/users/makeadmin')
-//       .set('Authorization', storeownertoken)
-//       .send({ email: 'example32@gmail.com' })
-//       .end((error, data) => {
-//         expect(data).to.have.status(200);
-//         expect(data.body).to.be.an('object');
-//         expect(data.body.message).to.equal('Attendant switched to Admin successfully');
-//         expect(data.body.data).to.be.an('object');
-//         done();
-//       });
-//   });
-
-//   it('return user not found error whilst trying to make store attendant an admin', (done) => {
-//     chai.request(app).post('/api/v1/users/makeadmin')
-//       .set('Authorization', storeownertoken)
-//       .send({ email: 'example3222@gmail.com' })
-//       .end((error, data) => {
-//         expect(data).to.have.status(404);
-//         expect(data.body).to.be.an('object');
-//         expect(data.body.message).to.equal('User Not Found');
-//         done();
-//       });
-//   });
-
-//   it('return user is already an admin whilst trying to make store attendant an admin', (done) => {
-//     chai.request(app).post('/api/v1/users/makeadmin')
-//       .set('Authorization', storeownertoken)
-//       .send({ email: 'example@gmail.com' })
-//       .end((error, data) => {
-//         expect(data).to.have.status(400);
-//         expect(data.body).to.be.an('object');
-//         expect(data.body.message).to.equal('User already an admin');
-//         done();
-//       });
-//   });
-
-//   it('return unauthorized whilst trying to make store attendant an admin', (done) => {
-//     chai.request(app).post('/api/v1/users/makeadmin')
-//       .send({ email: 'example@gmail.com' })
-//       .end((error, data) => {
-//         expect(data).to.have.status(401);
-//         done();
-//       });
-//   });
-
-//   it('get all store attendants', (done) => {
-//     chai.request(app).get('/api/v1/users/attendants')
-//       .set('Authorization', storeownertoken)
-//       .end((error, data) => {
-//         expect(data).to.have.status(200);
-//         expect(data.body).to.be.an('array');
-//         expect(data.body[0]).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('deletes a category', (done) => {
+    chai.request(app).get('/api/v1/categories')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        const categoryId = res.body[0].id;
+        chai.request(app).del(`/api/v1/categories/${categoryId}`)
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(200);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal(`Category with id ${categoryId} deleted successfully.`);
+            done();
+          });
+      });
+  });
 });
