@@ -51,9 +51,9 @@ class productController {
         url: `${host}/api/v1/products/${dbres.rows[0].id}`,
       };
 
-      return res.status(201).json({ message: 'Product added successfully', data: response });
+      return res.status(201).json({ status: 'success', message: 'Product added successfully', data: response });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error creating user, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again', data: {} });
     });
   }
 
@@ -173,9 +173,9 @@ class productController {
     ];
 
     db.query(text, values).then((dbres) => {
-      return res.status(200).json(dbres.rows[0]);
+      return res.status(200).json({ status: 'success', data: dbres.rows[0] });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Updating Products, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Updating Products, Please try again', data: {} });
     });
   }
 
