@@ -3,6 +3,8 @@ import uuidv4 from 'uuid/v4';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+import queries from '../models/queries';
 import db from '../models/db';
 import categoriesValidation from '../validation/categories';
 
@@ -26,17 +28,14 @@ class productController {
     const { name } = req.body;
     const host = req.get('host');
 
-    const text = `INSERT INTO
-    categories(id, name, created_at)
-    VALUES($1, $2, $3)
-    returning *`;
+    const text = queries.categoryInsert;
     const values = [
       uuidv4(),
       name,
       new Date(),
     ];
 
-    const categoryExist = 'SELECT * FROM categories WHERE name = $1';
+    const categoryExist = queries.categoryExistWithId;
     const categoryExistValue = [name];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount > 0) {
@@ -68,7 +67,7 @@ class productController {
    * @access Private
    */
   static getCategories(req, res) {
-    const text = 'SELECT * FROM categories ';
+    const text = queries.categoryExists;
     db.query(text).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Category Found' });
@@ -90,7 +89,7 @@ class productController {
    */
   static deleteCategory(req, res) {
     const { id } = req.params;
-    const text = 'SELECT * FROM categories WHERE id = $1';
+    const text = queries.categoryExistWithId;
     const categoryqueryvalue = [
       id,
     ];
@@ -98,7 +97,7 @@ class productController {
       if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Category with id ${id} not found.` });
       }
-      const categorydeletetext = 'DELETE FROM categories WHERE id = $1 returning *';
+      const categorydeletetext = queries.categoryDeleteWithId;
       const categorydeletequeryvalue = [
         id,
       ];
@@ -129,14 +128,14 @@ class productController {
     const { name } = req.body;
 
 
-    const categoryExist = 'SELECT * FROM categories WHERE id = $1';
+    const categoryExist = queries.categoryExistWithId;
     const categoryExistValue = [id];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Category with id ${id} not found.` });
       }
 
-      const text = 'UPDATE categories SET name=($2), updated_at=($3) WHERE id=($1) returning *';
+      const text = queries.categoryUpdateWithId;
       const values = [
         id,
         name,

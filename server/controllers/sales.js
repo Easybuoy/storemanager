@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4';
 
-// import db from '../models/mockdb';
+import queries from '../models/queries';
 import db from '../models/db';
 
 class salesControler {
@@ -15,10 +15,7 @@ class salesControler {
    */
   static createSale(req, res) {
     const { order } = req.body;
-    const text = `INSERT INTO
-    sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
-    VALUES($1, $2, $3, $4, $5)
-    returning *`;
+    const text = queries.saleInsert;
     const values = [
       uuidv4(),
       req.user.id,
@@ -34,10 +31,7 @@ class salesControler {
       order.map((singleOrder) => {
         arrayOrderLength += 1;
 
-        const insertText = `INSERT INTO
-        orders(id, sale_id, product_id, quantity, created_at)
-        VALUES($1, $2, $3, $4, $5)
-        returning *`;
+        const insertText = queries.ordersInsert;
         const insertValues = [
           uuidv4(),
           response.id,
@@ -68,7 +62,7 @@ class salesControler {
    * @access Private
    */
   static getSales(req, res) {
-    const salesExist = 'SELECT o.sale_id, o.quantity, o.created_at, p.name, p.description, p.price FROM orders as o JOIN products as p ON o.product_id = p.id;';
+    const salesExist = queries.salesExistForGetSales;
     db.query(salesExist).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Sale Found' });
@@ -94,12 +88,10 @@ class salesControler {
     let queryValue = '';
 
     if (req.user.type === 2) {
-      queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
-      s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.store_attendant_user_id = $2 AND s.id = $1;`;
+      queryText = queries.salesByIdAttendant;
       queryValue = [id, req.user.id];
     } else {
-      queryText = `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
-      s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.id = $1;`;
+      queryText = queries.salesByIdAdmin;
       queryValue = [id];
     }
 

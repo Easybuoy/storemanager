@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 import db from '../models/db';
+import queries from '../models/queries';
 import productsValidation from '../validation/products';
 
 class productController {
@@ -32,10 +33,7 @@ class productController {
     } = req.body;
     const host = req.get('host');
 
-    const text = `INSERT INTO
-    products(id, name, description, quantity, price, product_image, created_at)
-    VALUES($1, $2, $3, $4, $5, $6, $7)
-    returning *`;
+    const text = queries.productInsert;
     const values = [
       uuidv4(),
       name,
@@ -70,7 +68,7 @@ class productController {
    * @access Private
    */
   static getProducts(req, res) {
-    const productsExist = 'SELECT * FROM products ';
+    const productsExist = queries.productExist;
     db.query(productsExist).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Product Found' });
@@ -94,7 +92,7 @@ class productController {
   static getProductById(req, res) {
     const { id } = req.params;
 
-    const text = 'SELECT * FROM products WHERE id = $1';
+    const text = queries.productExistWithId;
     const productqueryvalue = [
       id,
     ];
@@ -119,7 +117,7 @@ class productController {
    */
   static deleteProductById(req, res) {
     const { id } = req.params;
-    const text = 'SELECT * FROM products WHERE id = $1';
+    const text = queries.productExistWithId;
     const productqueryvalue = [
       id,
     ];
@@ -127,7 +125,7 @@ class productController {
       if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
-      const productdeletetext = 'DELETE FROM products WHERE id = $1 returning *';
+      const productdeletetext = queries.productDeleteWithId;
       const productdeletequeryvalue = [
         id,
       ];
@@ -155,7 +153,7 @@ class productController {
   static updateProductById(req, res) {
     const { id } = req.params;
 
-    let productImage = 'uploads\\products\\default.png';
+    let productImage = process.env.PRODUCT_DEFAULT_IMAGE;
     if (req.file) {
       productImage = req.file.path;
     }
@@ -163,7 +161,7 @@ class productController {
       name, description, quantity, price,
     } = req.body;
 
-    const text = 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), product_image=($6), updated_at=($7) WHERE id=($1) returning *';
+    const text = queries.productDeleteWithId;
     const values = [
       id,
       name,
@@ -193,7 +191,7 @@ class productController {
   static assignProductToCategory(req, res) {
     const { id, categoryId } = req.params;
 
-    const productExist = 'SELECT * FROM products WHERE id = $1';
+    const productExist = queries.productExistWithId;
     const productExistQueryValue = [
       id,
     ];
@@ -201,7 +199,7 @@ class productController {
       if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
-      const categoryExist = 'SELECT * FROM categories WHERE id = $1';
+      const categoryExist = queries.categoryExistWithId;
       const categoryExistQueryValue = [
         categoryId,
       ];
@@ -209,7 +207,7 @@ class productController {
         if (dbcategoryresponse.rowCount === 0) {
           return res.status(400).json({ message: `Category with id ${categoryId} not found.` });
         }
-        const productUpdateText = 'UPDATE products SET category_id=($2), updated_at=($3) WHERE id=($1) returning *';
+        const productUpdateText = queries.productUpdateCategoryWithId;
         const productUpdateValues = [
           id,
           categoryId,
