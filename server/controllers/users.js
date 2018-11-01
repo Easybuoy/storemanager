@@ -40,7 +40,10 @@ class usersController {
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
       if (dbresponse.rows[0]) {
-        return res.status(409).json({ email: 'Email Already Exist' });
+        const emailExistResponse = {
+          email: 'Email Already Exist',
+        };
+        return res.status(409).json({ status: 'error', data: emailExistResponse });
       }
 
       const data = {
@@ -55,7 +58,10 @@ class usersController {
       bcrypt.genSalt(10, (err, salt) => {
       // Check if there is error generating salt
         if (err) {
-          return res.status(400).json({ message: 'Error Creating User, Try again ' });
+          const errorResponse = {
+            message: 'Error Creating User, Try again ',
+          };
+          return res.status(400).json({ status: 'error', data: errorResponse });
         }
 
         bcrypt.hash(data.password, salt, (error, hash) => {
@@ -116,7 +122,10 @@ class usersController {
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ email: 'User Not Found' });
+        const response = {
+          email: 'User Not Found',
+        };
+        return res.status(404).json({ status: 'error', data: response });
       }
 
       const userData = dbresponse.rows[0];
@@ -179,7 +188,7 @@ class usersController {
 
     // Check validation
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({ status: 'error', data: errors });
     }
 
     const { email } = req.body;
@@ -234,7 +243,7 @@ class usersController {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ status: 'error', message: 'No Attendant Found' });
       }
-      return res.status(200).json(dbresponse.rows);
+      return res.status(200).json({ status: 'success', data: dbresponse.rows });
     }).catch(() => {
       return res.status(400).json({ status: 'error', message: 'Error Fetching Attendants, Please try again' });
     });

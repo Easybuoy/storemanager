@@ -71,7 +71,8 @@ class productController {
     const productsExist = queries.productExist;
     db.query(productsExist).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ message: 'No Product Found' });
+        const response = { message: 'No Product Found' };
+        return res.status(404).json({ status: 'error', data: response });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
