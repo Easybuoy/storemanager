@@ -41,8 +41,7 @@ const validateSignupInput = (input) => {
       errors.password = 'Password must be at least 6 characters';
     }
   }
-  console.log(typeof data.type);
-  console.log(data.type)
+
   if (Validator.isInt(data.type)) {
     if (data.type > 2) {
       errors.type = 'Invalid Type. Type cannot be greater than 2';

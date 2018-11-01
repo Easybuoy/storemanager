@@ -27,11 +27,10 @@ const validateProductInput = (input) => {
     errors.price = 'Price field is required';
   }
 
-  if (data.quantity) {
-    if (typeof data.quantity !== 'number') {
-      errors.quantity = 'Quantty field must be a number';
-    }
+  if (!Validator.isInt(data.quantity)) {
+    errors.quantity = 'Quantty field must be a number';
   }
+
 
   if (!data.quantity) {
     errors.quantity = 'Quantity field is required';

@@ -28,7 +28,7 @@ class usersController {
 
     // Check validation
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({ status: 'error', data: errors });
     }
 
     const {
@@ -106,7 +106,7 @@ class usersController {
 
     // Check validation
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({ status: 'error', data: errors });
     }
     const { email, password } = req.body;
 
@@ -126,8 +126,8 @@ class usersController {
             // User Matched
             const payload = {
               id: userData.id,
-              email: userData.email,
-              name: userData.name,
+              // email: userData.email,
+              // name: userData.name,
               type: userData.type,
             };
             // Sign Token
@@ -135,7 +135,10 @@ class usersController {
               res.json({ status: 'success', token: `Bearer ${token}` });
             });
           } else {
-            return res.status(401).json({ status: 'error', password: 'Incorrect Password' });
+            const incorrectPasswordResponse = {
+              password: 'Incorrect Password',
+            };
+            return res.status(401).json({ status: 'error', data: incorrectPasswordResponse });
           }
         });
     }).catch(() => {
