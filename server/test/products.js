@@ -1,44 +1,44 @@
-// import chai from 'chai';
-// import chaiHttp from 'chai-http';
-// import app from '../app';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../app';
 
-// const { expect } = chai;
+const { expect } = chai;
 
-// chai.use(chaiHttp);
+chai.use(chaiHttp);
 
-// describe('Product Route', () => {
-//   let storeownertoken = '';
-//   let storeattendanttoken = '';
-//   before((done) => {
-//     chai.request(app).post('/api/v1/users/login')
-//       .send({
-//         email: 'example@gmail.com', password: '123456',
-//       })
-//       .end((err, res) => {
-//         const { token } = res.body;
-//         storeownertoken = token;
+describe('Product Route', () => {
+  let storeownertoken = '';
+  let storeattendanttoken = '';
+  before((done) => {
+    chai.request(app).post('/api/v1/users/login')
+      .send({
+        email: 'example@gmail.com', password: '123456',
+      })
+      .end((err, res) => {
+        const { token } = res.body;
+        storeownertoken = token;
 
-//         chai.request(app).post('/api/v1/users/login')
-//           .send({
-//             email: 'example2@gmail.com', password: '123456',
-//           })
-//           .end((err2, res2) => {
-//             storeattendanttoken = res2.body.token;
-//             done();
-//           });
-//       });
-//   });
+        chai.request(app).post('/api/v1/users/login')
+          .send({
+            email: 'example2@gmail.com', password: '123456',
+          })
+          .end((err2, res2) => {
+            storeattendanttoken = res2.body.token;
+            done();
+          });
+      });
+  });
 
-//   it('returns array of all products', (done) => {
-//     chai.request(app).get('/api/v1/products')
-//       .set('Authorization', storeownertoken)
-//       .end((error, data) => {
-//         expect(data).to.have.status(200);
-//         expect(data.body).to.be.an('array');
-//         expect(data.body[0]).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('returns array of all products', (done) => {
+    chai.request(app).get('/api/v1/products')
+      .set('Authorization', storeownertoken)
+      .end((error, data) => {
+        expect(data).to.have.status(200);
+        expect(data.body.data).to.be.an('array');
+        expect(data.body.data[0]).to.be.an('object');
+        done();
+      });
+  });
 
 //   it('returns unauthorized because user is not logged in', (done) => {
 //     chai.request(app).get('/api/v1/products')
@@ -361,4 +361,4 @@
 //           });
 //       });
 //   });
-// });
+});

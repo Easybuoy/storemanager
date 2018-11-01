@@ -136,10 +136,10 @@ class productController {
     const categoryExistValue = [id];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Category with id ${id} not found.` });
+        return res.status(400).json({ status: 'error', message: `Category with id ${id} not found.` });
       }
 
-      
+
       const text = queries.categoryUpdateWithId;
       const values = [
         id,
@@ -147,12 +147,12 @@ class productController {
         new Date(),
       ];
       db.query(text, values).then((dbres) => {
-        return res.status(200).json({ message: 'Category Updated Successfully', data: dbres.rows[0] });
+        return res.status(200).json({ status: 'success', message: 'Category Updated Successfully', data: dbres.rows[0] });
       }).catch(() => {
-        return res.status(400).json({ message: 'Error Updating Category, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error Updating Category, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Updating Category, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Updating Category, Please try again' });
     });
   }
 }
