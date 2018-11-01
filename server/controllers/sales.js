@@ -65,11 +65,11 @@ class salesControler {
     const salesExist = queries.salesExistForGetSales;
     db.query(salesExist).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ message: 'No Sale Found' });
+        return res.status(404).json({ status: 'error', message: 'No Sale Found' });
       }
-      return res.status(200).json(dbresponse.rows);
+      return res.status(200).json({ status: 'success', data: dbresponse.rows });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Sales, Please try again' });
     });
   }
 
@@ -98,13 +98,13 @@ class salesControler {
 
     db.query(queryText, queryValue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Sale with id ${id} not found. Or Unauthorized Access` });
+        return res.status(400).json({ status: 'error', message: `Sale with id ${id} not found. Or Unauthorized Access` });
       }
 
       const sale = dbresponse.rows;
       return res.json(sale);
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Sale Details, Please try again' });
     });
   }
 }
