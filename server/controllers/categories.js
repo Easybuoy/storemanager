@@ -28,14 +28,18 @@ class productController {
     const { name } = req.body;
     const host = req.get('host');
 
-    const text = queries.categoryInsert;
+    const text = `INSERT INTO
+    categories(id, name, created_at)
+    VALUES($1, $2, $3)
+    returning *`;
     const values = [
       uuidv4(),
       name,
       new Date(),
     ];
 
-    const categoryExist = queries.categoryExistWithId;
+    const categoryExist = queries.categoryExistWithName;
+
     const categoryExistValue = [name];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount > 0) {

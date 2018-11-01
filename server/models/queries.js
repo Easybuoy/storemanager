@@ -17,6 +17,7 @@ const queries = {
   productUpdateCategoryWithId: 'UPDATE products SET category_id=($2), updated_at=($3) WHERE id=($1) returning *',
   categoryExists: 'SELECT * FROM categories ',
   categoryExistWithId: 'SELECT * FROM categories WHERE id = $1',
+  categoryExistWithName: 'SELECT * FROM categories WHERE name = $1',
   categoryUpdateWithId: 'UPDATE categories SET name=($2), updated_at=($3) WHERE id=($1) returning *',
   categoryDeleteWithId: 'DELETE FROM categories WHERE id = $1 returning *',
   categoryInsert: `INSERT INTO

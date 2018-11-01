@@ -161,7 +161,7 @@ class productController {
       name, description, quantity, price,
     } = req.body;
 
-    const text = queries.productDeleteWithId;
+    const text = queries.productUpdateWithId;
     const values = [
       id,
       name,
