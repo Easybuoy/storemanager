@@ -43,3 +43,6 @@ dropTable(salesQueryText);
 
 const ordersQueryText = 'DROP TABLE IF EXISTS orders';
 dropTable(ordersQueryText);
+
+const categoriesQueryText = 'DROP TABLE IF EXISTS categories';
+dropTable(categoriesQueryText);

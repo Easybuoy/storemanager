@@ -1,7 +1,7 @@
 import express from 'express';
 
 import authenticate from '../../../middleware/authenticate';
-import usersController from '../../../controllers/userController';
+import usersController from '../../../controllers/users';
 
 const {
   login, signup, getCurrentUser, makeAdmin, getAttendants,

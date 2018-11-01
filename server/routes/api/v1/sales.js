@@ -2,7 +2,7 @@ import express from 'express';
 
 import authenticate from '../../../middleware/authenticate';
 // import db from '../../../models/db';
-import saleController from '../../../controllers/saleController';
+import saleController from '../../../controllers/sales';
 import saleControllerHelper from '../../../controllers/helpers/saleControllerHelper';
 
 const { isLoggedIn, isAdmin, isStoreAttendant } = authenticate;

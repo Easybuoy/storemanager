@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
 import users from './routes/api/v1/users';
-
+import categories from './routes/api/v1/categories';
 
 const app = express();
 
@@ -27,6 +27,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/products', products);
 app.use('/api/v1/sales', sales);
 app.use('/api/v1/users', users);
+app.use('/api/v1/categories', categories);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

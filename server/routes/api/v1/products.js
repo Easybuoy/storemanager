@@ -2,7 +2,7 @@ import express from 'express';
 // import multer from 'multer';
 
 import authenticate from '../../../middleware/authenticate';
-import productController from '../../../controllers/productController';
+import productController from '../../../controllers/products';
 
 const { isLoggedIn, isAdmin } = authenticate;
 const {
