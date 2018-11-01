@@ -99,7 +99,8 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Get Single Sale Detail          | GET           | /api/v1/sales/{salesId}          | PRIVATE       |
 | Make a new Category             | POST          | /api/v1/categories/              | PRIVATE       |
 | Get All Categories              | GET           | /api/v1/categories/              | PRIVATE       |
-
+| Update a Category               | PUT           | /api/v1/categories/{categoryId}  | PRIVATE       |
+| Delete a Category               | DELETE        | /api/v1/categories/{categoryId}  | PRIVATE       |
 
  <br><br>
 
