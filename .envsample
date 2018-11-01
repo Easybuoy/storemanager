@@ -1,2 +1,4 @@
 DB_URL = 'postgres://dbusername:dbpassword@port/dbname'
 SECRET_OR_KEY = 'samplesecretkey'
+USER_DEFAULT_IMAGE = '/assets/uploads/users/default-avatar.png'
+PRODUCT_DEFAULT_IMAGE = '/assets/uploads/products/default.png'

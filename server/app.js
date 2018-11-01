@@ -1,12 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import morgan from 'morgan';
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
 import users from './routes/api/v1/users';
-
+import categories from './routes/api/v1/categories';
 
 const app = express();
 
@@ -14,10 +13,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
-
-// Make uploads folder available publicly
-app.use('/uploads', express.static('uploads'));
+// Make assets folder available publicly
+app.use('/assets', express.static('assets'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome To Store Manager API' });
@@ -30,6 +27,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/products', products);
 app.use('/api/v1/sales', sales);
 app.use('/api/v1/users', users);
+app.use('/api/v1/categories', categories);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

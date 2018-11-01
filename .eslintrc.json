@@ -9,6 +9,10 @@
         "array-callback-return": 0,
         "no-console": 0
 
+    },
+    "env": {
+        "node": true,
+        "mocha": true
     }
     
 }

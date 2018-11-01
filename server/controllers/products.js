@@ -1,7 +1,10 @@
 import uuidv4 from 'uuid/v4';
+/* eslint-disable import/first */
+import dotenv from 'dotenv';
 
-// import db from '../models/mockdb';
+dotenv.config();
 import db from '../models/db';
+import queries from '../models/queries';
 import productsValidation from '../validation/products';
 
 class productController {
@@ -21,9 +24,8 @@ class productController {
       return res.status(400).json(errors);
     }
 
-    let productImage = 'uploads\\products\\default.png';
+    let productImage = process.env.PRODUCT_DEFAULT_IMAGE;
     if (req.file) {
-      /* istanbul ignore next */
       productImage = req.file.path;
     }
     const {
@@ -31,10 +33,7 @@ class productController {
     } = req.body;
     const host = req.get('host');
 
-    const text = `INSERT INTO
-    products(id, name, description, quantity, price, product_image, created_at)
-    VALUES($1, $2, $3, $4, $5, $6, $7)
-    returning *`;
+    const text = queries.productInsert;
     const values = [
       uuidv4(),
       name,
@@ -54,7 +53,6 @@ class productController {
 
       return res.status(201).json({ message: 'Product added successfully', data: response });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -70,14 +68,13 @@ class productController {
    * @access Private
    */
   static getProducts(req, res) {
-    const productsexist = 'SELECT * FROM products ';
-    db.query(productsexist).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+    const productsExist = queries.productExist;
+    db.query(productsExist).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Product Found' });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Products, Please try again' });
     });
   }
@@ -95,17 +92,16 @@ class productController {
   static getProductById(req, res) {
     const { id } = req.params;
 
-    const text = 'SELECT * FROM products WHERE id = $1';
+    const text = queries.productExistWithId;
     const productqueryvalue = [
       id,
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
       return res.json(dbresponse.rows[0]);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Products Details, Please try again' });
     });
   }
@@ -121,15 +117,15 @@ class productController {
    */
   static deleteProductById(req, res) {
     const { id } = req.params;
-    const text = 'SELECT * FROM products WHERE id = $1';
+    const text = queries.productExistWithId;
     const productqueryvalue = [
       id,
     ];
     db.query(text, productqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(400).json({ message: `Product with id ${id} not found.` });
       }
-      const productdeletetext = 'DELETE FROM products WHERE id = $1 returning *';
+      const productdeletetext = queries.productDeleteWithId;
       const productdeletequeryvalue = [
         id,
       ];
@@ -138,11 +134,9 @@ class productController {
           return res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
         }
       }).catch(() => {
-        /* istanbul ignore next */
         return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
       });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Deleting Products, Please try again' });
     });
   }
@@ -159,16 +153,15 @@ class productController {
   static updateProductById(req, res) {
     const { id } = req.params;
 
-    let productImage = 'uploads\\products\\default.png';
+    let productImage = process.env.PRODUCT_DEFAULT_IMAGE;
     if (req.file) {
-      /* istanbul ignore next */
       productImage = req.file.path;
     }
     const {
       name, description, quantity, price,
     } = req.body;
 
-    const text = 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), product_image=($6), updated_at=($7) WHERE id=($1) returning *';
+    const text = queries.productUpdateWithId;
     const values = [
       id,
       name,
@@ -182,8 +175,54 @@ class productController {
     db.query(text, values).then((dbres) => {
       return res.status(200).json(dbres.rows[0]);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Updating Products, Please try again' });
+    });
+  }
+
+  /**
+   * AssignProduct To Category Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route PUT api/v1/products/<productId>/<categoryId>
+   * @description This function implements the logic for assigning a product to category.
+   * @access Private
+   */
+  static assignProductToCategory(req, res) {
+    const { id, categoryId } = req.params;
+
+    const productExist = queries.productExistWithId;
+    const productExistQueryValue = [
+      id,
+    ];
+    db.query(productExist, productExistQueryValue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ message: `Product with id ${id} not found.` });
+      }
+      const categoryExist = queries.categoryExistWithId;
+      const categoryExistQueryValue = [
+        categoryId,
+      ];
+      db.query(categoryExist, categoryExistQueryValue).then((dbcategoryresponse) => {
+        if (dbcategoryresponse.rowCount === 0) {
+          return res.status(400).json({ message: `Category with id ${categoryId} not found.` });
+        }
+        const productUpdateText = queries.productUpdateCategoryWithId;
+        const productUpdateValues = [
+          id,
+          categoryId,
+          new Date(),
+        ];
+        db.query(productUpdateText, productUpdateValues).then(() => {
+          return res.status(200).json({ message: 'Product assigned to category successfully' });
+        }).catch(() => {
+          return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+        });
+      }).catch(() => {
+        return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
     });
   }
 }

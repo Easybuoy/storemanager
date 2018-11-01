@@ -1,11 +1,11 @@
 import uuidv4 from 'uuid/v4';
 
-// import db from '../models/mockdb';
+import queries from '../models/queries';
 import db from '../models/db';
 
 class salesControler {
   /**
-   * Signup Route
+   * Sale Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
@@ -14,23 +14,40 @@ class salesControler {
    * @access Private
    */
   static createSale(req, res) {
-    const text = `INSERT INTO
-    sales(id, store_attendant_user_id, orders, total_sale_amount, created_at)
-    VALUES($1, $2, $3, $4, $5)
-    returning *`;
+    const { order } = req.body;
+    const text = queries.saleInsert;
     const values = [
       uuidv4(),
       req.user.id,
-      JSON.stringify(req.body.order),
+      JSON.stringify(order),
       req.totalSaleAmount,
       new Date(),
     ];
 
     db.query(text, values).then((dbres) => {
       const response = dbres.rows[0];
-      return res.status(201).json({ message: 'Sale added successfully', data: response });
+      let arrayOrderLength = 0;
+
+      order.map((singleOrder) => {
+        arrayOrderLength += 1;
+
+        const insertText = queries.ordersInsert;
+        const insertValues = [
+          uuidv4(),
+          response.id,
+          singleOrder.product_id,
+          Number(singleOrder.quantity),
+          new Date(),
+        ];
+        db.query(insertText, insertValues).then(() => {
+        }).catch(() => {
+        });
+
+        if (order.length === arrayOrderLength) {
+          return res.status(201).json({ message: 'Sale added successfully', data: response });
+        }
+      });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -45,15 +62,13 @@ class salesControler {
    * @access Private
    */
   static getSales(req, res) {
-    // res.json(db.sales);
-    const salesexist = 'SELECT * FROM sales ';
-    db.query(salesexist).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+    const salesExist = queries.salesExistForGetSales;
+    db.query(salesExist).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ message: 'No Sale Found' });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sales, Please try again' });
     });
   }
@@ -68,33 +83,27 @@ class salesControler {
    * @access Private
    */
   static getSaleById(req, res) {
-    // check if user making the request is the Store Owner / Admin
+    const { id } = req.params;
+    let queryText = '';
+    let queryValue = '';
 
-    if (!Number(req.user.type) === 1 || !Number(req.user.type) === 3) {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (req.user.type === 2) {
+      queryText = queries.salesByIdAttendant;
+      queryValue = [id, req.user.id];
+    } else {
+      queryText = queries.salesByIdAdmin;
+      queryValue = [id];
     }
 
-    const { id } = req.params;
 
-    const text = 'SELECT * FROM sales WHERE id = $1';
-    const salequeryvalue = [
-      id,
-    ];
-    db.query(text, salequeryvalue).then((dbresponse) => {
-      const sale = dbresponse.rows[0];
-      if (!sale) {
-        return res.status(400).json({ message: `Sale with id ${id} not found.` });
+    db.query(queryText, queryValue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ message: `Sale with id ${id} not found. Or Unauthorized Access` });
       }
 
-      if (Number(req.user.type) !== 1) {
-      // check if user making the request is the store attendant that made the sale
-        if (req.user.id !== sale.store_attendant_user_id) {
-          return res.status(401).json({ message: 'Unauthorized' });
-        }
-      }
+      const sale = dbresponse.rows;
       return res.json(sale);
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Fetching Sale Details, Please try again' });
     });
   }

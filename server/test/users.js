@@ -148,4 +148,61 @@ describe('User Routes', () => {
         done();
       });
   });
+
+  it('make a store attendant an admin', (done) => {
+    chai.request(app).post('/api/v1/users/makeadmin')
+      .set('Authorization', storeownertoken)
+      .send({ email: 'example32@gmail.com' })
+      .end((error, data) => {
+        expect(data).to.have.status(200);
+        expect(data.body).to.be.an('object');
+        expect(data.body.message).to.equal('Attendant switched to Admin successfully');
+        expect(data.body.data).to.be.an('object');
+        done();
+      });
+  });
+
+  it('return user not found error whilst trying to make store attendant an admin', (done) => {
+    chai.request(app).post('/api/v1/users/makeadmin')
+      .set('Authorization', storeownertoken)
+      .send({ email: 'example3222@gmail.com' })
+      .end((error, data) => {
+        expect(data).to.have.status(404);
+        expect(data.body).to.be.an('object');
+        expect(data.body.message).to.equal('User Not Found');
+        done();
+      });
+  });
+
+  it('return user is already an admin whilst trying to make store attendant an admin', (done) => {
+    chai.request(app).post('/api/v1/users/makeadmin')
+      .set('Authorization', storeownertoken)
+      .send({ email: 'example@gmail.com' })
+      .end((error, data) => {
+        expect(data).to.have.status(400);
+        expect(data.body).to.be.an('object');
+        expect(data.body.message).to.equal('User already an admin');
+        done();
+      });
+  });
+
+  it('return unauthorized whilst trying to make store attendant an admin', (done) => {
+    chai.request(app).post('/api/v1/users/makeadmin')
+      .send({ email: 'example@gmail.com' })
+      .end((error, data) => {
+        expect(data).to.have.status(401);
+        done();
+      });
+  });
+
+  it('get all store attendants', (done) => {
+    chai.request(app).get('/api/v1/users/attendants')
+      .set('Authorization', storeownertoken)
+      .end((error, data) => {
+        expect(data).to.have.status(200);
+        expect(data.body).to.be.an('array');
+        expect(data.body[0]).to.be.an('object');
+        done();
+      });
+  });
 });

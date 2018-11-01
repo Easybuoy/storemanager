@@ -6,8 +6,8 @@ import uuidv4 from 'uuid/v4';
 import dotenv from 'dotenv';
 
 dotenv.config();
-// import db from '../models/mockdb';
 import db from '../models/db';
+import queries from '../models/queries';
 
 // Load Input validation
 import usersValidation from '../validation/users';
@@ -34,7 +34,7 @@ class usersController {
     const {
       email, password, name, type,
     } = req.body;
-    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexist = queries.userExist;
     const userexistqueryvalue = [
       email,
     ];
@@ -49,7 +49,7 @@ class usersController {
         name,
         status: 1,
         type,
-        userImage: 'uploads\\users\\default-avatar.png',
+        userImage: process.env.USER_DEFAULT_IMAGE,
       };
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -61,10 +61,7 @@ class usersController {
         bcrypt.hash(data.password, salt, (error, hash) => {
           if (error) throw error;
           data.password = hash;
-          const text = `INSERT INTO
-        users(id, name, email, password, type, status, userImage, created_at)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-        returning *`;
+          const text = queries.userInsert;
           const values = [
             uuidv4(),
             data.name,
@@ -79,13 +76,11 @@ class usersController {
           db.query(text, values).then((dbres) => {
             return res.status(201).json({ message: 'User Created Successfully', data: dbres.rows[0] });
           }).catch(() => {
-            /* istanbul ignore next */
             return res.status(400).json({ message: 'Error creating user, Please try again' });
           });
         });
       });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error creating user, Please try again' });
     });
   }
@@ -108,12 +103,12 @@ class usersController {
     }
     const { email, password } = req.body;
 
-    const userexist = 'SELECT * FROM users WHERE email = $1';
+    const userexist = queries.userExist;
     const userexistqueryvalue = [
       email,
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
-      if (!dbresponse.rows[0]) {
+      if (dbresponse.rowCount === 0) {
         return res.status(404).json({ email: 'User Not Found' });
       }
 
@@ -137,13 +132,12 @@ class usersController {
           }
         });
     }).catch(() => {
-      /* istanbul ignore next */
       return res.status(400).json({ message: 'Error Logging in user, Please try again' });
     });
   }
 
   /**
-   * Signup Route
+   * GetCurrentUser Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
@@ -157,6 +151,82 @@ class usersController {
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
+    });
+  }
+
+  /**
+   * MakeaAdmin Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route POST api/users/makeadmin
+   * @description This function implements the logic for making a
+   * store attendant an admin.
+   * @access Private
+   */
+  static makeAdmin(req, res) {
+    const { errors, isValid } = usersValidation.validateMakeAdminInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const { email } = req.body;
+
+    const userexist = queries.userExist;
+    const userexistqueryvalue = [
+      email,
+    ];
+    db.query(userexist, userexistqueryvalue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(404).json({ message: 'User Not Found' });
+      }
+      const user = dbresponse.rows[0];
+      if (user.type === 1) {
+        return res.status(400).json({ message: 'User already an admin' });
+      }
+
+      const updatetext = queries.userUpdate;
+      const updatevalue = [
+        user.id,
+        1,
+      ];
+      db.query(updatetext, updatevalue).then((updatedbresponse) => {
+        const data = updatedbresponse.rows[0];
+        const response = {
+          name: data.name,
+          email: data.email,
+          userimage: data.userimage,
+          type: data.type,
+        };
+        return res.json({ message: 'Attendant switched to Admin successfully', data: response });
+      }).catch(() => {
+        return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+    });
+  }
+
+  /**
+   * Get Attendants Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/users/attendants
+   * @description This function implements the logic for getting all store attendants.
+   * @access Private
+   */
+  static getAttendants(req, res) {
+    const userQuery = queries.userAttendants;
+    db.query(userQuery).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(404).json({ message: 'No Attendant Found' });
+      }
+      return res.status(200).json(dbresponse.rows);
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Fetching Attendants, Please try again' });
     });
   }
 }

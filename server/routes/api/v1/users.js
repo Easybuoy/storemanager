@@ -1,9 +1,11 @@
 import express from 'express';
 
 import authenticate from '../../../middleware/authenticate';
-import usersController from '../../../controllers/userController';
+import usersController from '../../../controllers/users';
 
-const { login, signup, getCurrentUser } = usersController;
+const {
+  login, signup, getCurrentUser, makeAdmin, getAttendants,
+} = usersController;
 
 const { isLoggedIn, isAdmin } = authenticate;
 const router = express.Router();
@@ -25,5 +27,15 @@ router.post('/login', login);
 // @access   Private
 router.get('/current', isLoggedIn, getCurrentUser);
 
+
+// @route    POST api/v1/users/makeadmin
+// @desc     Make store attendant an admin
+// @access   Private
+router.post('/makeadmin', isLoggedIn, isAdmin, makeAdmin);
+
+// @route    GET api/v1/users/attendants
+// @desc     Get All Store Attendants
+// @access   Private
+router.get('/attendants', isLoggedIn, isAdmin, getAttendants);
 
 module.exports = router;
