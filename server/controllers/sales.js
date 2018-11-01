@@ -48,7 +48,7 @@ class salesControler {
         }
       });
     }).catch(() => {
-      return res.status(400).json({ status: 'success', message: 'Error creating user, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again' });
     });
   }
 

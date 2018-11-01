@@ -22,7 +22,7 @@ class productController {
     const { errors, isValid } = categoriesValidation.validateCategoryInput(req.body);
     // Check validation
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({ status: 'error', data: errors });
     }
 
     const { name } = req.body;
@@ -43,7 +43,7 @@ class productController {
     const categoryExistValue = [name];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount > 0) {
-        return res.status(400).json({ message: `Category with name ${name} already exists` });
+        return res.status(400).json({ status: 'error', message: `Category with name ${name} already exists` });
       }
       db.query(text, values).then((dbres) => {
         const response = dbres.rows[0];
@@ -51,12 +51,12 @@ class productController {
           method: 'GET',
           url: `${host}/api/v1/categories/${dbres.rows[0].id}`,
         };
-        return res.status(201).json({ message: 'Category added successfully', data: response });
+        return res.status(201).json({ status: 'success', message: 'Category added successfully', data: response });
       }).catch(() => {
-        return res.status(400).json({ message: 'Error creating category, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error creating category, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error creating category, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error creating category, Please try again' });
     });
   }
 
@@ -74,11 +74,11 @@ class productController {
     const text = queries.categoryExists;
     db.query(text).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ message: 'No Category Found' });
+        return res.status(404).json({ status: 'error', message: 'No Category Found' });
       }
-      return res.status(200).json(dbresponse.rows);
+      return res.status(200).json({ status: 'success', data: dbresponse.rows });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Category, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Category, Please try again' });
     });
   }
 
@@ -99,7 +99,7 @@ class productController {
     ];
     db.query(text, categoryqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(400).json({ message: `Category with id ${id} not found.` });
+        return res.status(400).json({ status: 'error', message: `Category with id ${id} not found.` });
       }
       const categorydeletetext = queries.categoryDeleteWithId;
       const categorydeletequeryvalue = [
@@ -107,13 +107,13 @@ class productController {
       ];
       db.query(categorydeletetext, categorydeletequeryvalue).then((dbres) => {
         if (dbres.rows) {
-          return res.status(200).json({ message: `Category with id ${id} deleted successfully.` });
+          return res.status(200).json({ status: 'success', message: `Category with id ${id} deleted successfully.` });
         }
       }).catch(() => {
-        return res.status(400).json({ message: 'Error Deleting Category, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error Deleting Category, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Deleting Category, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Deleting Category, Please try again' });
     });
   }
 
