@@ -74,14 +74,21 @@ class usersController {
           ];
 
           db.query(text, values).then((dbres) => {
-            return res.status(201).json({ message: 'User Created Successfully', data: dbres.rows[0] });
+            const response = {
+              id: dbres.rows[0].id,
+              name: dbres.rows[0].name,
+              email: dbres.rows[0].email,
+              type: dbres.rows[0].type,
+              status: dbres.rows[0].status,
+            };
+            return res.status(201).json({ status: 'success', message: 'User Created Successfully', data: response });
           }).catch(() => {
-            return res.status(400).json({ message: 'Error creating user, Please try again' });
+            return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again' });
           });
         });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error creating user, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again' });
     });
   }
 
@@ -125,14 +132,14 @@ class usersController {
             };
             // Sign Token
             jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
-              res.json({ success: true, token: `Bearer ${token}` });
+              res.json({ status: 'success', token: `Bearer ${token}` });
             });
           } else {
-            return res.status(401).json({ password: 'Incorrect Password' });
+            return res.status(401).json({ status: 'error', password: 'Incorrect Password' });
           }
         });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Logging in user, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Logging in user, Please try again' });
     });
   }
 
@@ -180,11 +187,11 @@ class usersController {
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ message: 'User Not Found' });
+        return res.status(404).json({ status: 'error', message: 'User Not Found' });
       }
       const user = dbresponse.rows[0];
       if (user.type === 1) {
-        return res.status(400).json({ message: 'User already an admin' });
+        return res.status(400).json({ status: 'error', message: 'User already an admin' });
       }
 
       const updatetext = queries.userUpdate;
@@ -200,12 +207,12 @@ class usersController {
           userimage: data.userimage,
           type: data.type,
         };
-        return res.json({ message: 'Attendant switched to Admin successfully', data: response });
+        return res.json({ status: 'success', message: 'Attendant switched to Admin successfully', data: response });
       }).catch(() => {
-        return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+        return res.status(400).json({ status: 'error', message: 'Error Making Store Attendant an Admin, Please try again' });
       });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Making Store Attendant an Admin, Please try again' });
     });
   }
 
@@ -222,11 +229,11 @@ class usersController {
     const userQuery = queries.userAttendants;
     db.query(userQuery).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ message: 'No Attendant Found' });
+        return res.status(404).json({ status: 'error', message: 'No Attendant Found' });
       }
       return res.status(200).json(dbresponse.rows);
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Fetching Attendants, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Attendants, Please try again' });
     });
   }
 }
