@@ -162,11 +162,18 @@ class usersController {
    * @param {object} res
    * @returns {object} object
    * @route POST api/users/makeadmin
-   * @description This function implements the logic for getting the current user
-   * details with token parsed.
+   * @description This function implements the logic for making a
+   * store attendant an admin.
    * @access Private
    */
   static makeAdmin(req, res) {
+    const { errors, isValid } = usersValidation.validateMakeAdminInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
     const { email } = req.body;
 
     const userexist = 'SELECT * FROM users WHERE email = $1';
@@ -175,7 +182,7 @@ class usersController {
     ];
     db.query(userexist, userexistqueryvalue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
-        return res.status(404).json({ email: 'User Not Found' });
+        return res.status(404).json({ message: 'User Not Found' });
       }
       const user = dbresponse.rows[0];
       if (user.type === 1) {
@@ -201,6 +208,27 @@ class usersController {
       });
     }).catch(() => {
       return res.status(400).json({ message: 'Error Making Store Attendant an Admin, Please try again' });
+    });
+  }
+
+  /**
+   * Get Attendants Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/users/attendants
+   * @description This function implements the logic for getting all store attendants.
+   * @access Private
+   */
+  static getAttendants(req, res) {
+    const userQuery = 'SELECT name, email, status, userimage FROM users WHERE type = 1';
+    db.query(userQuery).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(404).json({ message: 'No Attendant Found' });
+      }
+      return res.status(200).json(dbresponse.rows);
+    }).catch(() => {
+      return res.status(400).json({ message: 'Error Fetching Attendants, Please try again' });
     });
   }
 }

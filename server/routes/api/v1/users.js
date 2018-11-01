@@ -4,7 +4,7 @@ import authenticate from '../../../middleware/authenticate';
 import usersController from '../../../controllers/userController';
 
 const {
-  login, signup, getCurrentUser, makeAdmin,
+  login, signup, getCurrentUser, makeAdmin, getAttendants,
 } = usersController;
 
 const { isLoggedIn, isAdmin } = authenticate;
@@ -33,5 +33,9 @@ router.get('/current', isLoggedIn, getCurrentUser);
 // @access   Private
 router.post('/makeadmin', isLoggedIn, isAdmin, makeAdmin);
 
+// @route    GET api/v1/users/attendants
+// @desc     Get All Store Attendants
+// @access   Private
+router.get('/attendants', isLoggedIn, isAdmin, getAttendants);
 
 module.exports = router;

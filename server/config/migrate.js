@@ -86,3 +86,13 @@ const ordersQueryText = `CREATE TABLE IF NOT EXISTS
             updated_at TIMESTAMP
           )`;
 createTable(ordersQueryText);
+
+const categoryQueryText = `CREATE TABLE IF NOT EXISTS
+          categories(
+            id UUID PRIMARY KEY,
+            sale_id UUID NOT NULL,
+            product_id UUID NOT NULL,
+            created_at TIMESTAMP,
+            updated_at TIMESTAMP
+          )`;
+createTable(categoryQueryText);
