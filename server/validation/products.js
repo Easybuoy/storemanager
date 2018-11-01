@@ -17,10 +17,8 @@ const validateProductInput = (input) => {
     errors.description = 'Description field is required';
   }
 
-  if (data.price) {
-    if (typeof data.price !== 'number') {
-      errors.price = 'Price field must be a number';
-    }
+  if (!Validator.isInt(data.price)) {
+    errors.price = 'Price field must be a number';
   }
 
   if (!data.price) {
