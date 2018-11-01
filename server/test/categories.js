@@ -42,7 +42,18 @@ describe('Categories Rutes', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.message).to.equal('Category added successfully');
         expect(res.body.data).to.be.an('object');
-        done();
+        chai.request(app).post('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .send({
+            name: 'Electronics',
+          })
+          .end((err2, data) => {
+            expect(data).to.have.status(201);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('Category added successfully');
+            expect(data.body.data).to.be.an('object');
+            done();
+          });
       });
   });
 

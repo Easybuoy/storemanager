@@ -40,16 +40,6 @@ describe('Product Route', () => {
       });
   });
 
-  // it('returns error fetching products', (done) => {
-  //   chai.request(app).get('/api/v1/products')
-  //     .set('Authorization', storeownertoken)
-  //     .end((error, data) => {
-  //       expect(data).to.have.status(400);
-  //       expect(data.body).to.be.an('object');
-  //       done();
-  //     });
-  // });
-
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).get('/api/v1/products')
       .end((error, res) => {
@@ -280,6 +270,94 @@ describe('Product Route', () => {
             expect(data.body).to.be.an('object');
             expect(data.body.message).to.equal('Error Updating Products, Please try again');
             done();
+          });
+      });
+  });
+
+  it('should assign a product to category', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body[0].id;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body[0].id;
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(200);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal('Product assigned to category successfully');
+                done();
+              });
+          });
+      });
+  });
+
+  it('should return product not found error', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body[0].id;
+        id = id.substring(2);
+        id = `93${id}`;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body[0].id;
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(400);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal(`Product with id ${id} not found.`);
+                done();
+              });
+          });
+      });
+  });
+
+  it('should assign a product to category', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body[0].id;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body[0].id;
+            categoryId = id.substring(2);
+            categoryId = `93${id}`;
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(200);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal( `Category with id ${categoryId} not found.`);
+                done();
+              });
           });
       });
   });

@@ -217,13 +217,13 @@ class productController {
         ];
         db.query(productUpdateText, productUpdateValues).then(() => {
           return res.status(200).json({ message: 'Product assigned to category successfully' });
-        }).catch(() => {
+        }).catch((e) => { console.log(e)
           return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
         });
-      }).catch(() => {
+      }).catch((e) => { console.log(e)
         return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
       });
-    }).catch(() => {
+    }).catch((e) => { console.log(e)
       return res.status(400).json({ message: 'Error Assigning Product To Category, Please try again' });
     });
   }
