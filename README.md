@@ -87,6 +87,8 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Register User                   | POST          | /api/v1/users/signup             | PRIVATE       |
 | Login User                      | POST          | /api/v1/users/login              | PUBLIC        |
 | Get Current User Details        | GET           | /api/v1/users/current            | PRIVATE       |
+| Make Store Attendant an Admin   | POST          | /api/v1/users/makeadmin          | PRIVATE       |
+| Get All Store Attendants        | GET           | /api/v1/users/attendants         | PRIVATE       |
 | Create New Product              | POST          | /api/v1/products                 | PRIVATE       |
 | Get All Products                | GET           | /api/v1/products                 | PRIVATE       |
 | Get Single Product Detail       | GET           | /api/v1/products/{productId}     | PRIVATE       |
@@ -95,8 +97,9 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Create New Sale                 | POST          | /api/v1/sales                    | PRIVATE       |
 | Get All Sales                   | GET           | /api/v1/sales                    | PRIVATE       |
 | Get Single Sale Detail          | GET           | /api/v1/sales/{salesId}          | PRIVATE       |
-| Make Store Attendant an Admin   | POST          | /api/v1/users/makeadmin          | PRIVATE       |
-| Get All Store Attendants        | GET           | /api/v1/users/attendants         | PRIVATE       |
+| Make a new Category             | POST          | /api/v1/categories/              | PRIVATE       |
+| Get All Categories              | GET           | /api/v1/categories/              | PRIVATE       |
+
 
  <br><br>
 

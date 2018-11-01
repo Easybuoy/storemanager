@@ -142,32 +142,22 @@ class productController {
    * @description This function implements the logic for updating a product detail by Id.
    * @access Private
    */
-  static updateProductById(req, res) {
+  static updateCategory(req, res) {
     const { id } = req.params;
 
-    let productImage = 'uploads\\products\\default.png';
-    if (req.file) {
-      productImage = req.file.path;
-    }
-    const {
-      name, description, quantity, price,
-    } = req.body;
+    const { name } = req.body;
 
-    const text = 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), product_image=($6), updated_at=($7) WHERE id=($1) returning *';
+    const text = 'UPDATE products SET name=($2), updated_at=($3) WHERE id=($1) returning *';
     const values = [
       id,
       name,
-      description,
-      quantity,
-      price,
-      productImage,
       new Date(),
     ];
 
-    db.query(text, values).then((dbres) => {
+    db.query(text, values).then((dbres) => { console.log(dbres)
       return res.status(200).json(dbres.rows[0]);
     }).catch(() => {
-      return res.status(400).json({ message: 'Error Updating Products, Please try again' });
+      return res.status(400).json({ message: 'Error Updating Category, Please try again' });
     });
   }
 }
