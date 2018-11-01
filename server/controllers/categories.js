@@ -36,16 +36,24 @@ class productController {
       new Date(),
     ];
 
-    db.query(text, values).then((dbres) => {
-      const response = dbres.rows[0];
-      response.request = {
-        method: 'GET',
-        url: `${host}/api/v1/categories/${dbres.rows[0].id}`,
-      };
-
-      return res.status(201).json({ message: 'Category added successfully', data: response });
+    const categoryExist = 'SELECT * FROM categories WHERE name = $1';
+    const categoryExistValue = [name];
+    db.query(categoryExist, categoryExistValue).then((dbresponse) => {
+      if (dbresponse.rowCount > 0) {
+        return res.status(400).json({ message: `Category with name ${name} already exists` });
+      }
+      db.query(text, values).then((dbres) => {
+        const response = dbres.rows[0];
+        response.request = {
+          method: 'GET',
+          url: `${host}/api/v1/categories/${dbres.rows[0].id}`,
+        };
+        return res.status(201).json({ message: 'Category added successfully', data: response });
+      }).catch(() => {
+        return res.status(400).json({ message: 'Error creating category, Please try again' });
+      });
     }).catch(() => {
-      return res.status(400).json({ message: 'Error creating Category, Please try again' });
+      return res.status(400).json({ message: 'Error creating category, Please try again' });
     });
   }
 
@@ -70,33 +78,6 @@ class productController {
       return res.status(400).json({ message: 'Error Fetching Category, Please try again' });
     });
   }
-
-
-//   /**
-//    * Get Category By Id Route
-//    * @param {object} req
-//    * @param {object} res
-//    * @returns {object} object
-//    * @route GET api/v1/categories/<categoryId>
-//    * @description This function implements the logic for updating a category detail by Id.
-//    * @access Private
-//    */
-//   static getProductById(req, res) {
-//     const { id } = req.params;
-
-//     const text = 'SELECT * FROM products WHERE id = $1';
-//     const productqueryvalue = [
-//       id,
-//     ];
-//     db.query(text, productqueryvalue).then((dbresponse) => {
-//       if (dbresponse.rowCount === 0) {
-//         return res.status(400).json({ message: `Product with id ${id} not found.` });
-//       }
-//       return res.json(dbresponse.rows[0]);
-//     }).catch(() => {
-//       return res.status(400).json({ message: 'Error Fetching Products Details, Please try again' });
-//     });
-//   }
 
   /**
    * Delete A Category Route
@@ -146,15 +127,14 @@ class productController {
     const { id } = req.params;
 
     const { name } = req.body;
-
-    const text = 'UPDATE products SET name=($2), updated_at=($3) WHERE id=($1) returning *';
+    const text = 'UPDATE categories SET name=($2), updated_at=($3) WHERE id=($1) returning *';
     const values = [
       id,
       name,
       new Date(),
     ];
 
-    db.query(text, values).then((dbres) => { console.log(dbres)
+    db.query(text, values).then((dbres) => {
       return res.status(200).json(dbres.rows[0]);
     }).catch(() => {
       return res.status(400).json({ message: 'Error Updating Category, Please try again' });
