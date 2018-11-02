@@ -26,7 +26,7 @@ app.use(morgan('dev'));
 // using routes
 app.use('/api/v1/products', products);
 app.use('/api/v1/sales', sales);
-app.use('/api/v1/users', users);
+app.use('/api/v1/auth', users);
 app.use('/api/v1/categories', categories);
 
 app.use((req, res, next) => {
