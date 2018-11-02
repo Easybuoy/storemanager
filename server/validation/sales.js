@@ -12,7 +12,6 @@ const validateSalesInput = (input) => {
   if (data.order) {
     if (typeof Array.isArray(data.order)) {
       data.order.map((singleOrder) => {
-
         if (Object.keys(singleOrder).length === 0) {
           isInvalidObject = true;
           return false;
