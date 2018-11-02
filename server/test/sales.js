@@ -88,23 +88,23 @@ describe('Get All Sale Records', () => {
       });
   });
 
-//   it('returns details of a sale record', (done) => {
-//     chai.request(app).get('/api/v1/sales')
-//       .set('Authorization', storeownertoken)
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an('array');
-//         const { id } = res.body[0];
-//         chai.request(app).get(`/api/v1/sales/${id}`)
-//           .set('Authorization', storeownertoken)
-//           .end((error, data) => {
-//             expect(data).to.have.status(200);
-//             expect(id).to.equal(data.body.id);
-//             expect(data.body).to.be.an('object');
-//             done();
-//           });
-//       });
-//   });
+  it('returns details of a sale record', (done) => {
+    chai.request(app).get('/api/v1/sales')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        const saleId = res.body.data[0].sale_id;
+        chai.request(app).get(`/api/v1/sales/${saleId}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            // expect(saleId).to.equal(data.body.sale_id);
+            // expect(data.body).to.be.an('object');
+            done();
+          });
+      });
+  });
 
 //   it('returns unauthorized because he/she did not create the sale || is not store owner / admin', (done) => {
 //     chai.request(app).get('/api/v1/sales/')
