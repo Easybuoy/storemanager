@@ -84,10 +84,10 @@ You need Nodejs Installed to be able to run this project on your machine.
 
 | DESCRIPTION                     | HTTP METHOD   | ROUTES                                        | ACCESS        |
 | ---------------                 | --------------|-----------------------------------------------|---------------|
-| Register User                   | POST          | /api/v1/users/signup                          | PRIVATE       |
-| Login User                      | POST          | /api/v1/users/login                           | PUBLIC        |
-| Make Store Attendant an Admin   | POST          | /api/v1/users/makeadmin                       | PRIVATE       |
-| Get All Store Attendants        | GET           | /api/v1/users/attendants                      | PRIVATE       |
+| Register User                   | POST          | /api/v1/auth/signup                          | PRIVATE       |
+| Login User                      | POST          | /api/v1/auth/login                           | PUBLIC        |
+| Make Store Attendant an Admin   | POST          | /api/v1/auth/makeadmin                       | PRIVATE       |
+| Get All Store Attendants        | GET           | /api/v1/auth/attendants                      | PRIVATE       |
 | Create New Product              | POST          | /api/v1/products                              | PRIVATE       |
 | Get All Products                | GET           | /api/v1/products                              | PRIVATE       |
 | Get Single Product Detail       | GET           | /api/v1/products/{id}                         | PRIVATE       |
