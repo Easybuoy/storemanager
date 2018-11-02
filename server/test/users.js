@@ -30,7 +30,6 @@ describe('User Routes', () => {
         type: '1',
       })
       .end((err, res) => {
-        console.log(res.body);
         expect(res).to.have.status(201);
         expect(res.body).to.be.an('object');
         expect(res.body.message).to.equal('User Created Successfully');

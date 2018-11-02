@@ -102,7 +102,7 @@ class salesControler {
       }
 
       const sale = dbresponse.rows;
-      return res.json(sale);
+      return res.json({ status: 'success', data: sale });
     }).catch(() => {
       return res.status(400).json({ status: 'error', message: 'Error Fetching Sale Details, Please try again' });
     });
