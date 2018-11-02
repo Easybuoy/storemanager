@@ -1,5 +1,4 @@
 import isEmpty from './isEmpty';
-import { type } from 'os';
 
 const validateSalesInput = (input) => {
   const errors = {};

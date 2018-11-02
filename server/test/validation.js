@@ -97,7 +97,7 @@ describe('Sales Validation', () => {
   it('returns validation error', (done) => {
     const result = salesValidation.validateSalesInput(
       {
-        order: [{ product_id: '2', quantity: 5 }],
+        order: [{ product_id: '2', quantity: '5' }],
       },
     );
     expect(result.isValid).to.equal(false);
