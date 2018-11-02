@@ -10,22 +10,21 @@ const validateSignupInput = (input) => {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.type = !isEmpty(data.type) ? data.type : '';
 
-  // console.log(data.type.isAlpha())
-  // console.log(Validator.isAlpha(data.name, { allow_spaces: true }))
+  data.name = data.name.trim();
+  const isNameValid = data.name.split(' ').every((word) => {
+    if (!word) {
+      return true;
+    }
+    if (Validator.isAlpha(word) === false) {
+      return false;
+    }
+    return true;
+  });
 
-  // data.name.split(' ').every((word) => {
-  //   console.log(Validator.isAlpha(word))
-  //   if (Validator.isAlpha(word) === false) {
-  //    errors.name = 'Name cannot contain number(s)';
-  //   }
-  //   //  return Validator.isAlpha(word); 
-  //   });
-
-
-  // if (!Validator.isAlpha(data.name)) {
-  //   errors.name = 'Name cannot contain number(s)';
-  // }
-
+  if (isNameValid === false) {
+    errors.name = 'Name cannot contain number(s)';
+  }
+  
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';
   }

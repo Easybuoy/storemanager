@@ -144,48 +144,48 @@ describe('Product Route', () => {
       });
   });
 
-//   it('create a new product', (done) => {
-//     chai.request(app).post('/api/v1/products')
-//       .send({
-//         name: 'Tecno', description: 'Tecno Phone', quantity: 2000, price: 200,
-//       })
-//       .set('Authorization', storeownertoken)
-//       .end((error, data) => {
-//         expect(data).to.have.status(201);
-//         expect(data.body).to.be.an('object');
-//         expect(data.body.message).to.equal('Product added successfully');
-//         done();
-//       });
-//   });
+  it('create a new product', (done) => {
+    chai.request(app).post('/api/v1/products')
+      .send({
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2000, price: 200,
+      })
+      .set('Authorization', storeownertoken)
+      .end((error, data) => {
+        expect(data).to.have.status(201);
+        expect(data.body).to.be.an('object');
+        expect(data.body.message).to.equal('Product added successfully');
+        done();
+      });
+  });
 
-//   it('returns unauthorized because user is not logged in', (done) => {
-//     chai.request(app).post('/api/v1/products')
-//       .send({
-//         name: 'Tecno', description: 'Tecno Phone', quantity: 2, price: 200,
-//       })
-//       .end((error, res) => {
-//         expect(res).to.have.status(401);
-//         done();
-//       });
-//   });
+  it('returns unauthorized because user is not logged in', (done) => {
+    chai.request(app).post('/api/v1/products')
+      .send({
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2, price: 200,
+      })
+      .end((error, res) => {
+        expect(res).to.have.status(401);
+        done();
+      });
+  });
 
-//   it('should delete a product', (done) => {
-//     chai.request(app).get('/api/v1/products/')
-//       .set('Authorization', storeownertoken)
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an('array');
-//         const { id } = res.body[0];
-//         chai.request(app).del(`/api/v1/products/${id}`)
-//           .set('Authorization', storeownertoken)
-//           .end((error, data) => {
-//             expect(data).to.have.status(200);
-//             expect(data.body).to.be.an('object');
-//             expect(data.body.message).to.equal(`Product with id ${id} deleted successfully.`);
-//             done();
-//           });
-//       });
-//   });
+  it('should delete a product', (done) => {
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
+        chai.request(app).del(`/api/v1/products/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal(`Product with id ${id} deleted successfully.`);
+            done();
+          });
+      });
+  });
 
 //   it('should return unauthorized because user does not have right access', (done) => {
 //     chai.request(app).del('/api/v1/products/3')
