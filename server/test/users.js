@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('User Routes', () => {
   let storeownertoken = '';
   before((done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com', password: '123456',
       })
@@ -21,7 +21,7 @@ describe('User Routes', () => {
   });
 
   it('create a user and return user details', (done) => {
-    chai.request(app).post('/api/v1/users/signup')
+    chai.request(app).post('/api/v1/auth/signup')
       .set('Authorization', storeownertoken)
       .send({
         email: 'a@gmail.com',
@@ -38,7 +38,7 @@ describe('User Routes', () => {
   });
 
   it('return validation error if no data is sent', (done) => {
-    chai.request(app).post('/api/v1/users/signup')
+    chai.request(app).post('/api/v1/auth/signup')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -53,7 +53,7 @@ describe('User Routes', () => {
   });
 
   it('return email already exist', (done) => {
-    chai.request(app).post('/api/v1/users/signup')
+    chai.request(app).post('/api/v1/auth/signup')
       .set('Authorization', storeownertoken)
       .send({
         email: 'example@gmail.com',
@@ -70,7 +70,7 @@ describe('User Routes', () => {
   });
 
   it('return token', (done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com',
         password: '123456',
@@ -85,7 +85,7 @@ describe('User Routes', () => {
   });
 
   it('return validation error if no data is sent', (done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
@@ -96,7 +96,7 @@ describe('User Routes', () => {
   });
 
   it('return user not found', (done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example232@gmail.com',
         password: '123456',
@@ -110,7 +110,7 @@ describe('User Routes', () => {
   });
 
   it('return incorrect password', (done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com',
         password: '1234',
@@ -125,7 +125,7 @@ describe('User Routes', () => {
 
 
   it('make a store attendant an admin', (done) => {
-    chai.request(app).post('/api/v1/users/makeadmin')
+    chai.request(app).post('/api/v1/auth/makeadmin')
       .set('Authorization', storeownertoken)
       .send({ email: 'example32@gmail.com' })
       .end((error, data) => {
@@ -138,7 +138,7 @@ describe('User Routes', () => {
   });
 
   it('return user not found error whilst trying to make store attendant an admin', (done) => {
-    chai.request(app).post('/api/v1/users/makeadmin')
+    chai.request(app).post('/api/v1/auth/makeadmin')
       .set('Authorization', storeownertoken)
       .send({ email: 'example3222@gmail.com' })
       .end((error, data) => {
@@ -150,7 +150,7 @@ describe('User Routes', () => {
   });
 
   it('return user is already an admin whilst trying to make store attendant an admin', (done) => {
-    chai.request(app).post('/api/v1/users/makeadmin')
+    chai.request(app).post('/api/v1/auth/makeadmin')
       .set('Authorization', storeownertoken)
       .send({ email: 'example@gmail.com' })
       .end((error, data) => {
@@ -162,7 +162,7 @@ describe('User Routes', () => {
   });
 
   it('return unauthorized whilst trying to make store attendant an admin', (done) => {
-    chai.request(app).post('/api/v1/users/makeadmin')
+    chai.request(app).post('/api/v1/auth/makeadmin')
       .send({ email: 'example@gmail.com' })
       .end((error, data) => {
         expect(data).to.have.status(401);
@@ -171,7 +171,7 @@ describe('User Routes', () => {
   });
 
   it('get all store attendants', (done) => {
-    chai.request(app).get('/api/v1/users/attendants')
+    chai.request(app).get('/api/v1/auth/attendants')
       .set('Authorization', storeownertoken)
       .end((error, data) => {
         expect(data).to.have.status(200);

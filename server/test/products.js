@@ -10,7 +10,7 @@ describe('Product Route', () => {
   let storeownertoken = '';
   let storeattendanttoken = '';
   before((done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com', password: '123456',
       })
@@ -18,7 +18,7 @@ describe('Product Route', () => {
         const { token } = res.body;
         storeownertoken = token;
 
-        chai.request(app).post('/api/v1/users/login')
+        chai.request(app).post('/api/v1/auth/login')
           .send({
             email: 'example2@gmail.com', password: '123456',
           })

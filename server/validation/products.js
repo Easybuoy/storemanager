@@ -34,7 +34,7 @@ const validateProductInput = (input) => {
   }
 
   if (!Validator.isInt(data.quantity)) {
-    errors.quantity = 'Quantty field must be a number';
+    errors.quantity = 'Quantity field must be a number';
   }
 
   if (!data.quantity) {

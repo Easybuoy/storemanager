@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('Categories Rutes', () => {
   let storeownertoken = '';
   before((done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com', password: '123456',
       })

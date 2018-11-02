@@ -1090,6 +1090,13 @@ select{
 .loginbox{
   margin-bottom: 15%;  
     }
+
+    #create_sales_assistant{
+      width: 80%;
+      /* text-align: center; */
+      margin: 0 auto;
+      padding: 5%;
+    }
   }
 
 @media (max-width: 687px) {
