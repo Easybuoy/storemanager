@@ -10,10 +10,21 @@ const validateSignupInput = (input) => {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.type = !isEmpty(data.type) ? data.type : '';
 
-  if (!Validator.isAlpha(data.name)) {
+  data.name = data.name.trim();
+  const isNameValid = data.name.split(' ').every((word) => {
+    if (!word) {
+      return true;
+    }
+    if (Validator.isAlpha(word) === false) {
+      return false;
+    }
+    return true;
+  });
+
+  if (isNameValid === false) {
     errors.name = 'Name cannot contain number(s)';
   }
-
+  
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';
   }
@@ -40,6 +51,10 @@ const validateSignupInput = (input) => {
     if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
       errors.password = 'Password must be at least 6 characters';
     }
+  }
+
+  if (typeof data.type === 'number') {
+    data.type = String(data.type);
   }
 
   if (Validator.isInt(data.type)) {

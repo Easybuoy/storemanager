@@ -34,8 +34,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((error, data) => {
         expect(data).to.have.status(200);
-        expect(data.body).to.be.an('array');
-        expect(data.body[0]).to.be.an('object');
+        expect(data.body.data).to.be.an('array');
+        expect(data.body.data[0]).to.be.an('object');
         done();
       });
   });
@@ -55,15 +55,15 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).get(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .end((error, data) => {
             expect(data).to.have.status(200);
-            expect(id).to.equal(data.body.id);
-            expect(data.body).to.be.an('object');
-            expect(data.body.description).to.be.a('string');
+            expect(id).to.equal(data.body.data.id);
+            expect(data.body.data).to.be.an('object');
+            expect(data.body.data.description).to.be.a('string');
             done();
           });
       });
@@ -74,8 +74,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = id.substring(2);
         id = `93${id}`;
         chai.request(app).get(`/api/v1/products/${id}`)
@@ -94,8 +94,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).get(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -136,10 +136,10 @@ describe('Product Route', () => {
       })
       .end((error, data) => {
         expect(data).to.have.status(400);
-        expect(data.body).to.be.an('object');
-        expect(data.body.description).to.equal('Description field is required');
-        expect(data.body.price).to.equal('Price field is required');
-        expect(data.body.quantity).to.equal('Quantity field is required');
+        expect(data.body.data).to.be.an('object');
+        expect(data.body.data.description).to.equal('Description field is required');
+        expect(data.body.data.price).to.equal('Price field is required');
+        expect(data.body.data.quantity).to.equal('Quantity field is required');
         done();
       });
   });
@@ -174,8 +174,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).del(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .end((error, data) => {
@@ -201,8 +201,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = id.substring(2);
         id = `93${id}`;
         chai.request(app).del(`/api/v1/products/${id}`)
@@ -221,8 +221,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).del(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -240,8 +240,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).put(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .send({
@@ -260,8 +260,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).put(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -281,15 +281,15 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
         // eslint-disable-next-line
-        id = res.body[0].id;
+        id = res.body.data[0].id;
         chai.request(app).get('/api/v1/categories/')
           .set('Authorization', storeownertoken)
           .end((error, data) => {
-            categoryId = data.body[0].id;
+            categoryId = data.body.data[0].id;
             expect(data).to.have.status(200);
-            expect(data.body).to.be.an('array');
+            expect(data.body.data).to.be.an('array');
             chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
               .set('Authorization', storeownertoken)
               .end((error2, data2) => {
@@ -309,17 +309,17 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
         // eslint-disable-next-line
-        id = res.body[0].id;
+        id = res.body.data[0].id;
         id = id.substring(2);
         id = `93${id}`;
         chai.request(app).get('/api/v1/categories/')
           .set('Authorization', storeownertoken)
           .end((error, data) => {
-            categoryId = data.body[0].id;
+            categoryId = data.body.data[0].id;
             expect(data).to.have.status(200);
-            expect(data.body).to.be.an('array');
+            expect(data.body.data).to.be.an('array');
             chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
               .set('Authorization', storeownertoken)
               .end((error2, data2) => {
@@ -339,17 +339,17 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
         // eslint-disable-next-line
-        id = res.body[0].id;
+        id = res.body.data[0].id;
         chai.request(app).get('/api/v1/categories/')
           .set('Authorization', storeownertoken)
           .end((error, data) => {
-            categoryId = data.body[0].id;
+            categoryId = data.body.data[0].id;
             categoryId = categoryId.substring(2);
             categoryId = `93${categoryId}`;
             expect(data).to.have.status(200);
-            expect(data.body).to.be.an('array');
+            expect(data.body.data).to.be.an('array');
             chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
               .set('Authorization', storeownertoken)
               .end((error2, data2) => {

@@ -43,10 +43,11 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('Email field is required');
-        expect(res.body.password).to.equal('Password field is required');
-        expect(res.body.name).to.equal('Name field is required');
-        expect(res.body.type).to.equal('Type field is required');
+        expect(res.body.status).to.equal('error');
+        expect(res.body.data.email).to.equal('Email field is required');
+        expect(res.body.data.password).to.equal('Password field is required');
+        expect(res.body.data.name).to.equal('Name field is required');
+        expect(res.body.data.type).to.equal('Type field is required');
         done();
       });
   });
@@ -63,7 +64,7 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(409);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('Email Already Exist');
+        expect(res.body.data.email).to.equal('Email Already Exist');
         done();
       });
   });
@@ -77,7 +78,7 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.be.an('object');
-        expect(res.body.success).to.equal(true);
+        expect(res.body.status).to.equal('success');
         expect(res.body.token).to.include('Bearer');
         done();
       });
@@ -88,8 +89,8 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('Email field is required');
-        expect(res.body.password).to.equal('Password field is required');
+        expect(res.body.data.email).to.equal('Email field is required');
+        expect(res.body.data.password).to.equal('Password field is required');
         done();
       });
   });
@@ -103,7 +104,7 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(404);
         expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('User Not Found');
+        expect(res.body.data.email).to.equal('User Not Found');
         done();
       });
   });
@@ -117,37 +118,11 @@ describe('User Routes', () => {
       .end((err, res) => {
         expect(res).to.have.status(401);
         expect(res.body).to.be.an('object');
-        expect(res.body.password).to.equal('Incorrect Password');
+        expect(res.body.data.password).to.equal('Incorrect Password');
         done();
       });
   });
 
-  it('returns details of current user', (done) => {
-    chai.request(app).get('/api/v1/users/current')
-      .set('Authorization', storeownertoken)
-      .end((error, data) => {
-        expect(data).to.have.status(200);
-        expect(data.body).to.be.an('object');
-        done();
-      });
-  });
-
-  it('returns unauthorized because user is not logged in', (done) => {
-    chai.request(app).get('/api/v1/users/current')
-      .end((error, data) => {
-        expect(data).to.have.status(401);
-        done();
-      });
-  });
-
-  it('returns 404 error because post method is not allowed', (done) => {
-    chai.request(app).post('/api/v1/users/current')
-      .set('Authorization', storeownertoken)
-      .end((error, data) => {
-        expect(data).to.have.status(404);
-        done();
-      });
-  });
 
   it('make a store attendant an admin', (done) => {
     chai.request(app).post('/api/v1/users/makeadmin')
@@ -200,8 +175,8 @@ describe('User Routes', () => {
       .set('Authorization', storeownertoken)
       .end((error, data) => {
         expect(data).to.have.status(200);
-        expect(data.body).to.be.an('array');
-        expect(data.body[0]).to.be.an('object');
+        expect(data.body.data).to.be.an('array');
+        expect(data.body.data[0]).to.be.an('object');
         done();
       });
   });

@@ -63,7 +63,7 @@ describe('Categories Rutes', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
-        expect(res.body.name).to.equal('Name field is required');
+        expect(res.body.data.name).to.equal('Name field is required');
         done();
       });
   });
@@ -96,7 +96,7 @@ describe('Categories Rutes', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
         done();
       });
   });
@@ -105,7 +105,7 @@ describe('Categories Rutes', () => {
     chai.request(app).get('/api/v1/categories')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
-        const categoryId = res.body[0].id;
+        const categoryId = res.body.data[0].id;
         chai.request(app).put(`/api/v1/categories/${categoryId}`)
           .send({
             name: 'Fashion',
@@ -124,7 +124,7 @@ describe('Categories Rutes', () => {
     chai.request(app).get('/api/v1/categories')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
-        let categoryId = res.body[0].id;
+        let categoryId = res.body.data[0].id;
         categoryId = categoryId.substring(2);
         categoryId = `93${categoryId}`;
         chai.request(app).put(`/api/v1/categories/${categoryId}`)
@@ -145,7 +145,7 @@ describe('Categories Rutes', () => {
     chai.request(app).get('/api/v1/categories')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
-        let categoryId = res.body[0].id;
+        let categoryId = res.body.data[0].id;
         categoryId = categoryId.substring(2);
         categoryId = `93${categoryId}`;
         chai.request(app).del(`/api/v1/categories/${categoryId}`)
@@ -163,7 +163,7 @@ describe('Categories Rutes', () => {
     chai.request(app).get('/api/v1/categories')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
-        const categoryId = res.body[0].id;
+        const categoryId = res.body.data[0].id;
         chai.request(app).del(`/api/v1/categories/${categoryId}`)
           .set('Authorization', storeownertoken)
           .end((err2, res2) => {
