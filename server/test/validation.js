@@ -86,11 +86,22 @@ describe('Sales Validation', () => {
   it('returns empty object because all validation is passed', (done) => {
     const result = salesValidation.validateSalesInput(
       {
-        order: [{ product_id: '2', quantity: '5' }],
+        order: [{ product_id: 2, quantity: 5 }],
       },
     );
     expect(result.isValid).to.equal(true);
     expect(Object.keys(result.errors).length).to.equal(0);
+    done();
+  });
+
+  it('returns validation error', (done) => {
+    const result = salesValidation.validateSalesInput(
+      {
+        order: [{ product_id: '2', quantity: 5 }],
+      },
+    );
+    expect(result.isValid).to.equal(false);
+    expect(result.errors.order).to.equal('One or more of quantity provided for order is not a number');
     done();
   });
 
