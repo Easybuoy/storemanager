@@ -140,7 +140,7 @@ class usersController {
               type: userData.type,
             };
             // Sign Token
-            jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 43200 }, (err, token) => {
               res.json({ status: 'success', token: `Bearer ${token}` });
             });
           } else {
