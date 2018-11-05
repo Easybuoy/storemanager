@@ -1,7 +1,7 @@
-let username = '';
+let email = '';
 let password = '';
 let status = 0;
-console.log(window.location)
+
 document.getElementById('loginsubmit').addEventListener('click', (e) =>{
   e.preventDefault();
   email = document.getElementById('loginusername').value;
@@ -16,10 +16,10 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       const response = data.data;
       switch (status) {
         case 200:
-        const auth = JSON.stringify({ 
-          token: response.token,
-          type: response.type,
-          });
+          const auth = JSON.stringify({ 
+            token: response.token,
+            type: response.type,
+            });
            localStorage.setItem('token', auth);
 
            if (response.type == 1) {
@@ -48,8 +48,3 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       return alert('Error loggin in');
     });
 });
-
-// request('/api/v1/auth/login', 'POST', {email: 'admin@storemanager.net', password: '123456' })
-// .then(res => res.json())
-// .then(data => console.log(data))
-// .catch()

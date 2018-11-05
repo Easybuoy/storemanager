@@ -8,3 +8,12 @@ const request = (url, method, payload) => {
     body: JSON.stringify(payload),
   });
 };
+
+if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+  const checkToken = () => {
+    if (localStorage.getItem('token') === null) {
+      return window.location = `index.html`;
+    }
+  };
+  checkToken();
+}

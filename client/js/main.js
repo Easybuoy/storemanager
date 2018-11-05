@@ -1,12 +1,5 @@
 'use strict';
 
-const checkToken = () => {
-  if (localStorage.getItem('token') === null) {
-    return window.location = `index.html`;
-  }
-};
-checkToken();
-
 const openSlideMenu = () => {
   document.getElementById('side-menu').style.width = '250px';
   document.getElementById('main').style.marginLeft = '250px';
