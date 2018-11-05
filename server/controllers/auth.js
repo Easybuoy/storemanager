@@ -19,7 +19,7 @@ class usersController {
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route POST api/users/register
+   * @route POST api/auth/register
    * @description This function implements the logic for registering a new user.
    * @access Private
    */
@@ -103,7 +103,7 @@ class usersController {
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route POST api/users/login
+   * @route POST api/auth/login
    * @description This function implements the logic to loggin a user.
    * @access Public
    */
@@ -140,7 +140,7 @@ class usersController {
               type: userData.type,
             };
             // Sign Token
-            jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 43200 }, (err, token) => {
+            jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
               res.json({ status: 'success', token: `Bearer ${token}` });
             });
           } else {
@@ -160,7 +160,7 @@ class usersController {
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route POST api/users/current
+   * @route POST api/auth/current
    * @description This function implements the logic for getting the current user
    * details with token parsed.
    * @access Private
@@ -178,7 +178,7 @@ class usersController {
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route POST api/users/makeadmin
+   * @route POST api/auth/makeadmin
    * @description This function implements the logic for making a
    * store attendant an admin.
    * @access Private
@@ -233,7 +233,7 @@ class usersController {
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route GET api/v1/users/attendants
+   * @route GET api/v1/auth/attendants
    * @description This function implements the logic for getting all store attendants.
    * @access Private
    */

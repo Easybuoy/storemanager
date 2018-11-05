@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
+        <meta name="keywords" content="Store Manager">
+        <title>Store Manager | Login</title>
+        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
+
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+
+    <body id="loginbody">
+        <div class="loginbox">
+            <img src="img/avartar.png" class="avatar"/>
+            <h2 class="text-center">Login to access store manager</h1>
+            <form method="GET" action="./dashboard.html">
+                <p>Username</p>
+                <input type="text" id="loginusername" name="username" placeholder="Enter Username">
+                <p>Password</p>
+                <input type="password" id="loginpassword" name="password" placeholder="Enter Password">
+                <input type="submit" name="submit" id="loginsubmit" value="Login">
+
+                <!-- <a href="#">Lost your password?</a><br>
+                <a href="#">Don't have an account</a> -->
+            </form>
+        </div>
+        <footer id="footer" class="loginfooter">
+            <p>Store Manager Copyright &copy; 2018</p>
+        </footer>
+
+        <script src="js/login.js"></script>
+    </body>
+</html>
