@@ -16,7 +16,7 @@ describe('Get All Sale Records', () => {
         email: 'example@gmail.com', password: '123456',
       })
       .end((err, res) => {
-        const { token } = res.body;
+        const { token } = res.body.data;
         storeownertoken = token;
 
         chai.request(app).post('/api/v1/auth/login')
@@ -24,13 +24,13 @@ describe('Get All Sale Records', () => {
             email: 'example2@gmail.com', password: '123456',
           })
           .end((err2, res2) => {
-            storeattendanttoken = res2.body.token;
+            storeattendanttoken = res2.body.data.token;
             chai.request(app).post('/api/v1/auth/login')
               .send({
                 email: 'example31@gmail.com', password: '123456',
               })
               .end((err3, res3) => {
-                undefinedtypetoken = res3.body.token;
+                undefinedtypetoken = res3.body.data.token;
                 done();
               });
           });

@@ -22,22 +22,35 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       return res.json();
     })
     .then((data) => {
-      console.log(status)
-      if (status === 200) {
-
-      } 
+      const response = data.data;
+      console.log(response)
       switch (status) {
         case 200:
-           localStorage.setItem('token', data.token);
+        const auth = JSON.stringify({ 
+          token: response.token,
+          type: response.type,
+          });
+           localStorage.setItem('token', auth);
+           localStorage.setItem('ssa', 'foo');
+
+
+           if (response.type == 1) {
+            return window.location = 'admin_dashboard.html';
+           }
+
+           window.location = 'attendant_dashboard.html';
             break;
         case 400:
-          if (data.data.email && data.data.password) {
-            return alert('Email & Password fields are required')
+          if (response.email && response.password) {
+            return alert('Email & Password fields are required');
           }
-          alert(data.data.email || data.data.password);
+          alert(response.email || response.password);
+          break;
+        case 404:
+          alert(response.email);
           break;
         case 401:
-           alert(data.data.password)
+           alert(response.password);
             break;
         default:
           return alert('Error loggin in');
@@ -45,5 +58,6 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
     })
     .catch((err) => {
       console.log(err);
+      return alert('Error loggin in');
     });
 });

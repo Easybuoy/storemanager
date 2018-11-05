@@ -110,4 +110,7 @@ window.onclick = function (event) {
   }
 };
 
+const clearLocalStorage = () => {
+  localStorage.clear();
+}
 
