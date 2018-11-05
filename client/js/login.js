@@ -1,29 +1,19 @@
 let username = '';
 let password = '';
 let status = 0;
-
+console.log(window.location)
 document.getElementById('loginsubmit').addEventListener('click', (e) =>{
   e.preventDefault();
-  username = document.getElementById('loginusername').value;
+  email = document.getElementById('loginusername').value;
   password = document.getElementById('loginpassword').value;
 
-  fetch('http://localhost:3000/api/v1/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: username,
-      password,
-    }),
-  })
+  request('/api/v1/auth/login', 'POST', { email, password })
     .then((res) => {
       status = res.status;
       return res.json();
     })
     .then((data) => {
       const response = data.data;
-      console.log(response)
       switch (status) {
         case 200:
         const auth = JSON.stringify({ 
@@ -31,8 +21,6 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
           type: response.type,
           });
            localStorage.setItem('token', auth);
-           localStorage.setItem('ssa', 'foo');
-
 
            if (response.type == 1) {
             return window.location = 'admin_dashboard.html';
@@ -57,7 +45,11 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       }
     })
     .catch((err) => {
-      console.log(err);
       return alert('Error loggin in');
     });
 });
+
+// request('/api/v1/auth/login', 'POST', {email: 'admin@storemanager.net', password: '123456' })
+// .then(res => res.json())
+// .then(data => console.log(data))
+// .catch()

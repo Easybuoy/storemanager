@@ -21,14 +21,14 @@ app.use(bodyParser.json());
 // Make assets folder available publicly
 app.use('/assets', express.static('assets'));
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome To Store Manager API' });
-});
+// app.get('/', (req, res) => {
+//   res.json({ message: 'Welcome To Store Manager API' });
+// });
 
 // Use morgan to log requests.
 app.use(morgan('dev'));
 
-app.use('/client', express.static(path.join(__dirname, '../client')));
+app.use('/', express.static(path.join(__dirname, '../client')));
 
 // using routes
 app.use('/api/v1/products', products);

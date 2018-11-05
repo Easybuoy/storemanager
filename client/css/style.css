@@ -555,9 +555,9 @@ float: left;
   list-style: none;
 }
 
-#side-menu{
+/* #side-menu{
     width: 250px;
-}
+} */
 
 #main{
     transition: margin-left 0.5s;
