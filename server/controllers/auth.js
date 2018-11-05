@@ -141,7 +141,11 @@ class usersController {
             };
             // Sign Token
             jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
-              res.json({ status: 'success', token: `Bearer ${token}` });
+              const data = {
+                token: `Bearer ${token}`,
+                type: userData.type,
+              };
+              res.json({ status: 'success', data });
             });
           } else {
             const incorrectPasswordResponse = {

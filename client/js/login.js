@@ -1,5 +1,7 @@
 let username = '';
 let password = '';
+let status = 0;
+
 document.getElementById('loginsubmit').addEventListener('click', (e) =>{
   e.preventDefault();
   username = document.getElementById('loginusername').value;
@@ -15,16 +17,33 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       password,
     }),
   })
-    .then(res => {
-      if (res.status === 200) {
-        return res.json();
-    }
-// else display alert error
-})
-    .then(data => {
-      localStorage.setItem('token', data.token);
+    .then((res) => {
+      status = res.status;
+      return res.json();
     })
-    .catch(err => {
-      console.log(err)
-  });
+    .then((data) => {
+      console.log(status)
+      if (status === 200) {
+
+      } 
+      switch (status) {
+        case 200:
+           localStorage.setItem('token', data.token);
+            break;
+        case 400:
+          if (data.data.email && data.data.password) {
+            return alert('Email & Password fields are required')
+          }
+          alert(data.data.email || data.data.password);
+          break;
+        case 401:
+           alert(data.data.password)
+            break;
+        default:
+          return alert('Error loggin in');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
