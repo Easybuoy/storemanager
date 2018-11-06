@@ -1,6 +1,6 @@
-this.url = 'http://localhost:3000/';
+this.url = 'http://localhost:3000';
 const request = (url, method, payload) => {
-  return fetch(`${this.url}api/v1/auth/login`, {
+  return fetch(`${this.url}${url}`, {
     method,
     headers: {
       'Content-Type': 'application/json',
