@@ -16,11 +16,7 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       const response = data.data;
       switch (status) {
         case 200:
-          const auth = JSON.stringify({ 
-            token: response.token,
-            type: response.type,
-            });
-           localStorage.setItem('token', auth);
+           localStorage.setItem('token', response.token);
 
            if (response.type == 1) {
             return window.location = 'admin_dashboard.html';
