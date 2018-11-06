@@ -14,7 +14,7 @@ describe('User Routes', () => {
         email: 'example@gmail.com', password: '123456',
       })
       .end((err, res) => {
-        const { token } = res.body;
+        const { token } = res.body.data;
         storeownertoken = token;
         done();
       });
@@ -79,7 +79,7 @@ describe('User Routes', () => {
         expect(res).to.have.status(200);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal('success');
-        expect(res.body.token).to.include('Bearer');
+        expect(res.body.data.token).to.include('Bearer');
         done();
       });
   });

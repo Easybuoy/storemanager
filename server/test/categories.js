@@ -14,7 +14,7 @@ describe('Categories Rutes', () => {
         email: 'example@gmail.com', password: '123456',
       })
       .end((err, res) => {
-        const { token } = res.body;
+        const { token } = res.body.data;
         storeownertoken = token;
         done();
       });

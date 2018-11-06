@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
+        <meta name="keywords" content="Store Manager">
+        <title>Store Manager |Assign Products</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <span class="open-slide">
+                <a href="#" id="openslidemenu" onclick="openSlideMenu()">
+                <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#ffffff"
+                        stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#ffffff"
+                        stroke-width="5"/>
+                </svg>
+            </a></span>
+
+            <ul>
+                <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../assets/uploads/users/default-avatar.png"> </div></a></li>
+                <li><a href="#"><div><input class="search" placeholder="Search Products" type="text"> <i id="searchimg" class="fas fa-search fa-2x"></i> </div></a></li>
+                <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
+            </ul>
+        </nav>
+
+        
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+            <li><a href="admin_dashboard.html">Dashboard</a></li>
+            <li><a href="admin_create_product.html">Create Product</a></li>
+            <li><a href="admin_view_products.html">View Products</a></li>
+            <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
+            <li><a href="admin_view_sales.html">View Sales</a></li>
+            <li class="current"><a href="admin_asign_product_to_category.html">Assign Products</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </div>
+
+        <div id="main">
+            <div class="container">
+                    <section id="productsection" class="topmargin">
+                            <div class="container">
+
+                                    <div class="cardgroup">
+
+                                            <div class="card">
+                                                    <a href="view_product_details.html"><img src="img/gpixel2.png" class="cardimg"></a>
+                    
+                                            <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">Google Pixel 2</h3>
+                                                    <p>The Google Pixel 2 is powered by 1.9GHz octa-core </p>
+                                                    <p>Quantity: 3</p>
+                                                    <p  id="productamount">Price: $649</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                    
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/gpixel3.png" class="cardimg"></a>
+                                        
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">Google Pixel 3</h3>
+                                                    <p>The Pixel 3 is the latest causality. Wireless charging is.. </p>
+                                                    <p>Quantity: 3</p>
+                                                    <p  id="productamount">Price: $649</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                </div>
+                                        
+                                            </div>
+                                    
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/iphonexs.png" class="cardimg"></a>
+                                            
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                                    <p>The iPhone XS display has rounded corners that... </p>
+                                                    <p>Quantity: 3</p>
+                                                    <p  id="productamount">Price: $1500</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                </div>
+                                            
+                                            </div>
+                                    
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/iphonex.png" class="cardimg"></a>
+            
+                                                    <div class="text-center cardbody" >
+                                                        <h3 id="productname" data-name="Google Pixel 2">IPhone X</h3>
+                                                        <p>The phone comes with a 5.80-inch touchscreen display  </p>
+                                                        <p>Quantity: 3</p>
+                                                        <p  id="productamount">Price: $890</p>
+                                                        <select>
+                                                                <option value="Phones & Tablets">Phones & Tablets</option>
+                                                                <option value="Computing">Computing</option>
+                                                                <option value="Gaming">Gaming</option>
+                                                        </select>
+                                                        <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                    </div>
+                                                
+                                            </div>
+            
+                                            <div class="card">
+                                                    <a href="view_product_details.html"><img src="img/macbookair2018.png" class="cardimg"></a>
+                    
+                                            <div class="text-center cardbody" >
+                                                    <h3 id="productname">MacBook Air 2018</h3>
+                                                    <p>The MacBook Air 2018 drastically improves on the processor...  </p>
+                                                    <p>Stock: 3</p>
+                                                    <p  id="productamount">Price: $1,190</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                            </div>
+                    
+                                            </div>
+                                            
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/mackbookpro13inch.png" class="cardimg"></a>
+                                        
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">13-inch MacBook Pro</h3>
+                                                    <p>Turbo Boost up to 3.6GHz, Intel Iris Plus Graphics 640...</p>
+                                                    <p>Stock: 34</p>
+                                                    <p  id="productamount">Price: $1,499</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                </div>
+                                        
+                                            </div>
+                                    
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/imac.png" class="cardimg"></a>
+                                            
+                                                <div class="text-center cardbody" >
+                                                    <h3 id="productname" data-name="Google Pixel 2">Iphone XS</h3>
+                                                    <p>2.3GHz dual-core 7th-generation Intel Core i5 processor...</p>
+                                                    <p>Stock: 90</p>
+                                                    <p  id="productamount">Price: $1500</p>
+                                                    <select>
+                                                            <option value="Phones & Tablets">Phones & Tablets</option>
+                                                            <option value="Computing">Computing</option>
+                                                            <option value="Gaming">Gaming</option>
+                                                    </select>
+                                                    <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                </div>
+                                            
+                                            </div>
+                                    
+                                            <div class="card">
+                                                <a href="view_product_details.html"><img src="img/lenovo14.png" class="cardimg"></a>
+            
+                                                    <div class="text-center cardbody" >
+                                                        <h3 id="productname" data-name="Google Pixel 2">Lenovo flex 6</h3>
+                                                        <p>Value-conscious without sacrificing performance, the stylish... </p>
+                                                        <p>Stock: 300</p>
+                                                        <p  id="productamount">Price: $899</p>
+                                                        <select>
+                                                                <option value="Phones & Tablets">Phones & Tablets</option>
+                                                                <option value="Computing">Computing</option>
+                                                                <option value="Gaming">Gaming</option>
+                                                        </select>
+                                                        <button class="button_3" onclick="addtocart('Google Pixel 2', '$649')">Assign</button>
+                                                    </div>
+                                                
+                                            </div>
+                                </div>
+                        </div>
+                        </section>
+           
+        </div>
+
+
+        <footer id="footer">
+            <p>Store Manager Copyright &copy; 2018</p>
+        </footer>
+    
+    <script src="js/main.js"></script>
+    </body>
+
+</html>
