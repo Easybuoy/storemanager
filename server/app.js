@@ -28,7 +28,11 @@ app.use('/assets', express.static('assets'));
 // Use morgan to log requests.
 app.use(morgan('dev'));
 
-app.use('/', express.static(path.join(__dirname, '../client')));
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, '../../client')));
+} else {
+  app.use('/', express.static(path.join(__dirname, '../client')));
+}
 
 // using routes
 app.use('/api/v1/products', products);
