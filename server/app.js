@@ -2,40 +2,45 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import morgan from 'morgan';
-import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
+import path from 'path';
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
-import users from './routes/api/v1/users';
-import swaggerDocument from './doc/swagger';
+import users from './routes/api/v1/auth';
+import categories from './routes/api/v1/categories';
 
 const app = express();
 
-app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+// Initialize cors
+app.use(cors());
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
+// Make assets folder available publicly
+app.use('/assets', express.static('assets'));
 
-// Make uploads folder available publicly
-app.use('/uploads', express.static('uploads'));
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome To Store Manager API' });
-});
+// app.get('/', (req, res) => {
+//   res.json({ message: 'Welcome To Store Manager API' });
+// });
 
 // Use morgan to log requests.
 app.use(morgan('dev'));
 
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, '../../client')));
+} else {
+  app.use('/', express.static(path.join(__dirname, '../client')));
+}
+
 // using routes
 app.use('/api/v1/products', products);
 app.use('/api/v1/sales', sales);
-app.use('/api/v1/users', users);
+app.use('/api/v1/auth', users);
+app.use('/api/v1/categories', categories);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

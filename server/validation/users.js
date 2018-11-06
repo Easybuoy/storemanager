@@ -4,12 +4,27 @@ import isEmpty from './isEmpty';
 const validateSignupInput = (input) => {
   const errors = {};
   const data = input;
+
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.type = !isEmpty(data.type) ? data.type : '';
 
+  data.name = data.name.trim();
+  const isNameValid = data.name.split(' ').every((word) => {
+    if (!word) {
+      return true;
+    }
+    if (Validator.isAlpha(word) === false) {
+      return false;
+    }
+    return true;
+  });
 
+  if (isNameValid === false) {
+    errors.name = 'Name cannot contain number(s)';
+  }
+  
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';
   }
@@ -38,9 +53,24 @@ const validateSignupInput = (input) => {
     }
   }
 
-  if (Validator.isEmpty(data.type)) {
+  if (typeof data.type === 'number') {
+    data.type = String(data.type);
+  }
+
+  if (Validator.isInt(data.type)) {
+    if (data.type > 2) {
+      errors.type = 'Invalid Type. Type cannot be greater than 2';
+    }
+  }
+
+  if (!Validator.isInt(data.type)) {
+    errors.type = 'Type field must be a number';
+  }
+
+  if (!data.type) {
     errors.type = 'Type field is required';
   }
+
 
   return {
     errors,
@@ -72,7 +102,27 @@ const validateLoginInput = (input) => {
   };
 };
 
+const validateMakeAdminInput = (input) => {
+  const errors = {};
+  const data = input;
+  data.email = !isEmpty(data.email) ? data.email : '';
+
+  if (!Validator.isEmail(data.email)) {
+    errors.email = 'Email is invalid';
+  }
+
+  if (Validator.isEmpty(data.email)) {
+    errors.email = 'Email field is required';
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors),
+  };
+};
+
 module.exports = {
   validateSignupInput,
   validateLoginInput,
+  validateMakeAdminInput,
 };

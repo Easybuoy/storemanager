@@ -10,20 +10,20 @@ describe('Product Route', () => {
   let storeownertoken = '';
   let storeattendanttoken = '';
   before((done) => {
-    chai.request(app).post('/api/v1/users/login')
+    chai.request(app).post('/api/v1/auth/login')
       .send({
         email: 'example@gmail.com', password: '123456',
       })
       .end((err, res) => {
-        const { token } = res.body;
+        const { token } = res.body.data;
         storeownertoken = token;
 
-        chai.request(app).post('/api/v1/users/login')
+        chai.request(app).post('/api/v1/auth/login')
           .send({
             email: 'example2@gmail.com', password: '123456',
           })
           .end((err2, res2) => {
-            storeattendanttoken = res2.body.token;
+            storeattendanttoken = res2.body.data.token;
             done();
           });
       });
@@ -34,25 +34,17 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((error, data) => {
         expect(data).to.have.status(200);
-        expect(data.body).to.be.an('array');
+        expect(data.body.data).to.be.an('array');
+        expect(data.body.data[0]).to.be.an('object');
         done();
       });
   });
-
-  // it('returns error fetching products', (done) => {
-  //   chai.request(app).get('/api/v1/products')
-  //     .set('Authorization', storeownertoken)
-  //     .end((error, data) => {
-  //       expect(data).to.have.status(400);
-  //       expect(data.body).to.be.an('object');
-  //       done();
-  //     });
-  // });
 
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).get('/api/v1/products')
       .end((error, res) => {
         expect(res).to.have.status(401);
+        expect(res.body).to.be.an('object');
         done();
       });
   });
@@ -63,13 +55,15 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).get(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .end((error, data) => {
             expect(data).to.have.status(200);
-            expect(id).to.equal(data.body.id);
+            expect(id).to.equal(data.body.data.id);
+            expect(data.body.data).to.be.an('object');
+            expect(data.body.data.description).to.be.a('string');
             done();
           });
       });
@@ -80,8 +74,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = id.substring(2);
         id = `93${id}`;
         chai.request(app).get(`/api/v1/products/${id}`)
@@ -100,8 +94,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).get(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -142,10 +136,10 @@ describe('Product Route', () => {
       })
       .end((error, data) => {
         expect(data).to.have.status(400);
-        expect(data.body).to.be.an('object');
-        expect(data.body.description).to.equal('Description field is required');
-        expect(data.body.price).to.equal('Price field is required');
-        expect(data.body.quantity).to.equal('Quantity field is required');
+        expect(data.body.data).to.be.an('object');
+        expect(data.body.data.description).to.equal('Description field is required');
+        expect(data.body.data.price).to.equal('Price field is required');
+        expect(data.body.data.quantity).to.equal('Quantity field is required');
         done();
       });
   });
@@ -153,7 +147,7 @@ describe('Product Route', () => {
   it('create a new product', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
-        name: 'Tecno', description: 'Tecno Phone', quantity: '2000', price: '200',
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2000, price: 200,
       })
       .set('Authorization', storeownertoken)
       .end((error, data) => {
@@ -167,7 +161,7 @@ describe('Product Route', () => {
   it('returns unauthorized because user is not logged in', (done) => {
     chai.request(app).post('/api/v1/products')
       .send({
-        name: 'Tecno', description: 'Tecno Phone', quantity: '2', price: '$200',
+        name: 'Tecno', description: 'Tecno Phone', quantity: 2, price: 200,
       })
       .end((error, res) => {
         expect(res).to.have.status(401);
@@ -180,8 +174,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).del(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .end((error, data) => {
@@ -207,8 +201,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = id.substring(2);
         id = `93${id}`;
         chai.request(app).del(`/api/v1/products/${id}`)
@@ -227,8 +221,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).del(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -246,8 +240,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        const { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
         chai.request(app).put(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
           .send({
@@ -266,8 +260,8 @@ describe('Product Route', () => {
       .set('Authorization', storeownertoken)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        let { id } = res.body[0];
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
         id = `93${id}`;
         chai.request(app).put(`/api/v1/products/${id}`)
           .set('Authorization', storeownertoken)
@@ -276,6 +270,94 @@ describe('Product Route', () => {
             expect(data.body).to.be.an('object');
             expect(data.body.message).to.equal('Error Updating Products, Please try again');
             done();
+          });
+      });
+  });
+
+  it('should assign a product to category', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body.data[0].id;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body.data[0].id;
+            expect(data).to.have.status(200);
+            expect(data.body.data).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(200);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal('Product assigned to category successfully');
+                done();
+              });
+          });
+      });
+  });
+
+  it('should return product not found error', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body.data[0].id;
+        id = id.substring(2);
+        id = `93${id}`;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body.data[0].id;
+            expect(data).to.have.status(200);
+            expect(data.body.data).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(400);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal(`Product with id ${id} not found.`);
+                done();
+              });
+          });
+      });
+  });
+
+  it('should assign a product to category', (done) => {
+    let id = '';
+    let categoryId = '';
+    chai.request(app).get('/api/v1/products/')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        // eslint-disable-next-line
+        id = res.body.data[0].id;
+        chai.request(app).get('/api/v1/categories/')
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            categoryId = data.body.data[0].id;
+            categoryId = categoryId.substring(2);
+            categoryId = `93${categoryId}`;
+            expect(data).to.have.status(200);
+            expect(data.body.data).to.be.an('array');
+            chai.request(app).put(`/api/v1/products/${id}/${categoryId}`)
+              .set('Authorization', storeownertoken)
+              .end((error2, data2) => {
+                expect(data2).to.have.status(400);
+                expect(data2.body).to.be.an('object');
+                expect(data2.body.message).to.equal(`Category with id ${categoryId} not found.`);
+                done();
+              });
           });
       });
   });
