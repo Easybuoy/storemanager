@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="me()">
         <nav class="navbar">
             <span class="open-slide">
                 <a href="#" id="openslidemenu" onclick="openSlideMenu()">
@@ -63,9 +63,9 @@
                 </div>
                  <hr >
             </section>
-            <section id="productsection">
+            <section id="productsection" >
                     <div class="container">
-                        <div class="cardgroup">
+                        <div class="cardgroup" id="prodct">
 
                                 <div class="card">
                                         <a href="view_product_details.html"><img src="img/gpixel2.png" class="cardimg"></a>
@@ -210,7 +210,10 @@
         <p>Store Manager Copyright &copy; 2018</p>
     </footer>
 
+    <script src="js/middleware.js"></script>
+    <script src="js/products.js"></script>
     <script src="js/main.js"></script>
+
     </body>
 
 </html>

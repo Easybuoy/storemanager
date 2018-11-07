@@ -1,12 +1,20 @@
-this.url = 'https://store--manager.herokuapp.com';
-const request = (url, method, payload) => {
-  return fetch(`${this.url}${url}`, {
-    method,
+this.url = 'http://localhost:3000';
+
+const request = (url, method = 'GET', payload = '', authorized = false) => {
+  let options = {
     headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+      'Content-Type': 'application/json'
+    }
+  }
+
+  if (payload) {
+    options.body = JSON.stringify(payload);
+  }
+
+  if (authorized) {
+    options.headers.Authorization = localStorage.getItem('token');
+  }
+  return fetch(`${this.url}${url}`, options);
 };
 
 if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
