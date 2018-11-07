@@ -3,13 +3,22 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
+
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
 import users from './routes/api/v1/auth';
 import categories from './routes/api/v1/categories';
 
+import swaggerDocument from './doc/swagger';
+
+
 const app = express();
+
+// Initialize swagger
+app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 // Initialize cors
 app.use(cors());

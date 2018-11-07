@@ -1,4 +1,4 @@
-this.url = 'http://localhost:3000';
+this.url = 'https://store--manager.herokuapp.com/';
 const request = (url, method, payload) => {
   return fetch(`${this.url}${url}`, {
     method,
