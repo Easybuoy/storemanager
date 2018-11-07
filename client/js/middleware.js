@@ -1,19 +1,27 @@
 this.url = 'http://localhost:3000';
 
-const request = (url, method = 'GET', payload = '', authorized = false) => {
+const request = (url, method = '', payload = '', authorized = false) => {
+
   let options = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
-  if (payload) {
-    options.body = JSON.stringify(payload);
+  if (method === 'POST' || method === 'PUT') {
+    if (payload) {
+      options.body = JSON.stringify(payload);
+    } 
   }
+
 
   if (authorized) {
     options.headers.Authorization = localStorage.getItem('token');
   }
+
+  // if (method === 'GET' || method === 'HEAD') {
+  // return fetch(`${this.url}${url}`);
+  // }
   return fetch(`${this.url}${url}`, options);
 };
 

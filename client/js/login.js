@@ -13,7 +13,7 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       return res.json();
     })
     .then((data) => {
-      const response = data.data;
+      const response = data.data; console.log(response)
       switch (status) {
         case 200:
            localStorage.setItem('token', response.token);
@@ -40,7 +40,7 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
           return alert('Error loggin in');
       }
     })
-    .catch((err) => {
+    .catch((err) => { console.log(err)
       return alert('Error loggin in');
     });
 });
