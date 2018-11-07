@@ -1,7 +1,7 @@
 let email = '';
 let password = '';
 let status = 0;
-console.log(Date.now())
+
 document.getElementById('loginsubmit').addEventListener('click', (e) =>{
   e.preventDefault();
   email = document.getElementById('loginusername').value;
