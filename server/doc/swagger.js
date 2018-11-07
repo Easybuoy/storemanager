@@ -647,7 +647,7 @@ export default
 		"login": {
 			"type": "object",
 			"required": [
-				"username",
+				"email",
 				"password"
 			],
 			"properties": {
