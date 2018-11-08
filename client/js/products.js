@@ -38,15 +38,24 @@ const createProduct = () => {
     let productdescription = document.getElementById('productdescription').value
     let productprice = document.getElementById('productprice').value;
     let productquantity = document.getElementById('productquantity').value;
-    let productimage = document.getElementById('productimage').value;
+    let productimage = document.getElementById('productimage').files[0];
 
-    console.log(productname)
-        console.log(productdescription)
-    console.log(productprice)
-    console.log(productquantity)
+    // console.log(productname)
+    //     console.log(productdescription)
+    // console.log(productprice)
+    // console.log(productquantity)
     console.log(productimage)
 
-    request('/api/v1/products/', 'POST', {name: productname, description: productdescription, price: productprice, quantity: productquantity, productImage: productimage})
+const formData = new FormData();
+
+formData.append('productImage', productimage);
+formData.append('name', productname);
+formData.append('description', productdescription);
+formData.append('price', productprice);
+formData.append('quantity', productquantity);
+
+console.log(formData)
+    request('/api/v1/products/', 'POST', formData, true)
     .then(res => res.json())
     .then(data => console.log(data))
 

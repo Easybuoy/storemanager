@@ -1,10 +1,15 @@
 this.url = 'http://localhost:3000';
 
-const request = (url, method, payload = null) => {
+const request = (url, method, payload = null, isUpload = false) => {
   let token = localStorage.getItem('token') || null;
-  if (payload !== null) {
+
+  // if a file is to be uploaded do not stringify
+  if (!isUpload) {
+    if (payload !== null) {
     payload = JSON.stringify(payload)
+     }
   }
+  
 
   let options = {
     headers: {
@@ -15,6 +20,10 @@ const request = (url, method, payload = null) => {
     body: payload,
   }
 
+// if a file is to be uploaded the content type would be automatically set
+  if (isUpload) {
+    delete options.headers['Content-Type'];
+  }
   return fetch(`${this.url}${url}`, options);
 };
 
