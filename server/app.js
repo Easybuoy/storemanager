@@ -27,6 +27,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 // Make assets folder available publicly
 app.use('/assets', express.static('assets'));
 

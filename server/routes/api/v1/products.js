@@ -11,7 +11,7 @@ const {
   assignProductToCategory,
 } = productController;
 
-const fileFilter = (req, file, cb) => { console.log(req.file)
+const fileFilter = (req, file, cb) => {
   // reject a file
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     cb(null, true);
