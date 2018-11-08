@@ -1025,7 +1025,7 @@ select{
   margin-bottom: 20px;
 }
 
-#create_sales_assistant input[type="text"], input[type="password"], input[type="email"]{
+#create_sales_assistant input[type="text"], input[type="password"], input[type="email"], input[type="number"]{
   border: none;
   border-bottom: 1px solid #0099ff;
   background: transparent;

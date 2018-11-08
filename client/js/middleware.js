@@ -9,7 +9,6 @@ const request = (url, method, payload = null, isUpload = false) => {
     payload = JSON.stringify(payload)
      }
   }
-  
 
   let options = {
     headers: {

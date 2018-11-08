@@ -39,7 +39,7 @@ const createProduct = () => {
     let productprice = document.getElementById('productprice').value;
     let productquantity = document.getElementById('productquantity').value;
     let productimage = document.getElementById('productimage').files[0];
-
+    let status = 0;
     // console.log(productname)
     //     console.log(productdescription)
     // console.log(productprice)
@@ -54,10 +54,35 @@ formData.append('description', productdescription);
 formData.append('price', productprice);
 formData.append('quantity', productquantity);
 
-console.log(formData)
     request('/api/v1/products/', 'POST', formData, true)
-    .then(res => res.json())
-    .then(data => console.log(data))
+    .then(res => {
+      status = res.status;
+      return res.json();
+    })
+    .then(data => {
+        const response = data.data;
+        console.log(data)
+        console.log(status)
+        switch (status) {
+        case 201:
+        alert(data.message)
+        break;
+        case 400:
+          if (response.name && response.description && response.price && response.quantity) {
+            return alert('Missing required fields');
+          }
+          alert(response.name || response.description || response.price || response.quantity);
+          break;
+        case 401:
+           alert('Kindly login to create product');
+            break;
+        default:
+          return alert('Error creating product. Please try again');
+      }
+    })
+    .catch(err => {
+        alert('Error creating product. Please try again');
+    })
 
 }
 

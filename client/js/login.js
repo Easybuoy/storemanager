@@ -13,7 +13,7 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
       return res.json();
     })
     .then((data) => {
-      const response = data.data; console.log(response)
+      const response = data.data;
       switch (status) {
         case 200:
            localStorage.setItem('token', response.token);

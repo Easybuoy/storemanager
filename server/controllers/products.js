@@ -17,7 +17,7 @@ class productController {
    * @description This function implements the logic for creating new product.
    * @access Private
    */
-  static createProduct(req, res) { console.log(req.file)
+  static createProduct(req, res) {
     const { errors, isValid } = productsValidation.validateProductInput(req.body);
     // Check validation
     if (!isValid) {
