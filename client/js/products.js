@@ -13,7 +13,7 @@ const me = () => {
           let product_image = `${this.url}/${product.product_image}`;
          output += `
             <div class="card">
-                <a href="view_product_details.html"><img src="${product_image}" class="cardimg"></a>
+                <a href="view_product_details.html/${product.id}"><img src="${product_image}" class="cardimg"></a>
         
                 <div class="text-center cardbody" >
                     <h3 id="productname">${product.name}</h3>
@@ -40,12 +40,6 @@ const createProduct = () => {
     let productquantity = document.getElementById('productquantity').value;
     let productimage = document.getElementById('productimage').files[0];
     let status = 0;
-    // console.log(productname)
-    //     console.log(productdescription)
-    // console.log(productprice)
-    // console.log(productquantity)
-    console.log(productimage)
-
 const formData = new FormData();
 
 formData.append('productImage', productimage);
@@ -61,8 +55,7 @@ formData.append('quantity', productquantity);
     })
     .then(data => {
         const response = data.data;
-        console.log(data)
-        console.log(status)
+
         switch (status) {
         case 201:
         alert(data.message)
