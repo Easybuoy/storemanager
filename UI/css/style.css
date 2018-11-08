@@ -1101,7 +1101,7 @@ select{
 
 @media (max-width: 687px) {
   .card {
-    width: 100%;
+    width: 80%;
   }
   .cardimg{
     width: 100%; 
@@ -1214,6 +1214,10 @@ select{
     #main{
       margin-left: 0;
     }
+
+    #loginbody{
+  height: 90%;
+  }
 }
 
 /* @media (min-width: 568px) {

@@ -1,7 +1,7 @@
   
 
-const me = () => {
-    console.log('cjj')
+const getProductsAttendantsView = () => {
+
     request('/api/v1/products/', 'GET')
   .then(res => res.json())
   .then(data => {
