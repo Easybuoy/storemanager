@@ -1,12 +1,9 @@
-  
-
 const getProductsAttendantsView = () => {
-
     request('/products/', 'GET')
   .then(res => res.json())
   .then(data => {
-      let prodct = document.getElementById('prodct');
-      console.log(data)
+      let productview = document.getElementById('productview');
+
                 let output = '';
 
       data.data.map((product) => {
@@ -29,10 +26,42 @@ const getProductsAttendantsView = () => {
 
       })
 
-      prodct.innerHTML = output;
+      productview.innerHTML = output;
       });
 }
 
+
+const getProductsAdminView = () => {
+  request('/products/', 'GET')
+  .then(res => res.json())
+  .then(data => {
+      let adminproductview = document.getElementById('adminproductview');
+      console.log(data)
+                let output = '';
+
+      data.data.map((product) => {
+          let product_image = `${this.base_url}${product.product_image}`;
+         output += `
+            <div class="card">
+                    <a href="view_product_details.html"><img src="${product_image}" class="cardimg"></a>
+
+                    <div class="text-center cardbody" >
+                    <h3 id="productname" >${product.name}</h3>
+                    <p>${product.description.substring(0, 50)}...</p>
+                    <p>Quantity: ${product.quantity}</p>
+                    <p  id="productamount">Price: $${product.price}</p>
+                    <button class="button_1"><a href="admin_edit_product.html?id=${product.id}">EDIT</a></button>
+                    <button class="button_2" onclick="deleteProduct(${product.id})">DELETE</button>
+                    </div>
+
+            </div>
+          `;
+
+      })
+
+      productview.innerHTML = output;
+      });
+}
 
 const createProduct = () => {
     let status = 0;
@@ -108,7 +137,7 @@ const formData = new FormData();
    
 }
 
-document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
-    e.preventDefault();
-    // createProduct();
-});
+// document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
+//     e.preventDefault();
+//     // createProduct();
+// });
