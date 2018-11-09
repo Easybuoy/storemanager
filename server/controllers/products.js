@@ -29,10 +29,10 @@ class productController {
       productImage = req.file.path;
     }
     const {
-      name, description, quantity, price,
+      name, description, quantity, price, category_id,
     } = req.body;
     const host = req.get('host');
-
+    
     const text = queries.productInsert;
     const values = [
       uuidv4(),
@@ -40,6 +40,7 @@ class productController {
       description,
       quantity,
       price,
+      category_id,
       productImage,
       new Date(),
     ];
@@ -53,7 +54,7 @@ class productController {
 
       return res.status(201).json({ status: 'success', message: 'Product added successfully', data: response });
     }).catch(() => {
-      return res.status(400).json({ status: 'error', message: 'Error creating user, Please try again' });
+      return res.status(400).json({ status: 'error', message: 'Error creating product, Please try again' });
     });
   }
 
