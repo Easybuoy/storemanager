@@ -32,7 +32,7 @@ class productController {
       name, description, quantity, price, category_id,
     } = req.body;
     const host = req.get('host');
-    
+
     const text = queries.productInsert;
     const values = [
       uuidv4(),
