@@ -1,4 +1,5 @@
-this.url = 'http://localhost:3000';
+this.base_url = 'http://localhost:3000/';
+this.url = 'http://localhost:3000/api/v1';
 
 const request = (url, method, payload = null, isUpload = false) => {
   let token = localStorage.getItem('token') || null;

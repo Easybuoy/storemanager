@@ -7,7 +7,7 @@ document.getElementById('loginsubmit').addEventListener('click', (e) =>{
   email = document.getElementById('loginusername').value;
   password = document.getElementById('loginpassword').value;
 
-  request('/api/v1/auth/login', 'POST', { email, password })
+  request('/auth/login', 'POST', { email, password })
     .then((res) => {
       status = res.status;
       return res.json();

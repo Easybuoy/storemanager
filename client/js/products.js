@@ -2,7 +2,7 @@
 
 const getProductsAttendantsView = () => {
 
-    request('/api/v1/products/', 'GET')
+    request('/products/', 'GET')
   .then(res => res.json())
   .then(data => {
       let prodct = document.getElementById('prodct');
@@ -33,8 +33,14 @@ const getProductsAttendantsView = () => {
       });
 }
 
+
 const createProduct = () => {
-    let productname = document.getElementById('productname').value;
+    // request()
+
+    document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
+    e.preventDefault();
+    // createProduct();
+     let productname = document.getElementById('productname').value;
     let productdescription = document.getElementById('productdescription').value
     let productprice = document.getElementById('productprice').value;
     let productquantity = document.getElementById('productquantity').value;
@@ -77,9 +83,11 @@ formData.append('quantity', productquantity);
         alert('Error creating product. Please try again');
     })
 
+});
+   
 }
 
 document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
     e.preventDefault();
-    createProduct();
+    // createProduct();
 });
