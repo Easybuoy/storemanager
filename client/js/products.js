@@ -59,7 +59,7 @@ const getProductsAdminView = () => {
 
       })
 
-      productview.innerHTML = output;
+      adminproductview.innerHTML = output;
       });
 }
 
@@ -91,7 +91,7 @@ const createProduct = () => {
     let productquantity = document.getElementById('productquantity').value;
     let productimage = document.getElementById('productimage').files[0];
     let categoryid = document.getElementById('categoryoption').value;
-    console.log(categoryid)
+
     let status = 0;
 const formData = new FormData();
 
