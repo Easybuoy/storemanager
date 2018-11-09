@@ -58,10 +58,7 @@ class usersController {
       bcrypt.genSalt(10, (err, salt) => {
       // Check if there is error generating salt
         if (err) {
-          const errorResponse = {
-            message: 'Error Creating User, Try again ',
-          };
-          return res.status(400).json({ status: 'error', data: errorResponse });
+          return res.status(400).json({ status: 'error', message: 'Error Creating User, Try again' });
         }
 
         bcrypt.hash(data.password, salt, (error, hash) => {

@@ -10,7 +10,7 @@ const getProductsAttendantsView = () => {
           let product_image = `${this.base_url}${product.product_image}`;
          output += `
             <div class="card">
-                <a href="view_product_details.html/${product.id}"><img src="${product_image}" class="cardimg"></a>
+                <a href="view_product_details.html?id=${product.id}"><img src="${product_image}" class="cardimg"></a>
         
                 <div class="text-center cardbody" >
                     <h3 id="productname">${product.name}</h3>
@@ -42,7 +42,7 @@ const getProductsAdminView = () => {
           let product_image = `${this.base_url}${product.product_image}`;
          output += `
             <div class="card">
-                    <a href="view_product_details.html"><img src="${product_image}" class="cardimg"></a>
+                    <a href="view_product_details.html?id=${product.id}"><img src="${product_image}" class="cardimg"></a>
 
                     <div class="text-center cardbody" >
                     <h3 id="productname" >${product.name}</h3>
