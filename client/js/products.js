@@ -36,7 +36,6 @@ const getProductsAdminView = () => {
   .then(res => res.json())
   .then(data => {
       let adminproductview = document.getElementById('adminproductview');
-      console.log(data)
                 let output = '';
 
       data.data.map((product) => {
@@ -51,7 +50,7 @@ const getProductsAdminView = () => {
                     <p>Quantity: ${product.quantity}</p>
                     <p  id="productamount">Price: $${product.price}</p>
                     <button class="button_1"><a href="admin_edit_product.html?id=${product.id}">EDIT</a></button>
-                    <button class="button_2" onclick="deleteProduct(${product.id})">DELETE</button>
+                    <button class="button_2" onclick="deleteProduct('${product.id}')">DELETE</button>
                     </div>
 
             </div>
@@ -86,7 +85,7 @@ const createProduct = () => {
     e.preventDefault();
     // createProduct();
      let productname = document.getElementById('productname').value;
-    let productdescription = document.getElementById('productdescription').value
+    let productdescription = document.getElementById('productdescription').value;
     let productprice = document.getElementById('productprice').value;
     let productquantity = document.getElementById('productquantity').value;
     let productimage = document.getElementById('productimage').files[0];
@@ -134,9 +133,13 @@ const formData = new FormData();
     })
 
 });
-   
-}
+};
 
+
+const deleteProduct = (id) => {
+    confirm('Are you sure you want to delete this product');
+    console.log(id)
+};
 // document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
 //     e.preventDefault();
 //     // createProduct();
