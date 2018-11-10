@@ -79,7 +79,7 @@ const createProduct = () => {
             });
       categoryoption.innerHTML = output;
         }
-        })
+        });
 
     document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
     e.preventDefault();
