@@ -137,8 +137,24 @@ const formData = new FormData();
 
 
 const deleteProduct = (id) => {
-    confirm('Are you sure you want to delete this product');
-    console.log(id)
+  if (confirm('Are you sure you want to delete this product?')){
+      let status = 0;
+    request(`/products/${id}`, 'DELETE')
+    .then(res =>{
+        status = res.status;
+        return res.json();
+    })
+    .then(data => {
+        switch (status) {
+            case 200:
+              alert('Product Deleted Successfully');
+              window.location.reload();
+              break;
+            default:
+              return alert('Error Deleting Product, Try again');
+          }
+    })
+    }
 };
 // document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
 //     e.preventDefault();
