@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="viewAllAttendants()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -52,7 +52,7 @@
                     <section id="productsection" class="topmargin">
                             <div class="container">
 
-                                    <div class="cardgroup">
+                                    <div class="cardgroup" id="adminviewattendants">
 
                                             <div class="card">
                                                     <a href="view_product_details.html"><img src="../assets/uploads/users/default-avatar.png" class="cardimg"></a>
@@ -175,8 +175,9 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
+    <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
     </body>
 
 </html>

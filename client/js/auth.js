@@ -102,4 +102,56 @@ const createAttendant = () => {
         return alert('Error Creating User, Try again');
       });
   });
-}
+};
+
+const viewAllAttendants = () => {
+  let status = 0;
+  request('/auth/attendants', 'GET')
+  .then(res => {
+    status = res.status;
+      return res.json();
+  })
+  .then(data => {
+    switch (status) {
+      case 200:
+      let adminviewattendants = document.getElementById('adminviewattendants');
+    let output = '';
+
+      data.data.map((attendant) => {
+      let attendant_image = `${this.base_url}${attendant.userimage}`;
+      output += `
+      <div class="card">
+        <a><img src="${attendant_image}" class="cardimg"></a>
+                    
+      <div class="text-center cardbody" >
+        <h3 id="productname">Name: ${attendant.name}</h3>
+        <p>Email: ${attendant.email}</p>
+        <p>Attendance: -</p>
+        <p>Product Sold: -</p>
+        <button class="button_3" >Promote</button>
+        <button class="button_2" >Delete</button>
+      </div>
+                    
+      </div>
+      `;
+
+      })
+
+      adminviewattendants.innerHTML = output;
+      break;
+      case 400:
+        alert(data.message);
+        break;
+        case 404:
+        alert(data.message);
+         break;
+        case 401:
+         alert('Kindly login to view attendants');
+          break;
+      default:
+        return alert('Error Fetching Attendants, Please try again');
+    }
+    console.log(data)
+    
+  })
+};
