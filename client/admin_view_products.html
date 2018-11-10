@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body  onload="getProductsAdminView()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -43,8 +43,8 @@
             <li class="current"><a href="admin_view_products.html">View Products</a></li>
             <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="admin_view_attendants.html">View Attendants</a></li>
+            <li><a href="index.html" onclick="clearLocalStorage()">Logout</a></li>
         </div>
 
         <div id="main">
@@ -52,9 +52,9 @@
             <section id="productsection" class="topmargin">
                     <div class="container"> 
                             
-                            <div class="cardgroup">
+                            <div class="cardgroup" id="adminproductview">
 
-                                    <div class="card">
+                                    <!-- <div class="card">
                                             <a href="view_product_details.html"><img src="img/gpixel2.png" class="cardimg"></a>
             
                                     <div class="text-center cardbody" >
@@ -164,7 +164,7 @@
                                             <button class="button_2" onclick="confirm('Are you sure you want to delete this product')">DELETE</button>
                                             </div>
                                         
-                                    </div>
+                                    </div> -->
                         </div>
                 </div>
                 </section>
@@ -174,8 +174,9 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
-    <script src="js/main.js"></script>
+        <script src="js/middleware.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/products.js"></script>
     </body>
 
 </html>

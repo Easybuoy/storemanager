@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="createAttendant()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -42,8 +42,8 @@
             <li><a href="admin_view_products.html">View Products</a></li>
             <li class="current"><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="admin_view_attendants.html">View Attendants</a></li>
+            <li><a href="index.html" onclick="clearLocalStorage()">Logout</a></li>
         </div>
 
         <div id="main">
@@ -54,17 +54,20 @@
                                 <h1 class="text-center">Create Sales Attendant</h1>
                         <form method="POST" action="index.html">
                                 <h2>Name</h2>
-                                <input type="text" name="name" placeholder="Enter Name">
+                                <input type="text" name="name" id="name" placeholder="Enter Name">
                                 <h2>Email</h2>
-                                <input type="email" name="email" placeholder="Enter Email">
+                                <input type="email" name="email" id="email" placeholder="Enter Email">
                                 <h2>Password</h2>
-                                <input type="password" name="password" placeholder="Enter Password"> <br>
+                                <input type="password" name="password" id="password" placeholder="Enter Password"> <br>
+                                <h2>User Image</h2>
+                                <input type="file" id="userimage" name="upload" >
                                 <h2>Type</h2>
-                                <select>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Attendant">Attendant</option>
+                                <select id="type">
+                                    <option value="">Select Role</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Attendant</option>
                                 </select> <br> <br>
-                                <input type="submit" name="" class="button_1" value="Create Sales Assistant">
+                                <input type="submit" name="" id="createattendant" class="button_1" value="Create Sales Assistant">
                                 
                             </form>   
                     </div>
@@ -77,7 +80,10 @@
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
     
+    <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+
     </body>
 
 </html>

@@ -1,8 +1,9 @@
 import express from 'express';
-// import multer from 'multer';
+import multer from 'multer';
 
 import authenticate from '../../../middleware/authenticate';
 import productController from '../../../controllers/products';
+// import upload from '../../../middleware/imageupload';
 
 const { isLoggedIn, isAdmin } = authenticate;
 const {
@@ -10,33 +11,33 @@ const {
   assignProductToCategory,
 } = productController;
 
-// const fileFilter = (req, file, cb) => {
-//   // reject a file
-//   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/products/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, new Date().getTime() + file.originalname);
-//   },
-// });
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'assets/uploads/products/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().getTime() + file.originalname);
+  },
+});
 
-// const upload = multer(
-//   {
-//     storage,
-//     limits: {
-//       fileSize: 1024 * 1024 * 5,
+const upload = multer(
+  {
+    storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5,
 
-//     },
-//     fileFilter,
-//   },
-// );
+    },
+    fileFilter,
+  },
+);
 
 const router = express.Router();
 
@@ -55,7 +56,7 @@ router.get('/:id', isLoggedIn, getProductById);
 // @desc    Create a product
 // @access   Private
 // router.post('/', authenticate, upload.single('productImage'), createProduct);
-router.post('/', isLoggedIn, isAdmin, createProduct);
+router.post('/', isLoggedIn, isAdmin, upload.single('productImage'), createProduct);
 
 
 // @route   DELETE api/v1/products/<productId>

@@ -1,4 +1,5 @@
 import express from 'express';
+import multer from 'multer';
 
 import authenticate from '../../../middleware/authenticate';
 import usersController from '../../../controllers/auth';
@@ -7,13 +8,41 @@ const {
   login, signup, getCurrentUser, makeAdmin, getAttendants,
 } = usersController;
 
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'assets/uploads/users/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().getTime() + file.originalname);
+  },
+});
+
+const upload = multer(
+  {
+    storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5,
+
+    },
+    fileFilter,
+  },
+);
+
 const { isLoggedIn, isAdmin } = authenticate;
 const router = express.Router();
 
 // @route   POST api/v1/auth/register
 // @desc    Register user
 // @access  Private
-router.post('/signup', isLoggedIn, isAdmin, signup);
+router.post('/signup', isLoggedIn, isAdmin, upload.single('userImage'), signup);
 
 
 // @route   POST api/v1/auth/register

@@ -7,8 +7,8 @@ const queries = {
   userUpdate: 'UPDATE users SET type=($2) WHERE id=($1) returning *',
   userAttendants: 'SELECT name, email, status, userimage FROM users WHERE type = 2',
   productInsert: `INSERT INTO
-    products(id, name, description, quantity, price, product_image, created_at)
-    VALUES($1, $2, $3, $4, $5, $6, $7)
+    products(id, name, description, quantity, price, category_id, product_image, created_at)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
     returning *`,
   productExist: 'SELECT * FROM products ',
   productExistWithId: 'SELECT * FROM products WHERE id = $1',

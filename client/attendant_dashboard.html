@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="getProductsAttendantsView()">
         <nav class="navbar">
             <span class="open-slide">
                 <a href="#" id="openslidemenu" onclick="openSlideMenu()">
@@ -41,7 +41,7 @@
             <li class="current"><a href="dashboard.html">Dashboard</a></li>
             <li><a href="sales_view.html">View Sales Record</a></li>
             <li><a href="store_attendant_profile.html">Profile</a></li> 
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="index.html" onclick="clearLocalStorage()">Logout</a></li>
         </div>
 
         <div id="main">
@@ -63,11 +63,11 @@
                 </div>
                  <hr >
             </section>
-            <section id="productsection">
+            <section id="productsection" >
                     <div class="container">
-                        <div class="cardgroup">
+                        <div class="cardgroup" id="productview">
 
-                                <div class="card">
+                                <!-- <div class="card">
                                         <a href="view_product_details.html"><img src="img/gpixel2.png" class="cardimg"></a>
         
                                 <div class="text-center cardbody" >
@@ -177,7 +177,7 @@
                                             <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
                                         </div>
                                     
-                                </div>
+                                </div> -->
                     </div>
                 </div>
                 </section>
@@ -210,7 +210,10 @@
         <p>Store Manager Copyright &copy; 2018</p>
     </footer>
 
+    <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+
     </body>
 
 </html>

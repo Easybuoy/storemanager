@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="createProduct()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -42,8 +42,8 @@
             <li><a href="admin_view_products.html">View Products</a></li>
             <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="admin_view_attendants.html">View Attendants</a></li>
+            <li><a href="index.html" onclick="clearLocalStorage()">Logout</a></li>
         </div>
 
         <div id="main">
@@ -52,19 +52,22 @@
                 <div class="container">
                         <div id="create_sales_assistant">
                                 <h1 class="text-center">Create New Product</h1>
-                        <form method="POST" action="index.html">
+                        <form method="POST">
                                 <h2>Product Name</h2>
-                                <input type="text" name="productname" placeholder="Enter Name">
+                                <input type="text" id="productname" name="productname" placeholder="Enter Name">
                                 <h2>Product Summary</h2>
-                                <input type="text" name="productsummary" placeholder="Enter Summary">
-                                <h2>Product Amount</h2>
-                                <input type="text" name="productamount" placeholder="Enter Amount">
+                                <input type="text" id="productdescription" name="productdescription" placeholder="Enter Description">
+                                <h2>Product Price</h2>
+                                <input type="number" id="productprice" name="productprice" placeholder="Enter Price">
                                 <h2>Product Quantity</h2>
-                                <input type="text" name="productquantity" placeholder="Enter Quantity">
+                                <input type="number" id="productquantity" name="productquantity" placeholder="Enter Quantity">
                                 <h2>Product Image</h2>
-                                <input type="file" name="upload" >
-
-                                <input type="submit" name="" class="button_1" value="Create Product">
+                                <input type="file" id="productimage" name="upload" >
+                                <h2>Category</h2>
+                                <select id="categoryoption">
+                                <option value="">Select Category</option>
+                                </select> <br> <br>
+                                <input type="submit" name="" class="button_1" id="createproductsubmit" value="Create Product">
                                 
                             </form>   
                     </div>
@@ -76,8 +79,9 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
     <script src="js/main.js"></script>
+    <script src="js/middleware.js"></script>
+    <script src="js/products.js"></script>
     </body>
 
 </html>

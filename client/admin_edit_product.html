@@ -42,8 +42,8 @@
             <li><a href="admin_view_products.html">View Products</a></li>
             <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
-            <li><a href="admin_asign_product_to_category.html">Assign Products</a></li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="admin_view_attendants.html">View Attendants</a></li>
+            <li><a href="index.html" onclick="clearLocalStorage()">Logout</a></li>
         </div>
 
         <div id="main">
@@ -63,8 +63,13 @@
                                 <input type="text" name="productquantity" placeholder="Enter Quantity" value="40">
                                 <h2>Product Image</h2>
                                 <input type="file" name="upload" >
-
-                                <input type="submit" name="" class="button_1" value="Create Product">
+                                <h2>Category</h2>
+                                <select>
+                                <option value="volvo">Phones & Tablets</option>
+                                <option value="saab">Computing</option>
+                                <option value="mercedes">Gaming</option>
+                                </select> <br> <br>
+                                <input type="submit" name="" class="button_1" value="Update Product">
                                 
                             </form>   
                     </div>

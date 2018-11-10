@@ -1,12 +1,31 @@
-this.url = 'https://store--manager.herokuapp.com';
-const request = (url, method, payload) => {
-  return fetch(`${this.url}${url}`, {
-    method,
+this.base_url = 'http://localhost:3000/';
+this.url = 'http://localhost:3000/api/v1';
+
+
+const request = (url, method, payload = null, isUpload = false) => {
+  let token = localStorage.getItem('token') || null;
+
+  // if a file is to be uploaded do not stringify
+  if (!isUpload) {
+    if (payload !== null) {
+    payload = JSON.stringify(payload)
+     }
+  }
+
+  let options = {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': token,
     },
-    body: JSON.stringify(payload),
-  });
+    method,
+    body: payload,
+  }
+
+// if a file is to be uploaded the content type would be automatically set
+  if (isUpload) {
+    delete options.headers['Content-Type'];
+  }
+  return fetch(`${this.url}${url}`, options);
 };
 
 if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
@@ -26,9 +45,22 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
     };
 
     let decodedToken = parseJwt(token);
+    const userImage = `${this.base_url}${decodedToken.userImage}`;
 
+    // Set user icon image
+    document.getElementById('userimg').src = userImage;
+
+    // if token expires, redirect to login page
     if (decodedToken.exp < Date.now() / 1000) {
       return window.location = `index.html`;
+    }
+
+    // Check if attendant is trying to access admin routte
+    if (decodedToken.type === 2) {
+      if(document.location.href.indexOf('admin') > -1) {
+        alert('Forbidden, PS: You would be fired soon');
+        return window.history.back();
+      }
     }
   };
   checkToken();
