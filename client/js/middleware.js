@@ -45,6 +45,10 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
     };
 
     let decodedToken = parseJwt(token);
+    const userImage = `${this.base_url}${decodedToken.userImage}`;
+
+    // Set user icon image
+    document.getElementById('userimg').src = userImage;
 
     // if token expires, redirect to login page
     if (decodedToken.exp < Date.now() / 1000) {

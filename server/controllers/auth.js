@@ -31,6 +31,11 @@ class usersController {
       return res.status(400).json({ status: 'error', data: errors });
     }
 
+    let userImage = process.env.USER_DEFAULT_IMAGE;
+    if (req.file) {
+      userImage = req.file.path;
+    }
+
     const {
       email, password, name, type,
     } = req.body;
@@ -52,7 +57,7 @@ class usersController {
         name,
         status: 1,
         type,
-        userImage: process.env.USER_DEFAULT_IMAGE,
+        userImage,
       };
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -134,6 +139,7 @@ class usersController {
               id: userData.id,
               // email: userData.email,
               // name: userData.name,
+              userImage: userData.userimage,
               type: userData.type,
             };
             // Sign Token

@@ -51,12 +51,23 @@ const createAttendant = () => {
   document.getElementById('createattendant').addEventListener('click', (e) => {
     e.preventDefault();
     let status = 0;
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    let type = document.getElementById('type').value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const type = document.getElementById('type').value;
+    const userImage = document.getElementById('userimage').files[0];
 
-    request('/auth/signup', 'POST', { name, email, password, type, })
+    const formData = new FormData();
+
+    formData.append('userImage', userImage);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    if (type) {
+      formData.append('type', type);
+    }
+
+    request('/auth/signup', 'POST', formData, true)
       .then((res) => {
         status = res.status;
         return res.json();

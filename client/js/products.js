@@ -84,12 +84,12 @@ const createProduct = () => {
     document.getElementById('createproductsubmit').addEventListener('click', (e) =>{
     e.preventDefault();
     // createProduct();
-     let productname = document.getElementById('productname').value;
-    let productdescription = document.getElementById('productdescription').value;
-    let productprice = document.getElementById('productprice').value;
-    let productquantity = document.getElementById('productquantity').value;
-    let productimage = document.getElementById('productimage').files[0];
-    let categoryid = document.getElementById('categoryoption').value;
+    const productname = document.getElementById('productname').value;
+    const productdescription = document.getElementById('productdescription').value;
+    const productprice = document.getElementById('productprice').value;
+    const productquantity = document.getElementById('productquantity').value;
+    const productimage = document.getElementById('productimage').files[0];
+    const categoryid = document.getElementById('categoryoption').value;
 
     let status = 0;
 const formData = new FormData();
