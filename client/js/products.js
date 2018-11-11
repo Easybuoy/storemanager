@@ -92,7 +92,7 @@ const createProduct = () => {
     const categoryid = document.getElementById('categoryoption').value;
 
     let status = 0;
-const formData = new FormData();
+    const formData = new FormData();
 
     formData.append('productImage', productimage);
     formData.append('name', productname);
