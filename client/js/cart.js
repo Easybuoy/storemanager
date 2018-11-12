@@ -26,7 +26,6 @@ const showCart = () => {
     let carttablebody = document.getElementById('carttablebody');
   let output = '';
 
-    console.log(cartItems)
     // check if cart is empty 
     if (cartItems === null) {
        return alert('Cart Is Empty');
@@ -52,17 +51,15 @@ const showCart = () => {
 }
 
 const removeProductFromCart = (productId) => {
-    let cartItems = JSON.parse(localStorage.getItem('products'));
-    cartItems.map((item, i) => {
-        console.log(i)
-        console.log(item)
+  let cartItems = JSON.parse(localStorage.getItem('products'));
+  cartItems.map((item, i) => {
+    if (item.productId === productId) {
+      cartItems.splice(i, 1);
 
-        if (item.productId === productId) { console.log('entered')
-            cartItems.splice(i, 1);
-            // delete cartItems[i];
-            console.log(cartItems);
-        }
-    })
+      localStorage.setItem('products', JSON.stringify(cartItems));      
+    }
+  });
+  window.location.reload();
 }
 
 // This function appends the total item in cart to the cart image on the frontend
