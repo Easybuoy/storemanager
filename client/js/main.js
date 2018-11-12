@@ -102,8 +102,3 @@ const closeSlideMenu = () =>{
 //     modal.style.display = "none";
 //   }
 // };
-
-const clearLocalStorage = () => {
-  localStorage.clear();
-}
-

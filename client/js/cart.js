@@ -1,4 +1,5 @@
 const addToCart = (productId, productImage, productPrice) => {
+    console.log(productImage)
     const products = {
         productId,
         productImage,
@@ -15,22 +16,14 @@ const addToCart = (productId, productImage, productPrice) => {
   }
   // Else push to what is existing in cart.
   totalcartitems.push(products);
-  localStorage.setItem('products', JSON.stringify(totalcartitems));
-
-    
-    
-    
-    // let me = document.getElementById(`quantity-${productId}`).value;
-    // console.log(me)
-    
-
-      
+  localStorage.setItem('products', JSON.stringify(totalcartitems));      
     showCartCount();
-    // let existingCartItem = localStorage.getItem('products');
 };
 
 const showCart = () => {
-    
+    // let existingCartItem = localStorage.getItem('products');
+    // let me = document.getElementById(`quantity-${productId}`).value;
+    // console.log(me)
 }
 
 // This function appends the total item in cart to the cart image on the frontend

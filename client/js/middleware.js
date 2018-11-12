@@ -65,3 +65,7 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
   };
   checkToken();
 }
+
+const clearLocalStorage = (item) => {
+  localStorage.removeItem(item);
+};
