@@ -24,8 +24,7 @@ const getProductsAttendantsView = () => {
             </div>      
           `;
 
-      })
-
+      });
       productview.innerHTML = output;
       });
 }
