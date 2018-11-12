@@ -18,7 +18,7 @@ const getProductsAttendantsView = () => {
                     <p>Quantity: ${product.quantity}</p>
                     <p  id="productamount">Price: $${product.price}</p>
                     <input type="number" id="quantity-${product.id}" name="quantity" placeholder="Quantity" >
-                    <button class="button_1" onclick="addToCart('${product.id}')">Add To Cart</button>
+                    <button class="button_1" onclick="addToCart('${product.id}', '${product.product_image}', '${product.price}')">Add To Cart</button>
                 </div>
         
             </div>      
