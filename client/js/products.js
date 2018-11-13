@@ -17,8 +17,8 @@ const getProductsAttendantsView = () => {
                     <p>${product.description.substring(0, 50)}...</p>
                     <p>Quantity: ${product.quantity}</p>
                     <p  id="productamount">Price: $${product.price}</p>
-                    <input type="number" id="number" name="amount" placeholder="Quantity" >
-                    <button class="button_1" onclick="addtocart('Google Pixel 2', '$649')">Add To Cart</button>
+                    <input type="number" id="quantity-${product.id}" class="" name="amount" placeholder="Quantity" >
+                    <button class="button_1" onclick="addtocart('${product.id}')">Add To Cart</button>
                 </div>
         
             </div>      
@@ -29,7 +29,6 @@ const getProductsAttendantsView = () => {
       productview.innerHTML = output;
       });
 }
-
 
 const getProductsAdminView = () => {
   request('/products/', 'GET')
@@ -92,7 +91,7 @@ const createProduct = () => {
     const categoryid = document.getElementById('categoryoption').value;
 
     let status = 0;
-const formData = new FormData();
+    const formData = new FormData();
 
     formData.append('productImage', productimage);
     formData.append('name', productname);

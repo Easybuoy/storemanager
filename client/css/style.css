@@ -1054,6 +1054,47 @@ select{
 
 /* End Of Styling For Admin Create Sales Attendant Page */
 
+#pagination {
+  margin-top: 50px;
+}
+#pagination ul {
+  float: right;
+  transform: translate(-50%, -50%);
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+#pagination ul li {
+  list-style: none;
+}
+
+#pagination ul li a {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  background: #353535;
+  color: #565656;
+  text-decoration: none;
+  margin: 5px 5px 0 0;
+  border-radius: 4px;
+box-shadow: inset 0 5px 10px rgba(0, 0, 0, .1), 0 2px 5px rgba(0, 0, 0, .5);
+}
+
+#pagination ul li a.active, #pagination ul li a:hover {
+  color: #fff;
+  text-shadow: 0 0 20px #0099ff,
+  0 0 20px #0099ff,
+  0 0 20px #0099ff,
+  0 0 20px #0099ff,
+  0 0 20px #0099ff,
+  0 0 20px #0099ff,
+  0 0 20px #0099ff;
+}
 
 @media (max-width: 1020px) {
   .loginbox{
@@ -1110,6 +1151,27 @@ select{
     width: 90%;
 
   }
+
+  #pagination {
+    padding-left: 100px;
+    width: 100%;
+    }
+  #pagination ul {
+    float: right;
+    justify-content: flex-end;
+    transform: translate(-50%, -50%);
+    display: flex;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  #pagination ul li a {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    }
 }
 
 
