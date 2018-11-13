@@ -37,18 +37,14 @@ const showCart = () => {
         output += `
         <tr>
         <td data-label="Item(s)"><img src="${productImage}" class="cardimg"></td>
-        <td data-label="Quantity"> <input type="number" id="product-${item.productId}" name="quantity" value="1" placeholder="Quantity" > </td>
+        <td data-label="Quantity"> <input type="number" id="quantity-${item.productId}" name="quantity" value="1" placeholder="Quantity" > </td>
         <td data-label="Price">$${item.productPrice}</td>
         <td><button class="button_2" onclick="removeProductFromCart('${item.productId}')">Remove</button></td>
         </tr>
         `;
     });
     carttablebody.innerHTML = output;
-
-
-    // let me = document.getElementById(`quantity-${productId}`).value;
-    // console.log(me)
-}
+};
 
 const removeProductFromCart = (productId) => {
   let cartItems = JSON.parse(localStorage.getItem('products'));
@@ -73,3 +69,46 @@ const showCartCount = () => {
 };
 
 showCartCount();
+
+const checkout = () => {
+    if (confirm('Are you sure you want to checkout now?')){
+        const totalcartitems = JSON.parse(localStorage.getItem('products'));
+
+        if (totalcartitems === null) {
+          return  alert('Cart is empty');
+        }
+        const order = [];
+        totalcartitems.map((product) => {
+            let quantity = document.getElementById(`quantity-${product.productId}`).value;
+            quantity = Number(quantity);
+            const productRequested = {
+                product_id: product.productId,
+                quantity,
+            };
+        order.push(productRequested);
+        });
+        let status = 0;
+        request('/sales/', 'POST', { order })
+        .then(res => {
+            status = res.status;
+            return res.json()
+            })
+        .then(data => {
+            console.log(data)
+            switch (status) {
+                case 201:
+                alert(data.message)
+                window.location.reload();
+                break;
+                case 400:
+                  alert(data.message);
+                  break;
+                case 401:
+                   alert('Kindly login to create sale');
+                    break;
+                default:
+                  return alert('Error creating sale. Please try again');
+              }
+        });
+    }
+};
