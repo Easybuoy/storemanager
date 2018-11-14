@@ -17,15 +17,14 @@ const getProductsAttendantsView = () => {
                     <p>${product.description.substring(0, 50)}...</p>
                     <p>Quantity: ${product.quantity}</p>
                     <p  id="productamount">Price: $${product.price}</p>
-                    <input type="number" id="quantity-${product.id}" class="" name="amount" placeholder="Quantity" >
-                    <button class="button_1" onclick="addtocart('${product.id}')">Add To Cart</button>
+                    <input type="number" id="quantity-${product.id}" name="quantity" placeholder="Quantity" >
+                    <button class="button_1" onclick="addToCart('${product.id}', '${product.product_image}', '${product.price}')">Add To Cart</button>
                 </div>
         
             </div>      
           `;
 
-      })
-
+      });
       productview.innerHTML = output;
       });
 }

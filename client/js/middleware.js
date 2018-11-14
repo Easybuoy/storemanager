@@ -1,6 +1,6 @@
 this.base_url = 'http://localhost:3000/';
 this.url = 'http://localhost:3000/api/v1';
-
+// this.dashboard = '';
 
 const request = (url, method, payload = null, isUpload = false) => {
   let token = localStorage.getItem('token') || null;
@@ -65,3 +65,7 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
   };
   checkToken();
 }
+
+const clearLocalStorage = (item) => {
+  localStorage.removeItem(item);
+};
