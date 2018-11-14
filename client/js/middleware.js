@@ -1,5 +1,5 @@
-this.base_url = 'http://localhost:3000/';
-this.url = 'http://localhost:3000/api/v1';
+this.base_url = 'https://store--manager.herokuapp.com/';
+this.url = 'https://store--manager.herokuapp.com/api/v1';
 // this.dashboard = '';
 
 const request = (url, method, payload = null, isUpload = false) => {
