@@ -7,464 +7,464 @@
  */
 
  html {
-    line-height: 1.15; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Sections
-     ========================================================================== */
-  
-  
-  /**
-   * Correct the font size and margin on `h1` elements within `section` and
-   * `article` contexts in Chrome, Firefox, and Safari.
-   */
-  
-  h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-  }
-  
-  /* Grouping content
-     ========================================================================== */
-  
-  /**
-   * 1. Add the correct box sizing in Firefox.
-   * 2. Show the overflow in Edge and IE.
-   */
-  
-  hr {
-    box-sizing: content-box; /* 1 */
-    height: 0; /* 1 */
-    overflow: visible; /* 2 */
-  }
-  
-  /**
-   * 1. Correct the inheritance and scaling of font size in all browsers.
-   * 2. Correct the odd `em` font sizing in all browsers.
-   */
-  
-  pre {
-    font-family: monospace, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-  }
-  
-  /* Text-level semantics
-     ========================================================================== */
-  
-  /**
-   * Remove the gray background on active links in IE 10.
-   */
-  
-  a {
-    background-color: transparent;
-  }
-  
-  /**
-   * 1. Remove the bottom border in Chrome 57-
-   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
-   */
-  
-  abbr[title] {
-    border-bottom: none; /* 1 */
-    text-decoration: underline; /* 2 */
-    text-decoration: underline dotted; /* 2 */
-  }
-  
-  /**
-   * Add the correct font weight in Chrome, Edge, and Safari.
-   */
-  
-  b,
-  strong {
-    font-weight: bolder;
-  }
-  
-  /**
-   * 1. Correct the inheritance and scaling of font size in all browsers.
-   * 2. Correct the odd `em` font sizing in all browsers.
-   */
-  
-  code,
-  kbd,
-  samp {
-    font-family: monospace, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-  }
-  
-  /**
-   * Add the correct font size in all browsers.
-   */
-  
-  small {
-    font-size: 80%;
-  }
-  
-  /**
-   * Prevent `sub` and `sup` elements from affecting the line height in
-   * all browsers.
-   */
-  
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  
-  sub {
-    bottom: -0.25em;
-  }
-  
-  sup {
-    top: -0.5em;
-  }
-  
-  
-  /* Embedded content
-     ========================================================================== */
-  
-  /**
-   * Remove the border on images inside links in IE 10.
-   */
-  
-  img {
-    border-style: none;
-  }
-  
-  /* Forms
-     ========================================================================== */
-  
-  /**
-   * 1. Change the font styles in all browsers.
-   * 2. Remove the margin in Firefox and Safari.
-   */
-  
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
-    font-family: inherit; /* 1 */
-    font-size: 100%; /* 1 */
-    line-height: 1.15; /* 1 */
-    margin: 0; /* 2 */
-  }
-  
-  /**
-   * Show the overflow in IE.
-   * 1. Show the overflow in Edge.
-   */
-  
-  button,
-  input { /* 1 */
-    overflow: visible;
-  }
-  
-  /**
-   * Remove the inheritance of text transform in Edge, Firefox, and IE.
-   * 1. Remove the inheritance of text transform in Firefox.
-   */
-  
-  button,
-  select { /* 1 */
-    text-transform: none;
-  }
-  
-  /**
-   * Correct the inability to style clickable types in iOS and Safari.
-   */
-  
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    -webkit-appearance: button;
-  }
-  
-  /**
-   * Remove the inner border and padding in Firefox.
-   */
-  
-  button::-moz-focus-inner,
-  [type="button"]::-moz-focus-inner,
-  [type="reset"]::-moz-focus-inner,
-  [type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-  }
-  
-  /**
-   * Restore the focus styles unset by the previous rule.
-   */
-  
-  button:-moz-focusring,
-  [type="button"]:-moz-focusring,
-  [type="reset"]:-moz-focusring,
-  [type="submit"]:-moz-focusring {
-    outline: 1px dotted ButtonText;
-  }
-  
-  /**
-   * Correct the padding in Firefox.
-   */
-  
-  fieldset {
-    padding: 0.35em 0.75em 0.625em;
-  }
-  
-  /**
-   * 1. Correct the text wrapping in Edge and IE.
-   * 2. Correct the color inheritance from `fieldset` elements in IE.
-   * 3. Remove the padding so developers are not caught out when they zero out
-   *    `fieldset` elements in all browsers.
-   */
-  
-  legend {
-    box-sizing: border-box; /* 1 */
-    color: inherit; /* 2 */
-    display: table; /* 1 */
-    max-width: 100%; /* 1 */
-    padding: 0; /* 3 */
-    white-space: normal; /* 1 */
-  }
-  
-  /**
-   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-   */
-  
-  progress {
-    vertical-align: baseline;
-  }
-  
-  /**
-   * Remove the default vertical scrollbar in IE 10+.
-   */
-  
-  textarea {
-    overflow: auto;
-  }
-  
-  /**
-   * 1. Add the correct box sizing in IE 10.
-   * 2. Remove the padding in IE 10.
-   */
-  
-  [type="checkbox"],
-  [type="radio"] {
-    box-sizing: border-box; /* 1 */
-    padding: 0; /* 2 */
-  }
-  
-  /**
-   * Correct the cursor style of increment and decrement buttons in Chrome.
-   */
-  
-  [type="number"]::-webkit-inner-spin-button,
-  [type="number"]::-webkit-outer-spin-button {
-    height: auto;
-  }
-  
-  /**
-   * 1. Correct the odd appearance in Chrome and Safari.
-   * 2. Correct the outline style in Safari.
-   */
-  
-  [type="search"] {
-    -webkit-appearance: textfield; /* 1 */
-    outline-offset: -2px; /* 2 */
-  }
-  
-  /**
-   * Remove the inner padding in Chrome and Safari on macOS.
-   */
-  
-  [type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-  
-  /**
-   * 1. Correct the inability to style clickable types in iOS and Safari.
-   * 2. Change font properties to `inherit` in Safari.
-   */
-  
-  ::-webkit-file-upload-button {
-    -webkit-appearance: button; /* 1 */
-    font: inherit; /* 2 */
-  }
-  
-  /* Interactive
-     ========================================================================== */
-  
-  /*
-   * Add the correct display in Edge, IE 10+, and Firefox.
-   */
-  
-  details {
-    display: block;
-  }
-  
-  /*
-   * Add the correct display in all browsers.
-   */
-  
-  summary {
-    display: list-item;
-  }
-  
-  /* Misc
-     ========================================================================== */
-  
-  /**
-   * Add the correct display in IE 10+.
-   */
-  
-  template {
-    display: none;
-  }
-  
-  /**
-   * Add the correct display in IE 10.
-   */
-  
-  [hidden] {
-    display: none;
-  }
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sections
+   ========================================================================== */
+
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
 
 
 
 @font-face {
-    font-family: 'k2d_semiboldregular';
-    src: url('../fonts/k2d/k2d-webfont.woff2') format('woff2'),
-         url('../fonts/k2d/k2d-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'k2d_semiboldregular';
+  src: url('../fonts/k2d/k2d-webfont.woff2') format('woff2'),
+       url('../fonts/k2d/k2d-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
 @font-face {
-  font-family: 'Poiret One';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Poiret One'), local('PoiretOne-Regular'),
-       url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/poiretOne/poiret-one-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/poiretOne/poiret-one-v6-latin-regular.svg#PoiretOne') format('svg'); /* Legacy iOS */
+font-family: 'Poiret One';
+font-style: normal;
+font-weight: 400;
+src: url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot'); /* IE9 Compat Modes */
+src: local('Poiret One'), local('PoiretOne-Regular'),
+     url('../fonts/poiretOne/poiret-one-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+     url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+     url('../fonts/poiretOne/poiret-one-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+     url('../fonts/poiretOne/poiret-one-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+     url('../fonts/poiretOne/poiret-one-v6-latin-regular.svg#PoiretOne') format('svg'); /* Legacy iOS */
 }
 
 body{
-    font-family: 'k2d_semiboldregular', sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-    padding: 0;
-    margin: 0;
-    background-color: #f4f4f4;
-    overflow-x: hidden; 
-    height: 100%;
-    /* min-height: 100%; */
-    /* position: relative; */
+  font-family: 'k2d_semiboldregular', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  background-color: #f4f4f4;
+  overflow-x: hidden; 
+  height: 100%;
+  /* min-height: 100%; */
+  /* position: relative; */
 }
 
 /* body {
-    background-color: #f4f4f4;
-    overflow-x: hidden;
+  background-color: #f4f4f4;
+  overflow-x: hidden;
 } */
 
 /* Global */
 .container{
-  width: 100%;
-  /* margin: 100px; */
-  overflow: hidden;
+width: 100%;
+/* margin: 100px; */
+overflow: hidden;
 }
 
 .text-center{
-  text-align:center;
+text-align:center;
 }
 
 .topmargin{
-  margin-top: 100px;
+margin-top: 100px;
 }
 
 .dashboard{
-  display: none !important;
+display: none !important;
 }
 
 
 
 /* Navigation */
 nav .highlight, nav .current a{
-  color: #0099ff;
-  font-weight: bold;
-  font-size: 22px;
+color: #0099ff;
+font-weight: bold;
+font-size: 22px;
 }
 
 nav a:hover{
-  color:#cccccc;
-  font-weight: bold;
+color:#cccccc;
+font-weight: bold;
 }
 
 #appnameli{
-  float: left;
+float: left;
 }
 
 #appname{
-  font-size: 25px;
-  margin: 0;
-  padding: 0;
-  
+font-size: 25px;
+margin: 0;
+padding: 0;
+
 }
 
 #searchimg{
-  width: 40px !important;
-  height: 40px !important;
-  margin-top: 1.5%;
-  padding: 0px;
-  display: block;
-  float: right;
-  color: #fff;
-  background: inherit;
-  font-size: 28px;
+width: 40px !important;
+height: 40px !important;
+margin-top: 1.5%;
+padding: 0px;
+display: block;
+float: right;
+color: #fff;
+background: inherit;
+font-size: 28px;
 }
 
 #userimg{
-  width: 40px;
-  height: 40px;
-  margin-top: 0;
-  padding: 0px;
-  display: block;
-  float: right;
-  color: #fff;
-  border-radius: 50%;
-  border: #0099ff 3px solid;
+width: 40px;
+height: 40px;
+margin-top: 0;
+padding: 0px;
+display: block;
+float: right;
+color: #fff;
+border-radius: 50%;
+border: #0099ff 3px solid;
 }
 
 #cartimage{
-  width: 40px;
-  height: 40px;
-  margin: 0;
-  padding: 0px;
-  /* display: block; */
-  float: right;
-  /* background: #fff; */
+width: 40px;
+height: 40px;
+margin: 0;
+padding: 0px;
+/* display: block; */
+float: right;
+/* background: #fff; */
 }
 
 .navbar{
-    background-color: #1c588a;
-    overflow: hidden;
-    height: 63px;
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    /* margin-bottom: 500px; */
-    border-bottom: #0099ff 3px solid;
+  background-color: #1c588a;
+  overflow: hidden;
+  height: 63px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  /* margin-bottom: 500px; */
+  border-bottom: #0099ff 3px solid;
 
 }
 
@@ -473,150 +473,150 @@ float: left;
 }
 
 .navbar a{
-    float: right;
-    /* display: block; */
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    /* margin-right: 10px; */
+  float: right;
+  /* display: block; */
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  /* margin-right: 10px; */
 }
 
 
 .navbar ul {
-    margin: 8px 0 0 0;
-    list-style: none;
+  margin: 8px 0 0 0;
+  list-style: none;
 }
 
 /* .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #ddd;
+  color: black;
 } */
 
 .search{ 
-  outline: none;
-    height: 30px;
-    color: black; 
-    text-align: center;
-    /* background: #cccccc; */
-    border: 2px solid #0099ff;
-    /* width: 30%; */
-    font-size: 16px; 
+outline: none;
+  height: 30px;
+  color: black; 
+  text-align: center;
+  /* background: #cccccc; */
+  border: 2px solid #0099ff;
+  /* width: 30%; */
+  font-size: 16px; 
 }
 
 
 .side-nav{
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    opacity: 0.9;
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
 }
 
 .side-nav a{
-    padding: 10px 10px 10px 30px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #ccc;
-    display: block;
-    transition: 0.3;
-    text-align: center;
-    text-transform: uppercase;
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ccc;
+  display: block;
+  transition: 0.3;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .side-nav .current a{
-  color: #0099ff;
-  font-weight: bold;
+color: #0099ff;
+font-weight: bold;
 }
 
 .side-nav a:hover{
-    color: #fff;
-    background: #0099ff;
+  color: #fff;
+  background: #0099ff;
 
 }
 
 .side-nav .btn-close{
-    position: absolute;
-    top: 0;
-    right: 22px;
-    font-size: 25px;
-    margin-left: 50px;
-    background: inherit !important;
+  position: absolute;
+  top: 0;
+  right: 22px;
+  font-size: 25px;
+  margin-left: 50px;
+  background: inherit !important;
 }
 
 .side-nav li{
-  list-style: none;
+list-style: none;
 }
 
-#side-menu{
-    width: 250px;
-}
+/* #side-menu{
+  width: 250px;
+} */
 
 #main{
-    transition: margin-left 0.5s;
-    overflow: hidden;
-    width: 100%;
+  transition: margin-left 0.5s;
+  overflow: hidden;
+  width: 100%;
 }
 
 /* TopCards */
 .topcardsgroup {
-  display: flex ;
-  justify-content: space-between;
-  justify-items: flex-start;
-  
+display: flex ;
+justify-content: space-between;
+justify-items: flex-start;
+
 }
 
 #topcards{
-  /* margin: 20px 0 20px 0; */
-  margin-top: 100px;
+/* margin: 20px 0 20px 0; */
+margin-top: 100px;
 }
 
 
 .topcardsbox{
-  background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
-  width: 31%;
-  text-align: center;
-  margin: 0 auto;
-  height: 100%;
+background: linear-gradient(89deg, #4d4dff 0%, #80bfff 100%) !important;
+width: 31%;
+text-align: center;
+margin: 0 auto;
+height: 100%;
 }
 
 
 .showcasecard{
-  padding: 5%;
-  transition: 0.9s;
-  -webkit-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
-  box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
-  box-sizing: border-box;
+padding: 5%;
+transition: 0.9s;
+-webkit-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+box-shadow: -1px 2px 7px -1px rgba(0,0,0,0.75);
+box-sizing: border-box;
 }
 
 
 /* Category Filter */
 #categoryfiltersection {
-  margin-top: 100px;
-  width: 100%;
+margin-top: 100px;
+width: 100%;
 }
 
 .categoryfiltercontent {
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+width: 50%;
+margin: 0 auto;
+display: flex;
+justify-content: center;
 }
 
 .categoryfiltercontent select{
-  height: 38px;
-  margin-right: 2%;
-  
-  font-family: 'Poiret One';
-  font-weight: 900;
+height: 38px;
+margin-right: 2%;
+
+font-family: 'Poiret One';
+font-weight: 900;
 }
 /* End of Category Filter */
 
@@ -626,130 +626,130 @@ float: left;
 
 
 .cardgroup{
-  width: 100%;
-  display: block;
-  text-align: center;
+width: 100%;
+display: block;
+text-align: center;
 }
 
 
 
 .card {
-  background: #fff;
-  border-radius: 2px;
-  display: inline-block;
-  height: 400px;
-  margin: 1rem;
-  position: relative;
-  width: 300px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+background: #fff;
+border-radius: 2px;
+display: inline-block;
+height: 400px;
+margin: 1rem;
+position: relative;
+width: 300px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 
 .card:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .cardimg{
-  width: 300px; 
-  height: 150px;
+width: 300px; 
+height: 150px;
 }
 .cardbody{
-  margin-bottom: 10px;
-  background: #ccc;
-  height: 250px;
+margin-bottom: 10px;
+background: #ccc;
+height: 250px;
 }
 
 .button_1{
-  height: 38px;
-  background: #0099ff;
-  border: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #ffffff;
-  cursor: pointer;
+height: 38px;
+background: #0099ff;
+border: none;
+padding-left: 20px;
+padding-right: 20px;
+color: #ffffff;
+cursor: pointer;
 }
 
 .button_2{
-  height: 38px;
-  background: red;
-  border: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #ffffff;
-  cursor: pointer;
+height: 38px;
+background: red;
+border: none;
+padding-left: 20px;
+padding-right: 20px;
+color: #ffffff;
+cursor: pointer;
 }
 
 .button_3{
-  height: 38px;
-  background: green;
-  border: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #ffffff;
-  cursor: pointer;
+height: 38px;
+background: green;
+border: none;
+padding-left: 20px;
+padding-right: 20px;
+color: #ffffff;
+cursor: pointer;
 }
 
 .button_1 a{
-  text-decoration: none;
-  color: inherit;
-  background: inherit;
-  margin: 0;
-  padding: 0;
+text-decoration: none;
+color: inherit;
+background: inherit;
+margin: 0;
+padding: 0;
 }
 
 input[type="number"]{
-  border: none;
-  /* border-bottom: 1px solid black; */
-  /* background: transparent; */
-  outline: none;
-  height: 30px;
-  color: black; 
-  text-align: center;
-  /* background: #cccccc; */
-  border: 2px solid #0099ff;
-  width: 30%;
-  font-size: 16px;  
+border: none;
+/* border-bottom: 1px solid black; */
+/* background: transparent; */
+outline: none;
+height: 30px;
+color: black; 
+text-align: center;
+/* background: #cccccc; */
+border: 2px solid #0099ff;
+width: 30%;
+font-size: 16px;  
 }
 
 /* Table Styling */
 
 table {
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0px auto;
-  padding: 0;
-  width: 80%;
-  table-layout: fixed;
+border: 1px solid #ccc;
+border-collapse: collapse;
+margin: 0px auto;
+padding: 0;
+width: 80%;
+table-layout: fixed;
 }
 
 table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
+font-size: 1.5em;
+margin: .5em 0 .75em;
 }
 
 table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
+background-color: #f8f8f8;
+border: 1px solid #ddd;
+padding: .35em;
 }
 
 table th,
 table td {
-  padding: .625em;
-  text-align: center;
+padding: .625em;
+text-align: center;
 }
 
 table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-size: 18px;
+font-size: .85em;
+letter-spacing: .1em;
+text-transform: uppercase;
+font-size: 18px;
 }
 
 table td {
-  font-family: 'Poiret One';
-  font-weight: 900;
+font-family: 'Poiret One';
+font-weight: 900;
 }
 
 
@@ -758,43 +758,43 @@ table td {
 
 /* End Of Table Styling */
 .footerstickbottom{
-  position: absolute !important;
-  bottom:0;
-  left: 0;
+position: absolute !important;
+bottom:0;
+left: 0;
 }
 
 #footer{
-  padding: 20px;
-  margin-top: 20px;
-  /* height: 100px; */
-  color: #ffffff;
-  background: #1c588a;
-  text-align: center;
-  position: relative;
-  font-family: 'Poiret One';
-  width:100%;
-  }
+padding: 20px;
+margin-top: 20px;
+/* height: 100px; */
+color: #ffffff;
+background: #1c588a;
+text-align: center;
+position: relative;
+font-family: 'Poiret One';
+width:100%;
+}
 
 .wrapper {
-  min-height: 100%;
-  /* margin-bottom: -20px; */
-  /* position: absolute; */
-  /* margin: 0  auto; */
+min-height: 100%;
+/* margin-bottom: -20px; */
+/* position: absolute; */
+/* margin: 0  auto; */
 }
 
 #productviewsection{
-  display: flex;
+display: flex;
 }
 
 .productviewcardimg{
-  width: 300px; 
-  height: 300px;
+width: 300px; 
+height: 300px;
 }
 
 #productdetailsimg{
-  float: left;
-  margin-left: 100px;
-  /* width: 50%; */
+float: left;
+margin-left: 100px;
+/* width: 50%; */
 
 }
 
@@ -806,20 +806,20 @@ width: 50%;
 
 
 .list-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
+display: flex;
+flex-direction: column;
+padding-left: 0;
+margin-bottom: 0;
 }
 
 .list-group-item {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-  margin-bottom: -1px;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,.125);
-  overflow-wrap: break-word;
+position: relative;
+display: block;
+padding: 10px 15px;
+margin-bottom: -1px;
+background-color: #fff;
+border: 1px solid rgba(0,0,0,.125);
+overflow-wrap: break-word;
 
 }
 
@@ -828,159 +828,159 @@ width: 50%;
 
 /* Login Page */
 #loginbody{
-  margin: 0;
-  padding: 0;
-  /* background: url(../img/background.jpg) no-repeat; */
-  background-size: cover;
-  background-position: center;
-  font-family: 'Poiret One';
-  height: 100%;
+margin: 0;
+padding: 0;
+/* background: url(../img/background.jpg) no-repeat; */
+background-size: cover;
+background-position: center;
+font-family: 'Poiret One';
+height: 100%;
 }
 
 /* Styling For Login Page */
 .loginbox{
-  width: 50%;
-  height: auto;
-  background: #1c588a;
-  color: #fff;
-  top: 50%;
-  left: 50%;
-  position: relative;
-  transform: translate(-50%,-50%);
-  box-sizing: border-box;
-  padding: 70px 30px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  box-shadow: #fff;
-  opacity: 0.9;
-  margin-bottom: 10%;
+width: 50%;
+height: auto;
+background: #1c588a;
+color: #fff;
+top: 50%;
+left: 50%;
+position: relative;
+transform: translate(-50%,-50%);
+box-sizing: border-box;
+padding: 70px 30px;
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+box-shadow: #fff;
+opacity: 0.9;
+margin-bottom: 10%;
 }
 
 .avatar{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: absolute;;
-  top: -50px;
-  left: calc(50% - 50px);
+width: 100px;
+height: 100px;
+border-radius: 50%;
+position: absolute;;
+top: -50px;
+left: calc(50% - 50px);
 }
 
 /* h1{
-  margin: 0;
-  padding: 0 0 20px;
-  text-align: center;
-  font-size: 22px;
+margin: 0;
+padding: 0 0 20px;
+text-align: center;
+font-size: 22px;
 } */
 
 .loginfooter {
-  position: absolute !important;
+position: absolute !important;
 }
 .loginbox p{
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  font-size: 20px;
+margin: 0;
+padding: 0;
+font-weight: bold;
+font-size: 20px;
 }
 
 .loginbox input{
-  width: 100%;
-  margin-bottom: 20px;
-  color: #fff;
+width: 100%;
+margin-bottom: 20px;
+color: #fff;
 }
 
 .loginbox input[type="text"], input[type="password"]{
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  outline: none;
-  height: 40px;
-  color: #fff; 
-  font-size: 14px;  
+border: none;
+border-bottom: 1px solid #fff;
+background: transparent;
+outline: none;
+height: 40px;
+color: #fff; 
+font-size: 14px;  
 }
 
 #loginpassword {
-  color: #fff !important;
-  font-size: 14px !important;
-  border-bottom-color: white;
+color: #fff !important;
+font-size: 14px !important;
+border-bottom-color: white;
 }
 .loginbox input[type="submit"]{
-  border: none;
-  outline: none;
-  height: 40px;
-  background: #0099ff;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 20px;
+border: none;
+outline: none;
+height: 40px;
+background: #0099ff;
+color: #fff;
+font-size: 18px;
+border-radius: 20px;
 }
 
 .loginbox input[type="submit"]:hover{
-  cursor: pointer;
-  background: #99ebff;
-  color: #000;
+cursor: pointer;
+background: #99ebff;
+color: #000;
 }
 
 .loginbox a{
-  text-decoration: none;
-  font-size: 12px;
-  line-height: 20px;
-  color: #fff;
+text-decoration: none;
+font-size: 12px;
+line-height: 20px;
+color: #fff;
 }
 
 .loginbox a:hover{
-  color: #99ebff;
+color: #99ebff;
 }
 /* End Of Stying For Login Page */
 
 
 /* Shopping Cart Modal Styling */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+background-color: #fefefe;
+margin: auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+color: #000;
+text-decoration: none;
+cursor: pointer;
 }
 
 /* End Of Shopping Cart Modal Styling */
 
 #prof {
-  margin: 0 auto;
-  width: 90%;
+margin: 0 auto;
+width: 90%;
 }
 
 #profiledetails {
-  display: flex;
-  text-align: center;
-  justify-content: center;
+display: flex;
+text-align: center;
+justify-content: center;
 }
 
 #profileimg {
@@ -990,300 +990,294 @@ margin: 5% 2% 0 0;
 }
 
 #profilecontent {
-  width: 60% !important;
-  margin: 5% 2% 0 0;
+width: 60% !important;
+margin: 5% 2% 0 0;
 }
 /* Styling For Admin Create Sales Attendant Page */
 select{
-  width: 50%;
-  overflow: hidden !important;
-  height: 30px;
-  outline: none;
-  /* margin: 20px; */
+width: 50%;
+overflow: hidden !important;
+height: 30px;
+outline: none;
+/* margin: 20px; */
 }
 
 #create_sales_assistant{
-  width: 50%;
-  /* text-align: center; */
-  margin: 0 auto;
-  padding: 5%;
+width: 50%;
+/* text-align: center; */
+margin: 0 auto;
+padding: 5%;
 }
 
 #create_sales_assistant p{
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
+margin: 0;
+padding: 0;
+font-weight: bold;
 }
 
 #create_sales_assistant h1{
-  text-transform: uppercase;
-  margin-bottom: 2%;
+text-transform: uppercase;
+margin-bottom: 2%;
 }
 
 #create_sales_assistant input{
-  width: 100%;
-  margin-bottom: 20px;
+width: 100%;
+margin-bottom: 20px;
 }
 
-#create_sales_assistant input[type="text"], input[type="password"], input[type="email"], , input[type="number"]{
-  border: none;
-  border-bottom: 1px solid #0099ff;
-  background: transparent;
-  outline: none;
-  height: 40px;
-  color: #000; 
-  font-size: 16px;  
+#create_sales_assistant input[type="text"], input[type="password"], input[type="email"], input[type="number"]{
+border: none;
+border-bottom: 1px solid #0099ff;
+background: transparent;
+outline: none;
+height: 40px;
+color: #000; 
+font-size: 16px;  
 }
 
 #create_sales_assistant input[type="submit"]{
-  border: none;
-  outline: none;
-  height: 40px;
-  background: #0099ff;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 20px;
+border: none;
+outline: none;
+height: 40px;
+background: #0099ff;
+color: #fff;
+font-size: 18px;
+border-radius: 20px;
 }
 
 #create_sales_assistant input[type="submit"]:hover{
-  cursor: pointer;
-  background: #99ebff;
-  color: #000;
+cursor: pointer;
+background: #99ebff;
+color: #000;
 }
 
 
 /* End Of Styling For Admin Create Sales Attendant Page */
 
 #pagination {
-  margin-top: 50px;
+margin-top: 50px;
 }
 #pagination ul {
-  float: right;
-  transform: translate(-50%, -50%);
-  display: flex;
-  padding: 0;
-  margin: 0;
+float: right;
+transform: translate(-50%, -50%);
+display: flex;
+padding: 0;
+margin: 0;
 }
 
 #pagination ul li {
-  list-style: none;
+list-style: none;
 }
 
 #pagination ul li a {
-  position: relative;
-  display: block;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 40px;
-  background: #353535;
-  color: #565656;
-  text-decoration: none;
-  margin: 5px 5px 0 0;
-  border-radius: 4px;
+position: relative;
+display: block;
+width: 40px;
+height: 40px;
+font-size: 20px;
+text-align: center;
+line-height: 40px;
+background: #353535;
+color: #565656;
+text-decoration: none;
+margin: 5px 5px 0 0;
+border-radius: 4px;
 box-shadow: inset 0 5px 10px rgba(0, 0, 0, .1), 0 2px 5px rgba(0, 0, 0, .5);
 }
 
 #pagination ul li a.active, #pagination ul li a:hover {
-  color: #fff;
-  text-shadow: 0 0 20px #0099ff,
-  0 0 20px #0099ff,
-  0 0 20px #0099ff,
-  0 0 20px #0099ff,
-  0 0 20px #0099ff,
-  0 0 20px #0099ff,
-  0 0 20px #0099ff;
+color: #fff;
+text-shadow: 0 0 20px #0099ff,
+0 0 20px #0099ff,
+0 0 20px #0099ff,
+0 0 20px #0099ff,
+0 0 20px #0099ff,
+0 0 20px #0099ff,
+0 0 20px #0099ff;
 }
 
-
 @media (max-width: 1020px) {
-  .loginbox{
-    width: 75%;
-  }
-  .card {
-    width: 450px;
-  }
-  .cardimg{
-    width: 450px; 
-  }
+.loginbox{
+  width: 75%;
+}
+.card {
+  width: 450px;
+}
+.cardimg{
+  width: 450px; 
+}
 }
 
 @media (max-width: 985px) {
-  .card {
-    width: 400px;
-  }
-  .cardimg{
-    width: 400px; 
-  }
+.card {
+  width: 400px;
+}
+.cardimg{
+  width: 400px; 
+}
 }
 
 @media (max-width: 885px) {
-  .card {
-    width: 300px;
-  }
-  .cardimg{
-    width: 300px; 
-  }
+.card {
+  width: 300px;
+}
+.cardimg{
+  width: 300px; 
+}
 
 }
 
 @media (max-width: 830px) {
 .loginbox{
-  margin-bottom: 15%;  
-    }
-
-    #create_sales_assistant{
-      width: 80%;
-      /* text-align: center; */
-      margin: 0 auto;
-      padding: 5%;
-    }
+margin-bottom: 15%;  
   }
+
+  #create_sales_assistant{
+    width: 80%;
+    /* text-align: center; */
+    margin: 0 auto;
+    padding: 5%;
+  }
+}
 
 @media (max-width: 687px) {
-  .card {
-    width: 80%;
-  }
-  .cardimg{
-    width: 100%; 
-  }
-  .loginbox{
-    width: 90%;
+.card {
+  width: 80%;
+}
+.cardimg{
+  width: 100%; 
+}
+.loginbox{
+  width: 90%;
 
-  }
-  #pagination {
-    padding-left: 100px;
-    width: 100%;
-    }
-  #pagination ul {
-    float: right;
-    justify-content: flex-end;
-    transform: translate(-50%, -50%);
-    display: flex;
-    text-align: center;
-    align-content: center;
-    align-items: center;
-  }
+}
 
-  #pagination ul li a {
-    width: 30px;
-    height: 30px;
-    font-size: 15px;
-    line-height: 30px;
-    }
+#pagination {
+  padding-left: 100px;
+  width: 100%;
+  }
+#pagination ul {
+  float: right;
+  justify-content: flex-end;
+  transform: translate(-50%, -50%);
+  display: flex;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+
+#pagination ul li a {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  }
 }
 
 
 @media screen and (max-width: 600px) {
-  .footerstickbottom {
-    position: relative !important;
-  }
-  table {
-    border: 0;
-  }
+.footerstickbottom {
+  position: relative !important;
+}
+table {
+  border: 0;
+}
 
-  table caption {
-    font-size: 1.3em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-    /* font-family: 'Poiret One'; */
-    /* font-weight: 900; */
-  }
-  
-  table th {
-    font-weight: 900;
-  }
-  table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  table td:last-child {
-    border-bottom: 0;
-  }
+table caption {
+  font-size: 1.3em;
+}
+
+table thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+table tr {
+  border-bottom: 3px solid #ddd;
+  display: block;
+  margin-bottom: .625em;
+}
+
+table td {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: .8em;
+  text-align: right;
+  /* font-family: 'Poiret One'; */
+  /* font-weight: 900; */
+}
+
+table th {
+  font-weight: 900;
+}
+table td::before {
+  /*
+  * aria-label has no advantage, it won't be read inside a table
+  content: attr(aria-label);
+  */
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+table td:last-child {
+  border-bottom: 0;
+}
 }
 
 @media (max-width: 568px) {
-  .dashboard{
-    display: block !important;
-  }
-
-  #profiledetails {
-    display: block;
-    text-align: center;
-  }
-  
-  #profileimg {
-  width: 100%;
-  height: 300px;
-  }
-  
-  #profilecontent {
-    width: 100% !important;
-  }
-
-  .topcardsgroup {
-    display: block;
-  }
-  .topcardsbox{
-    display: block;
-    text-align: center;
-    /* float: ; */
-    display: block !important;
-    width: 100%;
-    padding: 5px;
-    text-align: center;
-    margin: 5px;
-  }
-
-    .navbar-nav{
-        display: none;
-    }
-
-    #side-menu{
-      width: 0;
-    }
-
-    #main{
-      margin-left: 0;
-    }
-
-    #loginbody{
-  height: 90%;
-  }
+.dashboard{
+  display: block !important;
 }
 
-/* @media (min-width: 568px) {
-    .open-slide{
-        display: none;
-    }
-} */
+#profiledetails {
+  display: block;
+  text-align: center;
+}
+
+#profileimg {
+width: 100%;
+height: 300px;
+}
+
+#profilecontent {
+  width: 100% !important;
+}
+
+.topcardsgroup {
+  display: block;
+}
+.topcardsbox{
+  display: block;
+  text-align: center;
+  /* float: ; */
+  display: block !important;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+}
+
+  .navbar-nav{
+      display: none;
+  }
+
+  #side-menu{
+    width: 0;
+  }
+
+  #main{
+    margin-left: 0;
+  }
+
+#loginbody{
+height: 90%;
+}
+}
