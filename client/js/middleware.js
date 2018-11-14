@@ -1,6 +1,6 @@
 this.base_url = 'http://localhost:3000/';
 this.url = 'http://localhost:3000/api/v1';
-// this.dashboard = '';
+this.dashboard_url = 'admin_dashboard.html';
 
 const request = (url, method, payload = null, isUpload = false) => {
   let token = localStorage.getItem('token') || null;
@@ -45,10 +45,8 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
     };
 
     let decodedToken = parseJwt(token);
-    const userImage = `${this.base_url}${decodedToken.userImage}`;
-
-    // Set user icon image
-    document.getElementById('userimg').src = userImage;
+    this.userImage = `${this.base_url}${decodedToken.userImage}`;
+    
 
     // if token expires, redirect to login page
     if (decodedToken.exp < Date.now() / 1000) {
@@ -57,6 +55,7 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
 
     // Check if attendant is trying to access admin routte
     if (decodedToken.type === 2) {
+      this.dashboard_url = 'attendant_dashboard.html';
       if(document.location.href.indexOf('admin') > -1) {
         alert('Forbidden, PS: You would be fired soon');
         return window.history.back();

@@ -14,7 +14,7 @@ const viewCategories = () => {
              output += `
              <tr>
              <td data-label="Category Name">${category.name}</td>
-             <td data-label="Edit"><button class="button_1">Edit</button></td>
+             <td data-label="Edit"><button class="button_1"><a href="admin_category.html?id=${category.id}">EDIT</a></button></td>
              <td data-label="Delete"><button onclick="deleteCategory('${category.id}')" class="button_2">Delete</button></td>
            </tr>
               `;
@@ -23,7 +23,7 @@ const viewCategories = () => {
           categorytablebody.innerHTML = output;
               break;
               case 404:
-                alert(data.message)
+                alert(data.message);
               break;
             default:
               return alert('Error Fetching Category, Try again');
