@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="viewCategories()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -53,8 +53,8 @@
                                 <h1 class="text-center">Create New Category</h1>
                         <form method="POST" action="index.html">
                                 <h2>Category Name</h2>
-                                <input type="text" name="productname" placeholder="Enter Name">
-                                <input type="submit" name="" class="button_1" value="Create Category">
+                                <input type="text" name="categoryname" id="categoryname" placeholder="Enter Name">
+                                <input type="submit" id="createcategorysubmit" onclick="" class="button_1" value="Create Category">
                                 
                             </form>   
                     </div>
@@ -69,22 +69,7 @@
                                     <th scope="col">Delete</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td data-label="Date">Fashion</td>
-                                    <td data-label="Product"><button class="button_1">Edit</button></td>
-                                    <td data-label="Product"><button class="button_2">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td data-label="Date">Electronics</td>
-                                    <td data-label="Product"><button class="button_1">Edit</button></td>
-                                    <td data-label="Product"><button class="button_2">Delete</button></td>
-                                      </tr>
-                                      <tr>
-                                        <td data-label="Date">Gaming</td>
-                                        <td data-label="Product"><button class="button_1">Edit</button></td>
-                                        <td data-label="Product"><button class="button_2">Delete</button></td>
-                                          </tr>
+                                <tbody id="categorytablebody">
                                 </tbody>
                               </table>
                 </div>
@@ -96,8 +81,9 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
+    <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/category.js"></script>
     </body>
 
 </html>

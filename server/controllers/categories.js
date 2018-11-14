@@ -25,7 +25,8 @@ class productController {
       return res.status(400).json({ status: 'error', data: errors });
     }
 
-    const { name } = req.body;
+    let { name } = req.body;
+    name = name.trim();
     const host = req.get('host');
 
     const text = `INSERT INTO
@@ -43,7 +44,7 @@ class productController {
     const categoryExistValue = [name];
     db.query(categoryExist, categoryExistValue).then((dbresponse) => {
       if (dbresponse.rowCount > 0) {
-        return res.status(400).json({ status: 'error', message: `Category with name ${name} already exists` });
+        return res.status(409).json({ status: 'error', message: `Category with name ${name} already exists` });
       }
       db.query(text, values).then((dbres) => {
         const response = dbres.rows[0];
