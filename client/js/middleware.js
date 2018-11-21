@@ -57,7 +57,7 @@ if (window.location.pathname !== '/' && window.location.pathname !== '/index.htm
     if (decodedToken.type === 2) {
       this.dashboard_url = 'attendant_dashboard.html';
       if(document.location.href.indexOf('admin') > -1) {
-        alert('Forbidden, PS: You would be fired soon');
+        // alert('Forbidden, PS: You would be fired soon');
         return window.history.back();
       }
     }

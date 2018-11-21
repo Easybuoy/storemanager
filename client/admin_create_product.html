@@ -62,23 +62,10 @@
                                 <input type="number" id="productprice" name="productprice" placeholder="Enter Price">
                                 <h2>Product Quantity</h2>
                                 <input type="number" id="productquantity" name="productquantity" placeholder="Enter Quantity">
-                                <img src="" id="showimage" class="text-center" style="display: none; height: 100px; width: 100px">
                                 <h2>Product Image</h2>
+                                <img src="" id="showimage" class="text-center" style="display: none; height: 150px; width: 150px"> <br>
                                 <input type="file" id="productimage" name="upload" onchange="showImage.call(this)" >
-                                <script>
-                                function showImage() {
-                                    if (this.files && this.files[0]) {
-                                        var obj = new FileReader();
-                                        obj.onload = function(data) {
-                                            var image = document.getElementById('showimage');
-                                            image.src = data.target.result;
-                                            image.style.display = 'block';
-                                            image.style.justifyContent = 'center';
-                                        }
-                                        obj.readAsDataURL(this.files[0]);
-                                    }
-                                }
-                                </script>
+                                
                                 <h2>Category</h2>
                                 <select id="categoryoption">
                                 <option value="">Select Category</option>
@@ -95,8 +82,8 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    <script src="js/main.js"></script>
     <script src="js/middleware.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/products.js"></script>
     </body>
 

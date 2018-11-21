@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="getProductsById()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -55,17 +55,18 @@
                                 <h1 class="text-center">Edit Product</h1>
                         <form method="POST" action="index.html">
                                 <h2>Product Name</h2>
-                                <input type="text" name="productname" placeholder="Enter Name" value="iPhone x">
+                                <input type="text" id="productname" name="productname" placeholder="Enter Name" value="">
                                 <h2>Product Summary</h2>
-                                <input type="text" name="productsummary" placeholder="Enter Summary" value="The phone comes with a 5.80-inch touchscreen display.............">
+                                <input type="text" id="productsummary" name="productsummary" placeholder="Enter Summary" value="">
                                 <h2>Product Amount</h2>
-                                <input type="text" name="productamount" placeholder="Enter Amount" value="$620">
+                                <input type="text" id="productamount" name="productamount" placeholder="Enter Amount" value="">
                                 <h2>Product Quantity</h2>
-                                <input type="text" name="productquantity" placeholder="Enter Quantity" value="40">
+                                <input type="text" id="productquantity" name="productquantity" placeholder="Enter Quantity" value="">
                                 <h2>Product Image</h2>
-                                <input type="file" name="upload" >
+                                <img src="" id="showimage" class="text-center" style="display: none; height: 150px; width: 150px"> <br>
+                                <input type="file" id="productimage" name="upload" onchange="showImage.call(this)" >
                                 <h2>Category</h2>
-                                <select>
+                                <select id="categoryoption">
                                 <option value="volvo">Phones & Tablets</option>
                                 <option value="saab">Computing</option>
                                 <option value="mercedes">Gaming</option>
@@ -85,6 +86,7 @@
 
     <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
     </body>
 
 </html>

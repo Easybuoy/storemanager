@@ -67,7 +67,7 @@ router.delete('/:id', isLoggedIn, isAdmin, deleteProductById);
 // @route   PUT api/v1/products/<productId>
 // @desc    Update a single product record
 // @access   Private
-router.put('/:id', isLoggedIn, isAdmin, updateProductById);
+router.put('/:id', isLoggedIn, isAdmin, upload.single('productImage'), updateProductById);
 
 // @route   PUT api/v1/products/<productId>/<categoryId>
 // @desc    Assign Products To Category

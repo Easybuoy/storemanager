@@ -158,3 +158,47 @@ const deleteProduct = (id) => {
 //     e.preventDefault();
 //     // createProduct();
 // });
+
+ function showImage() {
+    if (this.files && this.files[0]) {
+        let obj = new FileReader();
+        obj.onload = (data) => {
+            let image = document.getElementById('showimage');
+            image.src = data.target.result;
+            image.style.display = 'block';
+            image.style.justifyContent = 'center';
+        }
+        obj.readAsDataURL(this.files[0]);
+    }
+}
+
+const getProductsById = () => {
+    let urlParams = new URLSearchParams(window.location.search);
+
+    const productId = urlParams.get('id');
+
+    request(`/products/${productId}`, 'GET')
+    .then(res => {
+       return res.json()
+    })
+    .then(data => {
+        const response = data.data;
+        console.log(data)
+        let productname = document.getElementById('productname');
+        let productsummary = document.getElementById('productsummary');
+        let productamount = document.getElementById('productamount');
+        let productquantity = document.getElementById('productquantity');
+        let productimage = document.getElementById('productimage');
+        let categoryoption = document.getElementById('categoryoption');
+        let image = document.getElementById('showimage');
+            image.src = response.product_image;
+            image.style.display = 'block';
+            image.style.justifyContent = 'center';
+            console.log(response.name)
+        productname.value = response.name;
+        productsummary.value = response.description;
+        productamount.value = `$${response.price}`;
+        productquantity.value = response.quantity;
+        productimage.filename = response.product_image;
+    })
+}
