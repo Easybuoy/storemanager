@@ -173,10 +173,26 @@ class usersController {
    * @access Private
    */
   static getCurrentUser(req, res) {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
+    const { id } = req.user;
+
+    const text = queries.userExistWithId;
+    const userqueryvalue = [
+      id,
+    ];
+    db.query(text, userqueryvalue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ status: 'error', message: 'User not found.' });
+      }
+      const response = {
+        name: dbresponse.rows[0].name,
+        email: dbresponse.rows[0].email,
+        userImage: dbresponse.rows[0].userimage,
+        type: dbresponse.rows[0].type,
+        status: dbresponse.rows[0].status,
+      };
+      return res.json({ status: 'success', data: response });
+    }).catch(() => {
+      return res.status(400).json({ status: 'error', message: 'Error Fetching User Details, Please try again' });
     });
   }
 

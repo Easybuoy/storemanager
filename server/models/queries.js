@@ -1,5 +1,6 @@
 const queries = {
   userExist: 'SELECT * FROM users WHERE email = $1',
+  userExistWithId: 'SELECT * FROM users WHERE id = $1',
   userInsert: `INSERT INTO
     users(id, name, email, password, type, status, userImage, created_at)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8)

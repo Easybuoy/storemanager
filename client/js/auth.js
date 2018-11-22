@@ -155,3 +155,21 @@ const viewAllAttendants = () => {
     
   })
 };
+
+const getAttendantProfile = () => {
+  request('/auth/current', 'GET')
+  .then(res => res.json())
+  .then(data =>{
+     let role = 'Store Attendant';
+     if (data.data.type === 2) {
+       role = 'Admin';
+     }
+     
+    document.getElementById('profileimg').src = data.data.userImage;
+    document.getElementById('profilename').innerHTML = data.data.name;
+    document.getElementById('profileemail').innerHTML = data.data.email;
+    document.getElementById('profilerole').innerHTML = role;
+    document.getElementById('profilestatus').innerHTML = 'Active';
+
+    })
+}
