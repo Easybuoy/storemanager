@@ -4,7 +4,7 @@ import authenticate from '../../../middleware/authenticate';
 import categoriesController from '../../../controllers/categories';
 
 const {
-  createCategory, updateCategory, deleteCategory, getCategories,
+  createCategory, updateCategory, deleteCategory, getCategories, getCategoryById,
 } = categoriesController;
 
 const { isLoggedIn, isAdmin } = authenticate;
@@ -32,5 +32,12 @@ router.delete('/:id', isLoggedIn, isAdmin, deleteCategory);
 // @desc     Get All Categories
 // @access   Private
 router.get('/', isLoggedIn, isAdmin, getCategories);
+
+
+// @route    GET api/v1/categories/<categoryId>
+// @desc     Get A Category Details
+// @access   Private
+router.get('/:id', isLoggedIn, isAdmin, getCategoryById);
+
 
 module.exports = router;

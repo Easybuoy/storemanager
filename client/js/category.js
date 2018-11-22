@@ -1,3 +1,33 @@
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has('id')) {
+    const categoryId = urlParams.get('id');
+    let status = 0;
+
+    request(`/categories/${categoryId}`, 'GET')
+    .then(res => {
+        status = res.status;
+    return res.json();
+    })
+    .then(data => {
+        switch (status) {
+            case 200:
+            // const 
+            let categoryname = document.getElementById('categoryname');
+            let createcategorysubmit = document.getElementById('createcategorysubmit');
+            categoryname.value = data.data.name;
+           return createcategorysubmit.value = 'Edit Category';
+            break;
+              case 404:
+                alert(data.message);
+              break;
+            default:
+               alert('Error Fetching Category, Try again');
+               return window.location = '/admin_category.html';
+          }
+    }); 
+}
+
 const viewCategories = () => {
     let status = 0;
     request('/categories/', 'GET')
@@ -56,30 +86,56 @@ const deleteCategory = (id) => {
     document.getElementById('createcategorysubmit').addEventListener('click', (e) => {
         e.preventDefault();
         let status = 0;
+        const createcategorysubmit = document.getElementById('createcategorysubmit').value;
         const categoryname = document.getElementById('categoryname').value;
 
-        request('/categories/', 'POST', { name: categoryname })
-        .then(res => {
-            status = res.status;
-          return res.json();
-        })
-        .then(data => {
-            console.log(data)
-            switch (status) {
-                case 201:
-                  alert(data.message);
-                  window.location.reload();
-                  break;
-                  case 400:
-                    alert(data.data.name || data.message);
-                   break; 
-                   case 409:
-                    alert(data.message);
-                   break;
-                default:
-                  return alert('Error Deleting Category, Try again');
-              }
-        })
+        const categoryId = urlParams.get('id');
+        if (createcategorysubmit === 'Edit Category') {
+            request(`/categories/${categoryId}`, 'PUT', { name: categoryname })
+            .then(res => {
+                status = res.status;
+              return res.json();
+            })
+            .then(data => {
+
+                switch (status) {
+                    case 200:
+                      alert(data.message);
+                      window.location = '/admin_category.html';
+                      break;
+                      case 400:
+                        alert(data.message);
+                       break;
+                    default:
+                      return alert('Error Updating Category, Try again');
+                  }
+        });
+        }else{
+            request('/categories/', 'POST', { name: categoryname })
+            .then(res => {
+                status = res.status;
+              return res.json();
+            })
+            .then(data => {
+                console.log(data)
+                switch (status) {
+                    case 201:
+                      alert(data.message);
+                      window.location = '/admin_category.html';
+                      break;
+                      case 400:
+                        alert(data.data.name || data.message);
+                       break; 
+                       case 409:
+                        alert(data.message);
+                       break;
+                    default:
+                      return alert('Error Creating Category, Try again');
+                  }
+        });
+        }
+
+        
     });
    
 // };

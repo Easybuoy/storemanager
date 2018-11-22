@@ -194,11 +194,11 @@ const getProductsById = () => {
             image.src = response.product_image;
             image.style.display = 'block';
             image.style.justifyContent = 'center';
-            console.log(response.name)
+            
         productname.value = response.name;
         productsummary.value = response.description;
         productamount.value = `$${response.price}`;
         productquantity.value = response.quantity;
-        productimage.filename = response.product_image;
+        
     })
 }

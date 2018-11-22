@@ -84,6 +84,32 @@ class productController {
   }
 
   /**
+   * Product Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/categories/<categoryId>
+   * @description This function implements the logic for getting a categry detail by Id.
+   * @access Private
+   */
+  static getCategoryById(req, res) {
+    const { id } = req.params;
+
+    const text = queries.categoryExistWithId;
+    const categoryqueryvalue = [
+      id,
+    ];
+    db.query(text, categoryqueryvalue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ status: 'error', message: `Category with id ${id} not found.` });
+      }
+      return res.json({ status: 'success', data: dbresponse.rows[0] });
+    }).catch(() => {
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Category Details, Please try again' });
+    });
+  }
+
+  /**
    * Delete A Category Route
    * @param {object} req
    * @param {object} res
