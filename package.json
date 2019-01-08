@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "babel-node server/app",
     "start-dev": "npm run migrations && npm run clean-dev && babel server -d server/build/dev && node server/build/dev/app",
-    "start": "npm run clean && babel server -d server/build && node server/build/app",
+    "start": "babel server -d server/build && node server/build/app",
     "test": "npm run migrations && mocha server/test --compilers js:babel-core/register --exit || true",
     "test-dev": "npm run clean-dev && npm run clean && babel server -d server/build/dev && mocha --recursive server/build/dev --exit || true",
     "lint": "eslint ./server",
