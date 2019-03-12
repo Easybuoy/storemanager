@@ -1,5 +1,6 @@
 const queries = {
   userExist: 'SELECT * FROM users WHERE email = $1',
+  userExistWithId: 'SELECT * FROM users WHERE id = $1',
   userInsert: `INSERT INTO
     users(id, name, email, password, type, status, userImage, created_at)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8)
@@ -13,7 +14,7 @@ const queries = {
   productExist: 'SELECT * FROM products ',
   productExistWithId: 'SELECT * FROM products WHERE id = $1',
   productDeleteWithId: 'DELETE FROM products WHERE id = $1 returning *',
-  productUpdateWithId: 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), product_image=($6), updated_at=($7) WHERE id=($1) returning *',
+  productUpdateWithId: 'UPDATE products SET name=($2), description=($3), quantity=($4), price=($5), category_id=($6), product_image=($7), updated_at=($8) WHERE id=($1) returning *',
   productUpdateCategoryWithId: 'UPDATE products SET category_id=($2), updated_at=($3) WHERE id=($1) returning *',
   categoryExists: 'SELECT * FROM categories ',
   categoryExistWithId: 'SELECT * FROM categories WHERE id = $1',

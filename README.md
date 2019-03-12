@@ -87,6 +87,7 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Register User                   | POST          | /api/v1/auth/signup                           | PRIVATE       |
 | Login User                      | POST          | /api/v1/auth/login                            | PUBLIC        |
 | Make Store Attendant an Admin   | POST          | /api/v1/auth/makeadmin                        | PRIVATE       |
+| Get Current User Details        | GET           | /api/v1/auth/current                          | PRIVATE       |
 | Get All Store Attendants        | GET           | /api/v1/auth/attendants                       | PRIVATE       |
 | Create New Product              | POST          | /api/v1/products                              | PRIVATE       |
 | Get All Products                | GET           | /api/v1/products                              | PRIVATE       |

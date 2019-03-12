@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A web application that helps store owners manage sales and product inventory records.">
         <meta name="keywords" content="Store Manager">
-        <title>Store Manager | Create Sales Attendant</title>
+        <title>Store Manager | Category</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/ico" sizes="32x32" href="img/favicon.ico">
 
     </head>
 
-    <body onload="createAttendant()">
+    <body onload="viewCategories()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -34,44 +34,45 @@
             </ul>
         </nav>
 
-        
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
             <li><a href="admin_dashboard.html">Dashboard</a></li>
             <li><a href="admin_create_product.html">Create Product</a></li>
             <li><a href="admin_view_products.html">View Products</a></li>
-            <li class="current"><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
+            <li><a href="admin_create_sales_attendant.html">Create Sales Attendant</a></li>
             <li><a href="admin_view_sales.html">View Sales</a></li>
             <li><a href="admin_view_attendants.html">View Attendants</a></li>
-            <li><a href="admin_category.html">Category</a></li>
+            <li class="current"><a href="admin_category.html">Category</a></li>
             <li><a href="index.html" onclick="clearLocalStorage('token')">Logout</a></li>
         </div>
-
         <div id="main">
             <div class="container">
             <section class="topmargin">
                 <div class="container">
                         <div id="create_sales_assistant">
-                                <h1 class="text-center">Create Sales Attendant</h1>
+                                <h1 class="text-center">Create New Category</h1>
                         <form method="POST" action="index.html">
-                                <h2>Name</h2>
-                                <input type="text" name="name" id="name" placeholder="Enter Name">
-                                <h2>Email</h2>
-                                <input type="email" name="email" id="email" placeholder="Enter Email">
-                                <h2>Password</h2>
-                                <input type="password" name="password" id="password" placeholder="Enter Password"> <br>
-                                <h2>User Image</h2>
-                                <input type="file" id="userimage" name="upload" >
-                                <h2>Type</h2>
-                                <select id="type">
-                                    <option value="">Select Role</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Attendant</option>
-                                </select> <br> <br>
-                                <input type="submit" name="" id="createattendant" class="button_1" value="Create Sales Assistant">
+                                <h2>Category Name</h2>
+                                <input type="text" name="categoryname" id="categoryname" placeholder="Enter Name">
+                                <input type="submit" id="createcategorysubmit" onclick="" class="button_1" value="Create Category">
                                 
                             </form>   
                     </div>
+                    <hr>
+                    <div class="container text-center">
+                        <table class="table">
+                                <caption>Categories</caption>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="categorytablebody">
+                                </tbody>
+                              </table>
+                </div>
                 </div>
             </section>
         </div>
@@ -80,11 +81,9 @@
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
     <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
-
+    <script src="js/category.js"></script>
     </body>
 
 </html>

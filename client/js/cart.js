@@ -98,6 +98,7 @@ const checkout = () => {
             switch (status) {
                 case 201:
                 alert(data.message)
+                localStorage.removeItem('products');
                 window.location.reload();
                 break;
                 case 400:

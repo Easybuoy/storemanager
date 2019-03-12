@@ -160,7 +160,7 @@ class productController {
       productImage = req.file.path;
     }
     const {
-      name, description, quantity, price,
+      name, description, quantity, price, category_id
     } = req.body;
 
     const text = queries.productUpdateWithId;
@@ -170,13 +170,14 @@ class productController {
       description,
       quantity,
       price,
+      category_id,
       productImage,
       new Date(),
     ];
 
     db.query(text, values).then((dbres) => {
       return res.status(200).json({ status: 'success', data: dbres.rows[0] });
-    }).catch(() => {
+    }).catch((e) => { console.log(e)
       return res.status(400).json({ status: 'error', message: 'Error Updating Products, Please try again' });
     });
   }

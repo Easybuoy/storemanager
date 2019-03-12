@@ -13,7 +13,7 @@
 
     </head>
 
-    <body>
+    <body onload="getAttendantProfile()">
 
         <nav class="navbar">
             <span class="open-slide">
@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="store_attendant_profile.html" style="padding-top: 10px"><div><img id="userimg" src="../assets/uploads/users/default-avatar.png"> </div></a></li>
                 <li id="shoppingcart"><a href="#"><label  id="shoppingcartlabel">0</label ><img id="cartimage" src="img/cart.png"></a></li>
-                <li id="appnameli"><a href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
+                <li id="appnameli"><a id="appnamehref" href="dashboard.html"><h1 id="appname"><span class="highlight">Store</span> Manager</h1></a></li>
             </ul>
         </nav>
 
@@ -94,43 +94,22 @@
                         <img src="img/avartar.png" id="profileimg"/>
 
                     <ul class="list-group" id="profilecontent">
-                            <li class="list-group-item text-center"><strong>Name:</strong> Store Attendant 1</li>
-                            <li class="list-group-item text-center"><strong>Email:</strong> attendant1@gmail.com</li>
-                            <li class="list-group-item text-center"><strong>Role:</strong> Store Attendant</li>
+                            <li class="list-group-item text-center"><strong>Name:</strong> <h4 id="profilename"> </h4></li>
+                            <li class="list-group-item text-center"><strong>Email:</strong> <h4 id="profileemail"></h4></li>
+                            <li class="list-group-item text-center"><strong>Role:</strong> <h4 id="profilerole"></h4></li>
+                            <li class="list-group-item text-center"><strong>Status:</strong> <h4 id="profilestatus"></h4></li>
                             </ul>
                         </div>
                 </div>
             </div>
         </section>
 
-        <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content" id="cartmodaldiv">
-                  <span class="close">&times;</span>
-                  <table >
-                          <thead>
-                              <th>PRODUCT</th>
-                              <th>AMOUNT</th>
-                              <th>QUANTITY</th>
-                          </thead>
-                          <tbody id="carttablebody"></tbody>
-                              </table>
-                              <br>
-                              <div class="text-center">
-                              <button class="button_1">BUY</button>
-                              <button class="button_1" id="clear" onclick="clearCart()">CLEAR</button>
-                              </div>
-                </div>
-              
-              </div>
-
-              
         <footer id="footer">
             <p>Store Manager Copyright &copy; 2018</p>
         </footer>
-    
+    <script src="js/middleware.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
     </body>
 
 </html>
