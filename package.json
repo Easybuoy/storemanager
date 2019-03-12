@@ -17,7 +17,9 @@
     "migrations": "npm run unmigrate && npm run migrate && npm run seed",
     "migrate": "babel-node server/config/migrate",
     "unmigrate": "babel-node server/config/unmigrate",
-    "seed": "babel-node server/config/seeds"
+    "seed": "babel-node server/config/seeds",
+    "heroku-postbuild": "echo Skip build on Heroku"
+
   },
   "repository": {
     "type": "git",
