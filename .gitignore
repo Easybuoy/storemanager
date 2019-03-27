@@ -3,3 +3,7 @@ package-lock.json
 /server/build
 /.nyc_output
 .env
+/UI/.DS_Store
+.DS_Store
+client/fonts/.DS_Store
+client/.DS_Store
