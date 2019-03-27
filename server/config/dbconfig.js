@@ -12,7 +12,6 @@ pool.on('connect', () => {
   console.log('connected to the database');
 });
 
-
 /**
  * Create User Tables
  */
