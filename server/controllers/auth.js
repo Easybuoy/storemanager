@@ -271,6 +271,42 @@ class usersController {
       return res.status(400).json({ status: 'error', message: 'Error Fetching Attendants, Please try again' });
     });
   }
+
+  /**
+   * Delete Attendant Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route DELETE api/v1/auth/attendant/attendantId
+   * @description This function implements the logic for deleting a store attendant.
+   * @access Private
+   */
+  static deleteAttendant(req, res) {
+    const { id } = req.params;
+    const text = queries.userExistWithId;
+    const userqueryvalue = [
+      id,
+    ];
+    db.query(text, userqueryvalue).then((dbresponse) => {
+
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ status: 'error', message: `User with id ${id} not found.` });
+      }
+      const userdeletetext = queries.userDeleteWithId;
+      const userdeletequeryvalue = [
+        id,
+      ];
+      db.query(userdeletetext, userdeletequeryvalue).then((dbres) => {
+        if (dbres.rows) {
+          return res.status(200).json({ status: 'success', message: `User with id ${id} deleted successfully.` });
+        }
+      }).catch(() => {
+        return res.status(400).json({ status: 'error', message: 'Error Deleting User, Please try again' });
+      });
+    }).catch(() => {
+      return res.status(400).json({ status: 'error', message: 'Error Deleting User, Please try again' });
+    });
+  }
 }
 
 export default usersController;

@@ -6,7 +6,8 @@ const queries = {
     VALUES($1, $2, $3, $4, $5, $6, $7, $8)
     returning *`,
   userUpdate: 'UPDATE users SET type=($2) WHERE id=($1) returning *',
-  userAttendants: 'SELECT name, email, status, userimage FROM users WHERE type = 2',
+  userAttendants: 'SELECT id, name, email, status, userimage FROM users WHERE type = 2',
+  userDeleteWithId: 'DELETE FROM users WHERE id = $1 returning *',
   productInsert: `INSERT INTO
     products(id, name, description, quantity, price, category_id, product_image, created_at)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8)

@@ -76,7 +76,7 @@ describe('Categories Rutes', () => {
         name,
       })
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(409);
         expect(res.body).to.be.an('object');
         expect(res.body.message).to.equal(`Category with name ${name} already exists`);
         done();
