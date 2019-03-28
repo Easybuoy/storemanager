@@ -180,4 +180,38 @@ describe('User Routes', () => {
         done();
       });
   });
+
+  it('does not delete attendant because attendant was not found', (done) => {
+    chai.request(app).get('/api/v1/auth/attendants')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        let attendantId = res.body.data[0].id;
+        attendantId = attendantId.substring(2);
+        attendantId = `93${attendantId}`;
+        chai.request(app).del(`/api/v1/auth/attendant/${attendantId}`)
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(400);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal(`User with id ${attendantId} not found.`);
+            done();
+          });
+      });
+  });
+
+  it('deletes a sale attendant', (done) => {
+    chai.request(app).get('/api/v1/auth/attendants')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        const attendantId = res.body.data[0].id;
+        chai.request(app).del(`/api/v1/auth/attendant/${attendantId}`)
+          .set('Authorization', storeownertoken)
+          .end((err2, res2) => {
+            expect(res2).to.have.status(200);
+            expect(res2.body).to.be.an('object');
+            expect(res2.body.message).to.equal(`User with id ${attendantId} deleted successfully.`);
+            done();
+          });
+      });
+  });
 });

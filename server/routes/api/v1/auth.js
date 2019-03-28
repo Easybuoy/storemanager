@@ -5,7 +5,7 @@ import authenticate from '../../../middleware/authenticate';
 import usersController from '../../../controllers/auth';
 
 const {
-  login, signup, getCurrentUser, makeAdmin, getAttendants,
+  login, signup, getCurrentUser, makeAdmin, getAttendants, deleteAttendant,
 } = usersController;
 
 const fileFilter = (req, file, cb) => {
@@ -66,5 +66,10 @@ router.post('/makeadmin', isLoggedIn, isAdmin, makeAdmin);
 // @desc     Get All Store Attendants
 // @access   Private
 router.get('/attendants', isLoggedIn, isAdmin, getAttendants);
+
+// @route    DELETE api/v1/auth/attendant/:attendantId
+// @desc     Delete An Attendant.
+// @access   Private
+router.delete('/attendant/:id', isLoggedIn, isAdmin, deleteAttendant);
 
 module.exports = router;

@@ -89,6 +89,7 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Make Store Attendant an Admin   | POST          | /api/v1/auth/makeadmin                        | PRIVATE       |
 | Get Current User Details        | GET           | /api/v1/auth/current                          | PRIVATE       |
 | Get All Store Attendants        | GET           | /api/v1/auth/attendants                       | PRIVATE       |
+| Delete A Store Attendant        | DELETE        | /api/v1/auth/attendant/{id}                   | PRIVATE       |
 | Create New Product              | POST          | /api/v1/products                              | PRIVATE       |
 | Get All Products                | GET           | /api/v1/products                              | PRIVATE       |
 | Get Single Product Detail       | GET           | /api/v1/products/{id}                         | PRIVATE       |
