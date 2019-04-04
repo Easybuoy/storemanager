@@ -32,7 +32,8 @@
   "nyc": {
     "exclude": [
       "server/app.js",
-      "server/config/keys.js"
+      "server/config/",
+      "server/build"
     ]
   },
   "author": "Ekunola Ezekiel",
