@@ -8,6 +8,9 @@ chai.use(chaiHttp);
 
 describe('User Routes', () => {
   let storeownertoken = '';
+  let storeattendanttoken = '';
+  let undefinedtypetoken = '';
+
   before((done) => {
     chai.request(app).post('/api/v1/auth/login')
       .send({
@@ -16,7 +19,22 @@ describe('User Routes', () => {
       .end((err, res) => {
         const { token } = res.body.data;
         storeownertoken = token;
-        done();
+
+        chai.request(app).post('/api/v1/auth/login')
+          .send({
+            email: 'example2@gmail.com', password: '123456',
+          })
+          .end((err2, res2) => {
+            storeattendanttoken = res2.body.data.token;
+            chai.request(app).post('/api/v1/auth/login')
+              .send({
+                email: 'example31@gmail.com', password: '123456',
+              })
+              .end((err3, res3) => {
+                undefinedtypetoken = res3.body.data.token;
+                done();
+              });
+          });
       });
   });
 
@@ -203,7 +221,7 @@ describe('User Routes', () => {
     chai.request(app).get('/api/v1/auth/attendants')
       .set('Authorization', storeownertoken)
       .end((err, res) => {
-        const attendantId = res.body.data[0].id;
+        const attendantId = res.body.data[1].id;
         chai.request(app).del(`/api/v1/auth/attendant/${attendantId}`)
           .set('Authorization', storeownertoken)
           .end((err2, res2) => {
@@ -214,4 +232,80 @@ describe('User Routes', () => {
           });
       });
   });
+
+  it('return unauthorized whilst trying to get user by id', (done) => {
+    chai.request(app).get('/api/v1/auth/2')
+      .end((error, data) => {
+        expect(data).to.have.status(401);
+        done();
+      });
+  });
+
+  it('should return unauthorized because user does not have right access', (done) => {
+    chai.request(app).get('/api/v1/auth/3')
+      .set('Authorization', storeattendanttoken)
+      .end((error, data) => {
+        expect(data).to.have.status(401);
+        done();
+      });
+  });
+
+  it('returns details of a user', (done) => {
+    chai.request(app).get('/api/v1/auth/attendants')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        const { id } = res.body.data[0];
+        chai.request(app).get(`/api/v1/auth/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(200);
+            expect(id).to.equal(data.body.data.id);
+            expect(data.body.data).to.be.an('object');
+            expect(data.body.data.name).to.be.a('string');
+            done();
+          });
+      });
+  });
+
+  it('return user not found error', (done) => {
+    chai.request(app).get('/api/v1/auth/attendants')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
+        id = id.substring(2);
+        id = `93${id}`;
+        chai.request(app).get(`/api/v1/auth/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal(`User with id ${id} not found.`);
+            done();
+          });
+      });
+  });
+
+  it('return error fetching user error', (done) => {
+    chai.request(app).get('/api/v1/auth/attendants')
+      .set('Authorization', storeownertoken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.be.an('array');
+        let { id } = res.body.data[0];
+        id = `93${id}`;
+        chai.request(app).get(`/api/v1/auth/${id}`)
+          .set('Authorization', storeownertoken)
+          .end((error, data) => {
+            expect(data).to.have.status(400);
+            expect(data.body).to.be.an('object');
+            expect(data.body.message).to.equal('Error Fetching User Details, Please try again');
+            done();
+          });
+      });
+  });
+
 });

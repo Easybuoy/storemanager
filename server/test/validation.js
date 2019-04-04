@@ -113,6 +113,17 @@ describe('Sales Validation', () => {
     expect(result.errors).to.be.an('object');
     done();
   });
+
+  it('returns object of validation required', (done) => {
+    const result = salesValidation.validateSalesInput({
+      order: [{}],
+    });
+    expect(result.isValid).to.equal(false);
+    expect(Object.keys(result.errors).length).to.be.greaterThan(0);
+    expect(result.errors.order).to.equal('Invalid array of objects provided for order.');
+    expect(result.errors).to.be.an('object');
+    done();
+  });
 });
 
 

@@ -34,7 +34,8 @@ const queries = {
   orders(id, sale_id, product_id, quantity, created_at)
   VALUES($1, $2, $3, $4, $5)
   returning *`,
-  salesExistForGetSales: 'SELECT o.sale_id, o.quantity, o.created_at, p.name, p.description, p.price FROM orders as o JOIN products as p ON o.product_id = p.id;',
+  salesExistForGetSales: 'SELECT o.sale_id, o.quantity, o.created_at, p.name, p.description, p.price, s.store_attendant_user_id FROM orders as o JOIN products as p ON o.product_id = p.id JOIN sales as s ON o.sale_id = s.id;',
+  salesExistForAttendantSales: 'SELECT o.sale_id, o.quantity, o.created_at, p.name, p.description, p.price FROM orders as o JOIN products as p ON o.product_id = p.id JOIN sales as s ON o.sale_id = s.id WHERE s.store_attendant_user_id = $1;',
   salesByIdAdmin: `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
   s.id = o.sale_id JOIN products as p ON o.product_id = p.id WHERE s.id = $1;`,
   salesByIdAttendant: `SELECT p.name, p.description, p.product_image, p.price, o.quantity, o.created_at FROM sales as s JOIN orders as o ON 
