@@ -90,6 +90,7 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Get Current User Details        | GET           | /api/v1/auth/current                          | PRIVATE       |
 | Get All Store Attendants        | GET           | /api/v1/auth/attendants                       | PRIVATE       |
 | Delete A Store Attendant        | DELETE        | /api/v1/auth/attendant/{id}                   | PRIVATE       |
+| Get User By Id                  | GET            | /api/v1/auth/{id}                             | PRIVATE       |
 | Create New Product              | POST          | /api/v1/products                              | PRIVATE       |
 | Get All Products                | GET           | /api/v1/products                              | PRIVATE       |
 | Get Single Product Detail       | GET           | /api/v1/products/{id}                         | PRIVATE       |
@@ -103,6 +104,8 @@ You need Nodejs Installed to be able to run this project on your machine.
 | Get All Categories              | GET           | /api/v1/categories/                           | PRIVATE       |
 | Update a Category               | PUT           | /api/v1/categories/{id}                       | PRIVATE       |
 | Delete a Category               | DELETE        | /api/v1/categories/{id}                       | PRIVATE       |
+| Get a Category By Id            | GET           | /api/v1/categories/{id}                       | PRIVATE       |
+
 
  <br><br>
 

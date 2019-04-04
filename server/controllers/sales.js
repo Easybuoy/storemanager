@@ -62,14 +62,21 @@ class salesControler {
    * @access Private
    */
   static getSales(req, res) {
-    const salesExist = queries.salesExistForGetSales;
-    db.query(salesExist).then((dbresponse) => {
+    let salesExist = queries.salesExistForGetSales;
+    let queryValue = null;
+
+    if (req.user.type === 2) {
+      salesExist = queries.salesExistForAttendantSales;
+      queryValue = [req.user.id];
+    }
+
+    db.query(salesExist, queryValue).then((dbresponse) => {
       if (dbresponse.rowCount === 0) {
         return res.status(404).json({ status: 'error', message: 'No Sale Found' });
       }
       return res.status(200).json({ status: 'success', data: dbresponse.rows });
-    }).catch(() => {
-      return res.status(400).json({ status: 'error', message: 'Error Fetching Sales, Please try again' });
+    }).catch((err) => {
+      return res.status(400).json({ status: 'error', message: 'Error Fetching Sales, Please try again', err });
     });
   }
 

@@ -13,7 +13,7 @@ const router = express.Router();
 // @route   GET api/v1/sales
 // @desc    Get/Fetch all sale records
 // @access  Private
-router.get('/', isLoggedIn, isAdmin, getSales);
+router.get('/', isLoggedIn, getSales);
 
 
 // @route   GET api/v1/sales/<saleId>

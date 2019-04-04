@@ -307,6 +307,42 @@ class usersController {
       return res.status(400).json({ status: 'error', message: 'Error Deleting User, Please try again' });
     });
   }
+
+  /**
+   * Auth Route
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   * @route GET api/v1/auth/<id>
+   * @description This function implements the logic for getting a user detail by Id.
+   * @access Private
+   */
+  static getUserById(req, res) {
+    const { id } = req.params;
+
+    const text = queries.userExistWithId;
+    const userqueryvalue = [
+      id,
+    ];
+    db.query(text, userqueryvalue).then((dbresponse) => {
+      if (dbresponse.rowCount === 0) {
+        return res.status(400).json({ status: 'error', message: `User with id ${id} not found.` });
+      }
+      const response = {
+        id: dbresponse.rows[0].id,
+        name: dbresponse.rows[0].name,
+        email: dbresponse.rows[0].email,
+        userimage: dbresponse.rows[0].userimage,
+        type: dbresponse.rows[0].type,
+        status: dbresponse.rows[0].status,
+
+      };
+      return res.json({ status: 'success', data: response });
+    }).catch(() => {
+      return res.status(400).json({ status: 'error', message: 'Error Fetching User Details, Please try again' });
+    });
+  }
 }
+
 
 export default usersController;

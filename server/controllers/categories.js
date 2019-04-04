@@ -8,7 +8,7 @@ import queries from '../models/queries';
 import db from '../models/db';
 import categoriesValidation from '../validation/categories';
 
-class productController {
+class categoryController {
   /**
    * Categories Route
    * @param {object} req
@@ -84,7 +84,7 @@ class productController {
   }
 
   /**
-   * Product Route
+   * Category Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
@@ -145,12 +145,12 @@ class productController {
   }
 
   /**
-   * Product Route
+   * Category Route
    * @param {object} req
    * @param {object} res
    * @returns {object} object
-   * @route PUT api/v1/products/<productId>
-   * @description This function implements the logic for updating a product detail by Id.
+   * @route PUT api/v1/category/<categoryId>
+   * @description This function implements the logic for updating a category detail by Id.
    * @access Private
    */
   static updateCategory(req, res) {
@@ -185,4 +185,4 @@ class productController {
 }
 
 
-export default productController;
+export default categoryController;
