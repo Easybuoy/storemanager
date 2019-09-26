@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
-import pingmydyno from 'pingmydyno';
+// import pingmydyno from 'pingmydyno';
 
 import products from './routes/api/v1/products';
 import sales from './routes/api/v1/sales';
@@ -70,7 +70,7 @@ const port = process.env.PORT || 3000;
 
 // eslint-disable-next-line no-console
 app.listen(port, () => {
-  pingmydyno('https://store--manager.herokuapp.com/');
+//   pingmydyno('https://store--manager.herokuapp.com/');
   console.log(`sever listening on port ${port}`);
 });
 
