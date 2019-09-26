@@ -62,7 +62,6 @@
     "nodemon": "^1.18.4",
     "nyc": "^13.0.1",
     "pg": "^7.5.0",
-    "pingmydyno": "^1.4.0",
     "swagger-ui-express": "^4.0.1",
     "uuid": "^3.3.2",
     "validator": "^10.8.0"
